@@ -21,3 +21,10 @@ git push origin <tên nhánh mới>
 10. So sánh những thay đổi trên nhánh mới với main xem đúng chưa
 11. Merge vào main nếu không có conflict xảy ra
 12. Trường hợp bị conflict -> fix conflict trước khi Merge 
+
+#Làm việc với source code
+1. Chức năng đặt trong QLBH_Function
+2. Trong QLBH_MVC
+Modal: chứa code connect với data base
+View: Tạo giao diện
+Controller: chứa code tương tác với View, những gì thể hiện trên giao diện
