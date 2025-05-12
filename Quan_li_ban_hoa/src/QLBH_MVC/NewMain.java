@@ -13,11 +13,12 @@ public class NewMain {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
-        Welcome w = new Welcome();
-        w.setVisible(true);
-        
-        
+    public static void main(String[] args) throws ClassNotFoundException {
+        Chao_Mung w = new Chao_Mung();
+        Model m = new Model();
+        m.getConnection();
+        //w.setVisible(true);
+        //w.btnTiepTucActionListener();
     }
     
 }

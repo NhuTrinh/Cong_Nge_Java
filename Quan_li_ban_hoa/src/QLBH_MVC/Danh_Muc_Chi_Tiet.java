@@ -8,12 +8,12 @@ package QLBH_MVC;
  *
  * @author TOSHIBA
  */
-public class Items_details extends javax.swing.JFrame {
+public class Danh_Muc_Chi_Tiet extends javax.swing.JFrame {
 
     /**
      * Creates new form Items_details
      */
-    public Items_details() {
+    public Danh_Muc_Chi_Tiet() {
         initComponents();
     }
 
@@ -223,20 +223,21 @@ public class Items_details extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Items_details.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Danh_Muc_Chi_Tiet.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Items_details.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Danh_Muc_Chi_Tiet.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Items_details.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Danh_Muc_Chi_Tiet.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Items_details.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Danh_Muc_Chi_Tiet.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Items_details().setVisible(true);
+                new Danh_Muc_Chi_Tiet().setVisible(true);
             }
         });
     }
