@@ -40,11 +40,15 @@ public class Main {
         Main_Controller mainController = new Main_Controller(mainModel, mainFrame, v, khView, khModel);       
         cl.loginAction();
         v.setVisible(true);
-        //mainController.thoatAction();
+        mainController.thoatAction();
         mainController.khachHangAction();
         khController.thoatAction();
         khController.xemChiTietKhachHang();
         khController.themKhachHang();
+        khController.huyAction();
+        khController.ThoatAddUpdateAction();
+        khController.capNhatAction();
+        khController.xoaAction();
     }
     
 }

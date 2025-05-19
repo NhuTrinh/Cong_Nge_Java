@@ -51,6 +51,10 @@ public class Khach_Hang_View extends javax.swing.JFrame {
         btnThem.addActionListener(all);
     }
     
+    public void btnXoaActionListener(ActionListener all){
+        btnXoa.addActionListener(all);
+    }
+    
     public void getInformationSelectedRow()
     {
         int selectedRow = tblKhachHang.getSelectedRow();
@@ -75,6 +79,34 @@ public class Khach_Hang_View extends javax.swing.JFrame {
         txtTenKhachHang.setText(tenKhachHang);
         txtSoDienThoai.setText(soDienThoai);
         txtDiaChi.setText(diaChi);
+    }
+    
+    public Khach_Hang getKhachHangSelectedRow()
+    {
+        int selectedRow = tblKhachHang.getSelectedRow();
+        System.out.println("vo day chua" + selectedRow);
+        String maKhachHang = "";
+        String tenKhachHang = "";
+        String soDienThoai = "";
+        String diaChi = "";
+        
+        if(selectedRow != -1) {
+             maKhachHang = tblKhachHang.getValueAt(selectedRow, 0).toString();
+             tenKhachHang = tblKhachHang.getValueAt(selectedRow, 1).toString();
+             soDienThoai = tblKhachHang.getValueAt(selectedRow, 2).toString();
+             diaChi = tblKhachHang.getValueAt(selectedRow, 3).toString();
+             System.out.println("ma" + maKhachHang);
+             System.out.println("ten" + tenKhachHang);
+             System.out.println("dia" + diaChi);
+             System.out.println("e" + soDienThoai);
+             Khach_Hang kh = new Khach_Hang(maKhachHang, tenKhachHang, soDienThoai, "", "", diaChi);
+             return kh;
+        }
+        return null;
+    }
+    
+     public void btnCapNhatActionListener(ActionListener all){
+        btnCapNhat.addActionListener(all);
     }
 
     public void setTextMaKhachHang(String textMaKhachHang) {
@@ -143,8 +175,8 @@ public class Khach_Hang_View extends javax.swing.JFrame {
         tblKhachHang = new javax.swing.JTable();
         jPanel5 = new javax.swing.JPanel();
         btnThem = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
+        btnCapNhat = new javax.swing.JButton();
+        btnXoa = new javax.swing.JButton();
         btnXem = new javax.swing.JButton();
 
         jTextArea1.setColumns(20);
@@ -199,7 +231,7 @@ public class Khach_Hang_View extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
                     .addComponent(btnThoat))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
@@ -349,18 +381,18 @@ public class Khach_Hang_View extends javax.swing.JFrame {
         btnThem.setText("Thêm");
         btnThem.setPreferredSize(new java.awt.Dimension(114, 30));
 
-        jButton6.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jButton6.setForeground(new java.awt.Color(0, 51, 0));
-        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/QLBH_Images/Cap_nhat.png"))); // NOI18N
-        jButton6.setText("Cập nhật");
-        jButton6.setPreferredSize(new java.awt.Dimension(100, 30));
+        btnCapNhat.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        btnCapNhat.setForeground(new java.awt.Color(0, 51, 0));
+        btnCapNhat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/QLBH_Images/Cap_nhat.png"))); // NOI18N
+        btnCapNhat.setText("Cập nhật");
+        btnCapNhat.setPreferredSize(new java.awt.Dimension(100, 30));
 
-        jButton7.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jButton7.setForeground(new java.awt.Color(0, 51, 0));
-        jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/QLBH_Images/Xoa.png"))); // NOI18N
-        jButton7.setText("Xóa");
-        jButton7.setToolTipText("");
-        jButton7.setPreferredSize(new java.awt.Dimension(114, 30));
+        btnXoa.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        btnXoa.setForeground(new java.awt.Color(0, 51, 0));
+        btnXoa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/QLBH_Images/Xoa.png"))); // NOI18N
+        btnXoa.setText("Xóa");
+        btnXoa.setToolTipText("");
+        btnXoa.setPreferredSize(new java.awt.Dimension(114, 30));
 
         btnXem.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         btnXem.setForeground(new java.awt.Color(0, 51, 0));
@@ -379,9 +411,9 @@ public class Khach_Hang_View extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 99, Short.MAX_VALUE)
                 .addComponent(btnThem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(99, 99, 99)
-                .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnCapNhat, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(99, 99, 99)
-                .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnXoa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(44, 44, 44))
         );
         jPanel5Layout.setVerticalGroup(
@@ -390,8 +422,8 @@ public class Khach_Hang_View extends javax.swing.JFrame {
                 .addGap(6, 6, 6)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnThem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCapNhat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnXoa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnXem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -470,14 +502,14 @@ public class Khach_Hang_View extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCapNhat;
     private javax.swing.JButton btnThem;
     private javax.swing.JButton btnThoat;
     private javax.swing.JButton btnXem;
+    private javax.swing.JButton btnXoa;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

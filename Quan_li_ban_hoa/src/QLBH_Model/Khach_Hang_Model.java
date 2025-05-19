@@ -73,4 +73,37 @@ public class Khach_Hang_Model extends BaseModel{
         }
         return false;
     }
+    
+    public boolean capNhatKhachHang(String maKhachHang, String tenKhachHang, String soDienThoai, String xepLoai, String email, String diaChi){
+        String sql = "UPDATE KHACHHANG SET TENKHACHHANG = ?, SODIENTHOAI = ?, XEPLOAI = ?, EMAIL = ?, DIACHI = ? WHERE MAKHACHHANG = ?";
+        try {
+              Connection conn = getConnection();
+              PreparedStatement ps = conn.prepareStatement(sql);   
+              ps.setString(1, tenKhachHang);
+              ps.setString(2, soDienThoai);
+              ps.setString(3, xepLoai);
+              ps.setString(4, email);
+              ps.setString(5, diaChi);
+              ps.setString(6, maKhachHang);
+              int rs = ps.executeUpdate();
+               return rs > 0;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+    
+    public boolean xoaKhachHang(String maKhachHang){
+        String sql = "DELETE FROM KHACHHANG WHERE MAKHACHHANG = ?";
+        try {
+              Connection conn = getConnection();
+              PreparedStatement ps = conn.prepareStatement(sql);   
+              ps.setString(1, maKhachHang);
+              int rs = ps.executeUpdate();
+              return rs > 0;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
 }
