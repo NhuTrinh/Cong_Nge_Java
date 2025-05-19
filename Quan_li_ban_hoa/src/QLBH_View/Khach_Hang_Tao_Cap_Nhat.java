@@ -5,6 +5,7 @@
 package QLBH_View;
 
 import java.awt.event.ActionListener;
+import java.util.zip.CheckedInputStream;
 import javax.swing.JTextField;
 
 /**
@@ -23,7 +24,47 @@ public class Khach_Hang_Tao_Cap_Nhat extends javax.swing.JFrame {
     public void btnLuuActionListener(ActionListener all){
         btnLuu.addActionListener(all);
     }
+    
+    public void btnHuyActionListener(ActionListener all) {
+        btnHuy.addActionListener(all);
+    }
+    
+    public void btnThoatActionListener(ActionListener all) {
+        btnThoat.addActionListener(all);
+    }
 
+    public void setTxtDiaChi(String txtDiaChi) {
+        this.txtDiaChi.setText(txtDiaChi);
+    }
+
+    public void setTxtEmail(String txtEmail) {
+        this.txtEmail.setText(txtEmail);
+    }
+
+    public void setTxtMaKhachHang(String txtMaKhachHang) {
+        this.txtMaKhachHang.setText(txtMaKhachHang);
+    }
+
+    public void setTxtSoDienThoai(String txtSoDienThoai) {
+        this.txtSoDienThoai.setText(txtSoDienThoai);
+    }
+
+    public void setTxtTenKhachHang(String txtTenKhachHang) {
+        this.txtTenKhachHang.setText(txtTenKhachHang);
+    }
+
+    public void setTxtXepLoai(String txtXepLoai) {
+        this.txtXepLoai.setText(txtXepLoai);
+    }
+
+    public void setTxtMaKhachHangDisable() {
+        this.txtMaKhachHang.setEditable(false);
+    }
+    
+    public void setTxtMaKhachHangEnable() {
+        this.txtMaKhachHang.setEditable(true);
+    }
+    
     public String getTxtDiaChi() {
         return txtDiaChi.getText();
     }
@@ -48,7 +89,14 @@ public class Khach_Hang_Tao_Cap_Nhat extends javax.swing.JFrame {
         return txtXepLoai.getText();
     }
     
-    
+    public boolean checkEditableOfTxtMaKhachHang() {
+        if(txtMaKhachHang.isEditable())
+        {
+            return true;
+        } else {
+            return false;
+        }
+    }
     
 
     /**
@@ -63,7 +111,7 @@ public class Khach_Hang_Tao_Cap_Nhat extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        btnThoat = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
@@ -79,7 +127,7 @@ public class Khach_Hang_Tao_Cap_Nhat extends javax.swing.JFrame {
         txtEmail = new javax.swing.JTextField();
         txtDiaChi = new javax.swing.JTextField();
         jPanel4 = new javax.swing.JPanel();
-        jButton2 = new javax.swing.JButton();
+        btnHuy = new javax.swing.JButton();
         btnLuu = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -91,7 +139,7 @@ public class Khach_Hang_Tao_Cap_Nhat extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("NHÀ HOA");
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/QLBH_Images/Dong.png"))); // NOI18N
+        btnThoat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/QLBH_Images/Dong.png"))); // NOI18N
 
         jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
@@ -107,7 +155,7 @@ public class Khach_Hang_Tao_Cap_Nhat extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addGap(172, 172, 172)
-                        .addComponent(jButton1)
+                        .addComponent(btnThoat)
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel2)
@@ -118,7 +166,7 @@ public class Khach_Hang_Tao_Cap_Nhat extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1)
+                    .addComponent(btnThoat)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -239,10 +287,10 @@ public class Khach_Hang_Tao_Cap_Nhat extends javax.swing.JFrame {
 
         jPanel4.setBackground(new java.awt.Color(0, 102, 51));
 
-        jButton2.setBackground(new java.awt.Color(255, 102, 102));
-        jButton2.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        jButton2.setText("Hủy");
-        jButton2.setPreferredSize(new java.awt.Dimension(200, 40));
+        btnHuy.setBackground(new java.awt.Color(255, 102, 102));
+        btnHuy.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        btnHuy.setText("Hủy");
+        btnHuy.setPreferredSize(new java.awt.Dimension(200, 40));
 
         btnLuu.setBackground(new java.awt.Color(255, 255, 102));
         btnLuu.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
@@ -255,7 +303,7 @@ public class Khach_Hang_Tao_Cap_Nhat extends javax.swing.JFrame {
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(50, 50, 50)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnHuy, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnLuu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(50, 50, 50))
@@ -265,7 +313,7 @@ public class Khach_Hang_Tao_Cap_Nhat extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                 .addContainerGap(15, Short.MAX_VALUE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnHuy, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnLuu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(15, 15, 15))
         );
@@ -345,9 +393,9 @@ public class Khach_Hang_Tao_Cap_Nhat extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnHuy;
     private javax.swing.JButton btnLuu;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton btnThoat;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
