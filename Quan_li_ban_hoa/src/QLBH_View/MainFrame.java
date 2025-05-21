@@ -31,6 +31,11 @@ public class MainFrame extends javax.swing.JFrame {
     {
         btnKhachHang.addActionListener(all);
     }
+    
+    public void btnDanhMucHoaActionListener(ActionListener all)
+    {
+        btnDanhMuc.addActionListener(all);
+    }
  
     public JTextField getTxtBoPhan() {
         return txtBoPhan;
