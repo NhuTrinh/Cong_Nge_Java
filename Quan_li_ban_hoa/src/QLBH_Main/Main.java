@@ -5,9 +5,11 @@
 package QLBH_Main;
 
 import QLBH_Controller.Dang_Nhap_Controller;
+import QLBH_Controller.Danh_Sach_Hoa_Controller;
 import QLBH_Controller.Khach_Hang_Controller;
 import QLBH_Controller.Main_Controller;
 import QLBH_Model.Dang_Nhap_Model;
+import QLBH_Model.Danh_Sach_Hoa_Model;
 import QLBH_Model.Khach_Hang_Model;
 import QLBH_Model.Main_Model;
 import QLBH_View.Dang_Nhap_View;
@@ -38,8 +40,10 @@ public class Main {
         Khach_Hang_Tao_Cap_Nhat khTaoCapNhatModel = new Khach_Hang_Tao_Cap_Nhat();
         Khach_Hang_Controller khController = new Khach_Hang_Controller(mainFrame, khView, khModel, khTaoCapNhatModel);
         Dang_Nhap_Controller cl = new Dang_Nhap_Controller(m, v, mainFrame);
-        Danh_Sach_Hoa_View dmhView = new Danh_Sach_Hoa_View();
-        Main_Controller mainController = new Main_Controller(mainModel, mainFrame, v, khView, khModel, dmhView);       
+        Danh_Sach_Hoa_View dshView = new Danh_Sach_Hoa_View();
+        Danh_Sach_Hoa_Model dshModel = new Danh_Sach_Hoa_Model();
+        Danh_Sach_Hoa_Controller dshController = new Danh_Sach_Hoa_Controller(mainFrame, dshView, dshModel);
+        Main_Controller mainController = new Main_Controller(mainModel, mainFrame, v, khView, khModel, dshView, dshModel);       
         cl.loginAction();
         v.setVisible(true);
         mainController.thoatAction();
@@ -51,6 +55,9 @@ public class Main {
         khController.ThoatAddUpdateAction();
         khController.capNhatAction();
         khController.xoaAction();
+        mainController.danhMucHoaAction();
+        dshController.thoatAction();
+        dshController.xemChiTietHoa();
     }
     
 }

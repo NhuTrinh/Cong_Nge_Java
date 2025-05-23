@@ -95,8 +95,11 @@ public class San_Pham {
 
     @Override
     public String toString() {
-        return  "%S, %S, %S, %S, %S, %d, %S, %S".formatted(maHoa, tenHoa, ghiChu, quocGia, mauSac, soLuong, gia, maLoaiHoa);
+        return  "%s, %s, %s, %s, %s, %d, %s, %s".formatted(maHoa, tenHoa, ghiChu, quocGia, mauSac, soLuong, gia, maLoaiHoa);
     }
     
+    public Object[] getArrSP() {
+        return new Object[]{maHoa, tenHoa, soLuong, gia};
+    }
     
 }

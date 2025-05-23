@@ -95,10 +95,6 @@ public class Khach_Hang_View extends javax.swing.JFrame {
              tenKhachHang = tblKhachHang.getValueAt(selectedRow, 1).toString();
              soDienThoai = tblKhachHang.getValueAt(selectedRow, 2).toString();
              diaChi = tblKhachHang.getValueAt(selectedRow, 3).toString();
-             System.out.println("ma" + maKhachHang);
-             System.out.println("ten" + tenKhachHang);
-             System.out.println("dia" + diaChi);
-             System.out.println("e" + soDienThoai);
              Khach_Hang kh = new Khach_Hang(maKhachHang, tenKhachHang, soDienThoai, "", "", diaChi);
              return kh;
         }
