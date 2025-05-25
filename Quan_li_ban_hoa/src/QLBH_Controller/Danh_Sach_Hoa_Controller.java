@@ -5,6 +5,7 @@
 package QLBH_Controller;
 
 import QLBH_Function.Khach_Hang;
+import QLBH_Function.Loai_Hoa;
 import QLBH_Function.San_Pham;
 import QLBH_Model.Danh_Sach_Hoa_Model;
 import QLBH_View.Danh_Sach_Hoa_View;
@@ -61,7 +62,7 @@ public class Danh_Sach_Hoa_Controller {
         });
     }
     
-    public void themKhachHang() {
+    public void themHoa() {
         dshView.btnThemActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -86,6 +87,8 @@ public class Danh_Sach_Hoa_Controller {
                 int soLuong = Integer.parseInt(hoaTaoCapNhatView.getTxtSoLuong());
                 double gia = Double.parseDouble(hoaTaoCapNhatView.getTxtGia());
                 String loaiHoa = hoaTaoCapNhatView.getCbxLoaiHoa();
+                Loai_Hoa lh = Loai_Hoa.timLoaiHoaTheoTen(loaiHoa);
+                loaiHoa = lh.getMa();
                 String ghiChu = hoaTaoCapNhatView.getTxtGhiChu();
                 
                 if(hoaTaoCapNhatView.checkEditableOfTxtMa())
@@ -101,6 +104,42 @@ public class Danh_Sach_Hoa_Controller {
         });  
     }
     
+    public void capNhatAction() {
+        dshView.btnCapNhatActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                San_Pham sp = dshView.getHoaSelectedRow();
+                String maHoa = sp.getMaHoa();
+                sp = dshModel.getAllHoaTheoMa(maHoa);
+                hoaTaoCapNhatView.setTxtMaHoa(maHoa);
+                hoaTaoCapNhatView.setTxtTenHoa(sp.getTenHoa());
+                hoaTaoCapNhatView.setTxtQuocGia(sp.getQuocGia());
+                hoaTaoCapNhatView.setTxtMauSac(sp.getMauSac());
+                System.out.println("So luong: " + String.valueOf(sp.getSoLuong()));
+                hoaTaoCapNhatView.setTxtSoLuong(String.valueOf(sp.getSoLuong()));
+                hoaTaoCapNhatView.setTxtGia(String.valueOf(sp.getGia()));
+                hoaTaoCapNhatView.setCbxLoaiHoa(Loai_Hoa.timLoaiHoaTheoMa(sp.getMaLoaiHoa()).getTen());
+                hoaTaoCapNhatView.setTxtGhiChu(sp.getGhiChu());
+                hoaTaoCapNhatView.setTxtMaHoaDisable();
+                hoaTaoCapNhatView.setVisible(true);
+                luuHoa();
+            }
+        });
+    }
+    
+    public void xoaAction() {
+        dshView.btnXoaActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                San_Pham sp = dshView.getHoaSelectedRow();
+                String maHoa = sp.getMaHoa();
+                dshModel.xoaHoa(maHoa);
+                dshView.setTableSanPham(dshModel.getAllHoa());
+                setAllValueInDSHoaIsEmpty();
+            }
+        });
+    }
+    
     public void setValueIsEmpty() {
         hoaTaoCapNhatView.setTxtMaHoa("");
         hoaTaoCapNhatView.setTxtTenHoa("");
@@ -108,8 +147,19 @@ public class Danh_Sach_Hoa_Controller {
         hoaTaoCapNhatView.setTxtMauSac("");
         hoaTaoCapNhatView.setTxtSoLuong("");
         hoaTaoCapNhatView.setTxtGia("");
-        hoaTaoCapNhatView.setCbxLoaiHoaToSelect();
+        hoaTaoCapNhatView.setCbxLoaiHoa("Select");
         hoaTaoCapNhatView.setTxtGhiChu("");
+    }
+    
+    public void setAllValueInDSHoaIsEmpty() {
+        dshView.setLblMaHoa("");
+        dshView.setLblTenHoa("");
+        dshView.setLblQuocGia("");
+        dshView.setLblSoLuong("");
+        dshView.setLblMauSac("");
+        dshView.setLblGia("");
+        dshView.setLblLoaiHoa("");
+        dshView.setLblGhiChu("");
     }
     
 }

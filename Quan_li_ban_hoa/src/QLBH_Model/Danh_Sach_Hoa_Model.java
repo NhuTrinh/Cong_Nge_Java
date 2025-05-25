@@ -82,6 +82,7 @@ public class Danh_Sach_Hoa_Model extends BaseModel{
         try {
               Connection conn = getConnection();
               PreparedStatement ps = conn.prepareStatement(sql);   
+             
               ps.setString(1, maHoa);
               ps.setString(2, tenHoa);
               ps.setString(3, quocGia);
@@ -110,6 +111,7 @@ public class Danh_Sach_Hoa_Model extends BaseModel{
               ps.setDouble(5, gia);
               ps.setString(6, loaiHoa);
               ps.setString(7, ghiChu);
+              ps.setString(8, maHoa);
               int rs = ps.executeUpdate();
                return rs > 0;
         } catch (Exception e) {

@@ -71,7 +71,9 @@ public class Hoa_Tao_Cap_Nhat extends javax.swing.JFrame {
         return txtGhiChu.getText();
     }
     
-    
+        public void setTxtMaHoaDisable() {
+        this.txtMaHoa.setEditable(false);
+    }
     
 
     public void setTxtGia(String txtGia) {
@@ -97,15 +99,16 @@ public class Hoa_Tao_Cap_Nhat extends javax.swing.JFrame {
     public void setTxtTenHoa(String txtTenHoa) {
         this.txtTenHoa.setText(txtTenHoa);
     }
-
-    public void setCbxLoaiHoaToSelect() {
-        this.cbxLoaiHoa.setSelectedItem("Select");
+    
+    public void setCbxLoaiHoa(String maLoaiHoa) {
+        this.cbxLoaiHoa.setSelectedItem(maLoaiHoa);
+        System.out.println("Co phai loi tu day");
     }
     
     
     
-    public void btnLuuActionListener(ActionListener actionListener) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public void btnLuuActionListener(ActionListener all) {
+        btnLuu.addActionListener(all);
     }
 
     /**
@@ -141,7 +144,7 @@ public class Hoa_Tao_Cap_Nhat extends javax.swing.JFrame {
         txtGhiChu = new javax.swing.JTextField();
         jPanel4 = new javax.swing.JPanel();
         jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        btnLuu = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -335,9 +338,9 @@ public class Hoa_Tao_Cap_Nhat extends javax.swing.JFrame {
         jButton2.setText("Hủy");
         jButton2.setPreferredSize(new java.awt.Dimension(150, 30));
 
-        jButton3.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jButton3.setText("Lưu");
-        jButton3.setPreferredSize(new java.awt.Dimension(150, 30));
+        btnLuu.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        btnLuu.setText("Lưu");
+        btnLuu.setPreferredSize(new java.awt.Dimension(150, 30));
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -347,7 +350,7 @@ public class Hoa_Tao_Cap_Nhat extends javax.swing.JFrame {
                 .addGap(90, 90, 90)
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnLuu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(90, 90, 90))
         );
         jPanel4Layout.setVerticalGroup(
@@ -356,7 +359,7 @@ public class Hoa_Tao_Cap_Nhat extends javax.swing.JFrame {
                 .addGap(10, 10, 10)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnLuu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(10, Short.MAX_VALUE))
         );
 
@@ -435,10 +438,10 @@ public class Hoa_Tao_Cap_Nhat extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnLuu;
     private javax.swing.JComboBox<String> cbxLoaiHoa;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
@@ -461,6 +464,8 @@ public class Hoa_Tao_Cap_Nhat extends javax.swing.JFrame {
     private javax.swing.JTextField txtSoLuong;
     private javax.swing.JTextField txtTenHoa;
     // End of variables declaration//GEN-END:variables
+
+    
 
     
 
