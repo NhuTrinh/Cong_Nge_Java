@@ -15,6 +15,7 @@ import QLBH_Model.Main_Model;
 import QLBH_View.Dang_Nhap_View;
 import QLBH_View.Danh_Sach_Hoa_View;
 import QLBH_View.Hoa_Don;
+import QLBH_View.Hoa_Tao_Cap_Nhat;
 import QLBH_View.Khach_Hang_Tao_Cap_Nhat;
 import QLBH_View.Khach_Hang_View;
 import QLBH_View.MainFrame;
@@ -42,7 +43,8 @@ public class Main {
         Dang_Nhap_Controller cl = new Dang_Nhap_Controller(m, v, mainFrame);
         Danh_Sach_Hoa_View dshView = new Danh_Sach_Hoa_View();
         Danh_Sach_Hoa_Model dshModel = new Danh_Sach_Hoa_Model();
-        Danh_Sach_Hoa_Controller dshController = new Danh_Sach_Hoa_Controller(mainFrame, dshView, dshModel);
+        Hoa_Tao_Cap_Nhat chiTietHoaView = new Hoa_Tao_Cap_Nhat();
+        Danh_Sach_Hoa_Controller dshController = new Danh_Sach_Hoa_Controller(mainFrame, dshView, dshModel, chiTietHoaView);
         Main_Controller mainController = new Main_Controller(mainModel, mainFrame, v, khView, khModel, dshView, dshModel);       
         cl.loginAction();
         v.setVisible(true);
@@ -58,6 +60,9 @@ public class Main {
         mainController.danhMucHoaAction();
         dshController.thoatAction();
         dshController.xemChiTietHoa();
+        dshController.themHoa();
+        dshController.capNhatAction();
+        dshController.xoaAction();
     }
     
 }

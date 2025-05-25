@@ -41,4 +41,15 @@ public enum Loai_Hoa {
         }
         return null;
     }
+    
+    public static Loai_Hoa timLoaiHoaTheoMa(String maHoa) {
+        for (Loai_Hoa lh : values())
+        {
+            if(lh.ma.equals(maHoa))
+            {
+                return lh;
+            }
+        }
+        return null;
+    }
 }

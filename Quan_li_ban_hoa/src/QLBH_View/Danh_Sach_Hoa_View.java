@@ -51,6 +51,14 @@ public class Danh_Sach_Hoa_View extends javax.swing.JFrame {
     {
         btnThem.addActionListener(all);
     }
+    
+      public void btnCapNhatActionListener(ActionListener all) {
+        btnCapNhat.addActionListener(all);
+    }
+      
+    public void btnXoaActionListener(ActionListener all) {
+        btnXoa.addActionListener(all);
+    }
 
     public void setLblGhiChu(String lblGhiChu) {
         this.lblGhiChu.setText(lblGhiChu);
@@ -145,9 +153,9 @@ public class Danh_Sach_Hoa_View extends javax.swing.JFrame {
         jPanel5 = new javax.swing.JPanel();
         btnXem = new javax.swing.JButton();
         btnThem = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
+        btnCapNhat = new javax.swing.JButton();
         jButton8 = new javax.swing.JButton();
-        jButton9 = new javax.swing.JButton();
+        btnXoa = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Danh mục hoa");
@@ -391,11 +399,11 @@ public class Danh_Sach_Hoa_View extends javax.swing.JFrame {
         btnThem.setText("Thêm");
         btnThem.setPreferredSize(new java.awt.Dimension(114, 30));
 
-        jButton7.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jButton7.setForeground(new java.awt.Color(0, 51, 0));
-        jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/QLBH_Images/Cap_nhat.png"))); // NOI18N
-        jButton7.setText("Cập nhật");
-        jButton7.setPreferredSize(new java.awt.Dimension(114, 30));
+        btnCapNhat.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        btnCapNhat.setForeground(new java.awt.Color(0, 51, 0));
+        btnCapNhat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/QLBH_Images/Cap_nhat.png"))); // NOI18N
+        btnCapNhat.setText("Cập nhật");
+        btnCapNhat.setPreferredSize(new java.awt.Dimension(114, 30));
 
         jButton8.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jButton8.setForeground(new java.awt.Color(0, 51, 0));
@@ -403,10 +411,10 @@ public class Danh_Sach_Hoa_View extends javax.swing.JFrame {
         jButton8.setText("Thêm giỏ hàng");
         jButton8.setPreferredSize(new java.awt.Dimension(114, 30));
 
-        jButton9.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jButton9.setForeground(new java.awt.Color(0, 51, 0));
-        jButton9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/QLBH_Images/Xoa.png"))); // NOI18N
-        jButton9.setText("Xóa");
+        btnXoa.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        btnXoa.setForeground(new java.awt.Color(0, 51, 0));
+        btnXoa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/QLBH_Images/Xoa.png"))); // NOI18N
+        btnXoa.setText("Xóa");
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -418,11 +426,11 @@ public class Danh_Sach_Hoa_View extends javax.swing.JFrame {
                 .addGap(40, 40, 40)
                 .addComponent(btnThem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(40, 40, 40)
-                .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnCapNhat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(40, 40, 40)
                 .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton9)
+                .addComponent(btnXoa)
                 .addGap(30, 30, 30))
         );
         jPanel5Layout.setVerticalGroup(
@@ -432,9 +440,9 @@ public class Danh_Sach_Hoa_View extends javax.swing.JFrame {
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnXem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnThem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCapNhat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton9))
+                    .addComponent(btnXoa))
                 .addContainerGap(15, Short.MAX_VALUE))
         );
 
@@ -517,15 +525,15 @@ public class Danh_Sach_Hoa_View extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCapNhat;
     private javax.swing.JButton btnThem;
     private javax.swing.JButton btnThoat;
     private javax.swing.JButton btnXem;
+    private javax.swing.JButton btnXoa;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
-    private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -551,4 +559,6 @@ public class Danh_Sach_Hoa_View extends javax.swing.JFrame {
     private javax.swing.JLabel lblTenHoa;
     private javax.swing.JTable tblSanPham;
     // End of variables declaration//GEN-END:variables
+
+  
 }
