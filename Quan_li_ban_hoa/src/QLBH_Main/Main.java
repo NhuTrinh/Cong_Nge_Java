@@ -6,14 +6,18 @@ package QLBH_Main;
 
 import QLBH_Controller.Dang_Nhap_Controller;
 import QLBH_Controller.Danh_Sach_Hoa_Controller;
+import QLBH_Controller.Don_Hang_Controller;
 import QLBH_Controller.Khach_Hang_Controller;
 import QLBH_Controller.Main_Controller;
 import QLBH_Model.Dang_Nhap_Model;
 import QLBH_Model.Danh_Sach_Hoa_Model;
+import QLBH_Model.Don_Hang_Model;
 import QLBH_Model.Khach_Hang_Model;
 import QLBH_Model.Main_Model;
+import QLBH_View.Chi_Tiet_Don_Hang_View;
 import QLBH_View.Dang_Nhap_View;
 import QLBH_View.Danh_Sach_Hoa_View;
+import QLBH_View.Don_Hang_View;
 import QLBH_View.Hoa_Don;
 import QLBH_View.Hoa_Tao_Cap_Nhat;
 import QLBH_View.Khach_Hang_Tao_Cap_Nhat;
@@ -44,8 +48,12 @@ public class Main {
         Danh_Sach_Hoa_View dshView = new Danh_Sach_Hoa_View();
         Danh_Sach_Hoa_Model dshModel = new Danh_Sach_Hoa_Model();
         Hoa_Tao_Cap_Nhat chiTietHoaView = new Hoa_Tao_Cap_Nhat();
+        Don_Hang_Model dhModel = new Don_Hang_Model();
+        Don_Hang_View dhView = new Don_Hang_View();
+        Chi_Tiet_Don_Hang_View ctdhView = new Chi_Tiet_Don_Hang_View();
+        Don_Hang_Controller dhController = new Don_Hang_Controller(mainFrame, dhView, dhModel, ctdhView);
         Danh_Sach_Hoa_Controller dshController = new Danh_Sach_Hoa_Controller(mainFrame, dshView, dshModel, chiTietHoaView);
-        Main_Controller mainController = new Main_Controller(mainModel, mainFrame, v, khView, khModel, dshView, dshModel);       
+        Main_Controller mainController = new Main_Controller(mainModel, mainFrame, v, khView, khModel, dshView, dshModel, dhView, dhModel);       
         cl.loginAction();
         v.setVisible(true);
         mainController.thoatAction();
@@ -63,6 +71,9 @@ public class Main {
         dshController.themHoa();
         dshController.capNhatAction();
         dshController.xoaAction();
+        mainController.donHangAction();
+        dhController.xoaAction();
+        dhController.xemAction();
     }
     
 }

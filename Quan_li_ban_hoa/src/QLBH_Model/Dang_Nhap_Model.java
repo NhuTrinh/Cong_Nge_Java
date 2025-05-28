@@ -4,6 +4,7 @@
  */
 package QLBH_Model;
 
+import QLBH_Function.Nhan_vien;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -36,6 +37,25 @@ public class Dang_Nhap_Model extends BaseModel{
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return null;
+    }
+    
+     public Nhan_vien getAllNhanVienTheoMa(String maNhanVien){
+        String sql = "select * from NHANVIEN where MANHANVIEN =?";
+        try {
+              Connection conn = getConnection();
+              PreparedStatement ps = conn.prepareStatement(sql);   
+              ps.setString(1, maNhanVien);
+              ResultSet rs = ps.executeQuery();
+              while(rs.next())
+              {
+                  Nhan_vien kh = new Nhan_vien(rs.getString("MANHANVIEN"), rs.getString("TENNHANVIEN"), rs.getString("SODIENTHOAI"), rs.getString("MABOPHAN"));
+                  return kh;
+              }  
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        
         return null;
     }
 }

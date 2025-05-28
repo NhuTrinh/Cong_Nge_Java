@@ -55,6 +55,25 @@ public class Khach_Hang_Model extends BaseModel{
         return null;
     }
     
+    public Khach_Hang getAllKhachHangTheoTen(String tenKhachHang){
+        String sql = "select * from KHACHHANG where TENKHACHHANG =?";
+        try {
+              Connection conn = getConnection();
+              PreparedStatement ps = conn.prepareStatement(sql);   
+              ps.setString(1, tenKhachHang);
+              ResultSet rs = ps.executeQuery();
+              while(rs.next())
+              {
+                  Khach_Hang kh = new Khach_Hang(rs.getString("MAKHACHHANG"), rs.getString("TENKHACHHANG"), rs.getString("SODIENTHOAI"), rs.getString("XEPLOAI"), rs.getString("EMAIL"), rs.getString("DIACHI"));
+                  return kh;
+              }  
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        
+        return null;
+    }
+    
     public boolean themKhachHang(String maKhachHang, String tenKhachHang, String soDienThoai, String xepLoai, String email, String diaChi){
         String sql = "INSERT INTO KHACHHANG (MAKHACHHANG, TENKHACHHANG, SODIENTHOAI, XEPLOAI, EMAIL, DIACHI) VALUES (?, ?, ?, ?, ?, ?)";
         try {
