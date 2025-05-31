@@ -133,4 +133,42 @@ public class Danh_Sach_Hoa_Model extends BaseModel{
         }
         return false;
     }
+    
+    public String getTenHoaTheoMaHoa(String maHoa){
+        String sql = "SELECT * FROM HOA WHERE MAHOA = ?";
+        try {
+              Connection conn = getConnection();
+              PreparedStatement ps = conn.prepareStatement(sql);   
+              ps.setString(1, maHoa);
+              System.out.println("111: " + sql);
+              ResultSet rs = ps.executeQuery();
+              while(rs.next())
+              { 
+                return rs.getString("TENHOA");
+              }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "";
+    }
+    
+    public String getMaHoaTheoTenHoa(String tenHoa){
+        String sql = "SELECT * FROM HOA WHERE TENHOA = ?";
+        try {
+              Connection conn = getConnection();
+              PreparedStatement ps = conn.prepareStatement(sql);   
+              ps.setString(1, tenHoa);
+              System.out.println("111: " + sql);
+              ResultSet rs = ps.executeQuery();
+              while(rs.next())
+              { 
+                return rs.getString("MAHOA");
+              }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "";
+    }
 }
