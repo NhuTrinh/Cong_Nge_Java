@@ -6,6 +6,7 @@ package QLBH_Model;
 
 import QLBH_Function.Don_Hang;
 import QLBH_Function.Giao_Hang;
+import QLBH_Function.Gio_Hang;
 import QLBH_Function.Khach_Hang;
 import QLBH_Function.Nhan_vien;
 import QLBH_Function.San_Pham;
@@ -109,4 +110,85 @@ public class Don_Hang_Model extends BaseModel{
         
         return null;
     } 
+    
+    public ArrayList<Gio_Hang> getAllGioHangTheoMaDon(String maDonHang){
+        String sql = "select * from CTDONHANG WHERE SODH = ?";
+        ArrayList<Gio_Hang> dsgh = new ArrayList<>();
+        try {
+            
+            Connection conn = getConnection();
+              PreparedStatement ps = conn.prepareStatement(sql);  
+              ps.setString(1, maDonHang);
+              ResultSet rs = ps.executeQuery();
+              while(rs.next())
+              {
+                  Danh_Sach_Hoa_Model dsModel = new Danh_Sach_Hoa_Model();
+                  System.out.println("1111: " + rs.getString("MAHOA"));
+                  String tenHoa = dsModel.getTenHoaTheoMaHoa(rs.getString("MAHOA"));
+                  Gio_Hang gh = new Gio_Hang(rs.getString("SODH"), tenHoa, rs.getInt("SOLUONG"), rs.getDouble("GIABAN"), rs.getDouble("THANHTIEN"));
+                  dsgh.add(gh);
+                  System.out.println("1111: " + dsgh);
+              }  
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        
+        return dsgh;
+    } 
+    
+    public boolean updateSoLuongHoa(String maHoa, int soLuong){
+        
+        String sql = "UPDATE CTDONHANG SET SOLUONG = ? WHERE MAHOA = ?";
+        Danh_Sach_Hoa_Model dsModel = new Danh_Sach_Hoa_Model();
+        maHoa = dsModel.getMaHoaTheoTenHoa(maHoa);
+        try {
+            
+              Connection conn = getConnection();
+              PreparedStatement ps = conn.prepareStatement(sql);  
+              ps.setInt(1, soLuong);
+              ps.setString(2, maHoa);
+              int rs = ps.executeUpdate();
+              return rs > 0;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        
+        return false;
+    } 
+    
+    public String getMaDonTuMaHoa(String maHoa){
+        
+        String sql = "SELECT SODH FROM CTDONHANG WHERE MAHOA = ?";
+        try {
+            
+            Connection conn = getConnection();
+              PreparedStatement ps = conn.prepareStatement(sql);  
+              ps.setString(1, maHoa);
+              ResultSet rs = ps.executeQuery();
+              while(rs.next())
+              {
+                  return rs.getString("SODH");
+              } 
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        
+        return null;
+    } 
+
+    public void deleteHoaTrongGioHang(String maHoa) {
+         String sql = "DELETE FROM CTDONHANG WHERE MAHOA = ?";
+        Danh_Sach_Hoa_Model dsModel = new Danh_Sach_Hoa_Model();
+        maHoa = dsModel.getMaHoaTheoTenHoa(maHoa);
+        try {
+            
+              Connection conn = getConnection();
+              PreparedStatement ps = conn.prepareStatement(sql);  
+              ps.setString(1, maHoa);
+              int rs = ps.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    } 
+        
 }

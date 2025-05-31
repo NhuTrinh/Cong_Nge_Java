@@ -18,6 +18,7 @@ import QLBH_View.Chi_Tiet_Don_Hang_View;
 import QLBH_View.Dang_Nhap_View;
 import QLBH_View.Danh_Sach_Hoa_View;
 import QLBH_View.Don_Hang_View;
+import QLBH_View.Gio_Hang_View;
 import QLBH_View.Hoa_Don;
 import QLBH_View.Hoa_Tao_Cap_Nhat;
 import QLBH_View.Khach_Hang_Tao_Cap_Nhat;
@@ -51,7 +52,8 @@ public class Main {
         Don_Hang_Model dhModel = new Don_Hang_Model();
         Don_Hang_View dhView = new Don_Hang_View();
         Chi_Tiet_Don_Hang_View ctdhView = new Chi_Tiet_Don_Hang_View();
-        Don_Hang_Controller dhController = new Don_Hang_Controller(mainFrame, dhView, dhModel, ctdhView);
+        Gio_Hang_View ghView = new Gio_Hang_View();
+        Don_Hang_Controller dhController = new Don_Hang_Controller(mainFrame, dhView, dhModel, ctdhView, ghView);
         Danh_Sach_Hoa_Controller dshController = new Danh_Sach_Hoa_Controller(mainFrame, dshView, dshModel, chiTietHoaView);
         Main_Controller mainController = new Main_Controller(mainModel, mainFrame, v, khView, khModel, dshView, dshModel, dhView, dhModel);       
         cl.loginAction();
@@ -74,6 +76,11 @@ public class Main {
         mainController.donHangAction();
         dhController.xoaAction();
         dhController.xemAction();
+        dhController.ThemGioHangAction();
+        dhController.giamGioHangAction();
+        dhController.xoaGioHangAction();
+        dhController.ThoatGioHang();
+        
     }
     
 }

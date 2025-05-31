@@ -6,6 +6,7 @@ package QLBH_Controller;
 
 import QLBH_Function.Don_Hang;
 import QLBH_Function.Giao_Hang;
+import QLBH_Function.Gio_Hang;
 import QLBH_Function.Khach_Hang;
 import QLBH_Function.San_Pham;
 import QLBH_Function.Thanh_Toan;
@@ -13,10 +14,10 @@ import QLBH_Model.Don_Hang_Model;
 import QLBH_Model.Khach_Hang_Model;
 import QLBH_View.Chi_Tiet_Don_Hang_View;
 import QLBH_View.Don_Hang_View;
+import QLBH_View.Gio_Hang_View;
 import QLBH_View.MainFrame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.crypto.spec.DESKeySpec;
 
 /**
  *
@@ -27,12 +28,14 @@ public class Don_Hang_Controller {
     private Don_Hang_View dhView;
     private Don_Hang_Model dhModel;
     private Chi_Tiet_Don_Hang_View ctdhView;
+    private Gio_Hang_View ghView;
 
-    public Don_Hang_Controller(MainFrame mainView, Don_Hang_View dhView, Don_Hang_Model dhModel, Chi_Tiet_Don_Hang_View ctdhView) {
+    public Don_Hang_Controller(MainFrame mainView, Don_Hang_View dhView, Don_Hang_Model dhModel, Chi_Tiet_Don_Hang_View ctdhView, Gio_Hang_View ghView) {
         this.mainView = mainView;
         this.dhView = dhView;
         this.dhModel = dhModel;
         this.ctdhView = ctdhView;
+        this.ghView = ghView;
     }        
     
     public void xoaAction() {
@@ -72,9 +75,79 @@ public class Don_Hang_Controller {
                 ctdhView.setTxtTongTien(String.valueOf(cttt.getTongTien()));
                 ctdhView.setVisible(true);
                 dhView.setVisible(false);
+                xemGioHangAction(dh.getMaDonHang());
             }
         });
     }
     
+    public void xemGioHangAction(String maDonHang) {
+        ctdhView.btnXemGioHangActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ghView.setTableGioHang(dhModel.getAllGioHangTheoMaDon(maDonHang));
+                ghView.setVisible(true);
+                ctdhView.setVisible(false);
+            }
+            
+        });
+    }
     
+    public void ThemGioHangAction() {
+        ghView.btnThemActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Gio_Hang gh = ghView.getGioHangSelectedRow();
+                String maDon = gh.getMaDonHang();
+                String maHoa = gh.getMaHoa();
+                int soLuongHoa = gh.getSoLuong();
+                System.out.println("maDon" + maDon);
+                System.out.println("maHoa" + maHoa);
+                System.out.println("soLuongHoa" + soLuongHoa);
+                dhModel.updateSoLuongHoa(maHoa, soLuongHoa + 1);
+                ghView.setTableGioHang(dhModel.getAllGioHangTheoMaDon(maDon));
+            }
+        });
+    }
+    
+    public void ThoatGioHang() {
+        ghView.btnThoatActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ghView.dispose();
+                ctdhView.setVisible(true);
+            }
+        });
+    }
+    
+    public void xoaGioHangAction() {
+        ghView.btnXoaActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Gio_Hang gh = ghView.getGioHangSelectedRow();
+                String maDon = gh.getMaDonHang();
+                String maHoa = gh.getMaHoa();
+                dhModel.deleteHoaTrongGioHang(maHoa);
+                ghView.setTableGioHang(dhModel.getAllGioHangTheoMaDon(maDon));
+            }
+        });
+    }
+    
+    public void giamGioHangAction() {
+        ghView.btnGiamActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Gio_Hang gh = ghView.getGioHangSelectedRow();
+                String maDon = gh.getMaDonHang();
+                String maHoa = gh.getMaHoa();
+                int soLuongHoa = gh.getSoLuong();
+                System.out.println("maDon" + maDon);
+                System.out.println("maHoa" + maHoa);
+                System.out.println("soLuongHoa" + soLuongHoa);
+                dhModel.updateSoLuongHoa(maHoa, soLuongHoa - 1);
+                ghView.setTableGioHang(dhModel.getAllGioHangTheoMaDon(maDon));
+            }
+        });
+    }
+
+
 }
