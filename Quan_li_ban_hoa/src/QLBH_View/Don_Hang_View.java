@@ -45,6 +45,11 @@ public class Don_Hang_View extends javax.swing.JFrame {
         btnXem.addActionListener(all);
     }
     
+    public void btnThemActionListener(ActionListener all)
+    {
+        btnThem.addActionListener(all);
+    }
+    
     public Don_Hang getDonHangSelectedRow()
     {
         int selectedRow = tblDonHang.getSelectedRow();
@@ -92,7 +97,7 @@ public class Don_Hang_View extends javax.swing.JFrame {
         tblDonHang = new javax.swing.JTable();
         jPanel4 = new javax.swing.JPanel();
         btnXem = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
+        btnThem = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
         btnXoa = new javax.swing.JButton();
 
@@ -182,9 +187,9 @@ public class Don_Hang_View extends javax.swing.JFrame {
         btnXem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/QLBH_Images/Xem.png"))); // NOI18N
         btnXem.setText("Xem");
 
-        jButton6.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/QLBH_Images/Them.png"))); // NOI18N
-        jButton6.setText("Thêm");
+        btnThem.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        btnThem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/QLBH_Images/Them.png"))); // NOI18N
+        btnThem.setText("Thêm");
 
         jButton7.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/QLBH_Images/Cap_nhat.png"))); // NOI18N
@@ -202,7 +207,7 @@ public class Don_Hang_View extends javax.swing.JFrame {
                 .addGap(17, 17, 17)
                 .addComponent(btnXem)
                 .addGap(81, 81, 81)
-                .addComponent(jButton6)
+                .addComponent(btnThem)
                 .addGap(81, 81, 81)
                 .addComponent(jButton7)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -215,7 +220,7 @@ public class Don_Hang_View extends javax.swing.JFrame {
                 .addGap(10, 10, 10)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnXem)
-                    .addComponent(jButton6)
+                    .addComponent(btnThem)
                     .addComponent(jButton7)
                     .addComponent(btnXoa))
                 .addContainerGap(10, Short.MAX_VALUE))
@@ -296,13 +301,13 @@ public class Don_Hang_View extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnThem;
     private javax.swing.JButton btnXem;
     private javax.swing.JButton btnXoa;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;

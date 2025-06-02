@@ -10,6 +10,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 /**
  *
@@ -58,4 +59,24 @@ public class Dang_Nhap_Model extends BaseModel{
         
         return null;
     }
+     
+      public ArrayList<Nhan_vien> getAllNhanVienTheoMa(){
+        String sql = "select * from NHANVIEN";
+        ArrayList<Nhan_vien> dsnv = new ArrayList<>();
+        try {
+              Connection conn = getConnection();
+              PreparedStatement ps = conn.prepareStatement(sql);   
+              ResultSet rs = ps.executeQuery();
+              while(rs.next())
+              {
+                  Nhan_vien nv = new Nhan_vien(rs.getString("MANHANVIEN"), rs.getString("TENNHANVIEN"), rs.getString("SODIENTHOAI"), rs.getString("MABOPHAN"));
+                  dsnv.add(nv);
+              }  
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        
+        return dsnv;
+    }
+
 }

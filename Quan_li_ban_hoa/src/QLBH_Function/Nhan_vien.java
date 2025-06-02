@@ -87,4 +87,11 @@ public class Nhan_vien {
     public void setMaBoPhan(String maBoPhan) {
         this.maBoPhan = maBoPhan;
     }
+
+    @Override
+    public String toString() {
+        return "{%s, %s, %s, %s}".formatted(maNhanVien, tenNhanVien, soDienThoai, maBoPhan);
+    }
+    
+    
 }
