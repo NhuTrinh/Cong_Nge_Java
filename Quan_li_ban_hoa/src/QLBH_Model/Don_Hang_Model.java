@@ -189,6 +189,75 @@ public class Don_Hang_Model extends BaseModel{
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+    
+    public Khach_Hang timKhachHangTheoSoDienThoai (String soDienThoai) {
+        String sql = "SELECT * FROM KHACHHANG WHERE SODIENTHOAI = ?";
+        try {
+            
+              Connection conn = getConnection();
+              PreparedStatement ps = conn.prepareStatement(sql);  
+              ps.setString(1, soDienThoai);
+              ResultSet rs = ps.executeQuery();
+              while(rs.next())
+              {
+                  Khach_Hang kh = new Khach_Hang(rs.getString("MAKHACHHANG"), rs.getString("TENKHACHHANG"), rs.getString("SODIENTHOAI"), rs.getString("XEPLOAI"), rs.getString("EMAIL"), rs.getString("DIACHI"));
+                  return kh;
+              } 
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    } 
+    
+    public void themThongTinGiaoHangVaoDonHang (String maDonHang, String tenNguoiNhan, String soDienThoaiNhan, String diaChiNhan ) {
+        String sql = "INSERT INTO GIAOHANG (SODH, TENNGUOINHAN, SODIENTHOAI, DIACHI) VALUES (?, ?, ?, ?)";
+        try {
+            
+              Connection conn = getConnection();
+              PreparedStatement ps = conn.prepareStatement(sql);  
+              ps.setString(1, maDonHang);
+              ps.setString(2, tenNguoiNhan);
+              ps.setString(3, soDienThoaiNhan);
+              ps.setString(4, diaChiNhan);
+              ResultSet rs = ps.executeQuery();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    } 
+    
+    public void luuSanPhamVaoGioHang (String maDonHang, String maHoa, int soLuong, double giaBan) {
+        String sql = "INSERT INTO CTDONHANG (SODH, MAHOA, SOLUONG, GIABAN) VALUES (?, ?, ?, ?)";
+        try {
+            
+              Connection conn = getConnection();
+              PreparedStatement ps = conn.prepareStatement(sql);  
+              ps.setString(1, maDonHang);
+              ps.setString(2, maHoa);
+              ps.setInt(3, soLuong);
+              ps.setDouble(4, giaBan);
+              ResultSet rs = ps.executeQuery();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    } 
+    
+    public void taoDonHangTam (String maDonHang, String ngayLap, String trangThai, double giaBan, String maNhanVien, String maKhachHang) {
+        String sql = "INSERT INTO DONHANG (SODH, NGAYLAP, TRANGTHAI, GIABAN, MANHANVIEN, MAKHACHHANG) VALUES (?, ?, ?, ?, ?, ?)";
+        try {
+            
+              Connection conn = getConnection();
+              PreparedStatement ps = conn.prepareStatement(sql);  
+              ps.setString(1, maDonHang);
+              ps.setString(2, ngayLap);
+              ps.setString(3, trangThai);
+              ps.setDouble(4, giaBan);
+              ps.setString(5, maNhanVien);
+              ps.setString(6, maKhachHang);
+              ResultSet rs = ps.executeQuery();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     } 
         
 }

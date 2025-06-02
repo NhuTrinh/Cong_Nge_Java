@@ -102,4 +102,8 @@ public class San_Pham {
         return new Object[]{maHoa, tenHoa, soLuong, gia};
     }
     
+    public Object[] getArrThemGioHangSP() {
+        return new Object[]{maHoa, tenHoa, quocGia, mauSac,  soLuong, gia, maLoaiHoa, ghiChu};
+    }
+    
 }

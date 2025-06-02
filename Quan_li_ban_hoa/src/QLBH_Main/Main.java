@@ -24,6 +24,7 @@ import QLBH_View.Hoa_Tao_Cap_Nhat;
 import QLBH_View.Khach_Hang_Tao_Cap_Nhat;
 import QLBH_View.Khach_Hang_View;
 import QLBH_View.MainFrame;
+import QLBH_View.Them_Gio_Hang;
 import java.awt.Frame;
 import javax.swing.JFrame;
 
@@ -53,7 +54,8 @@ public class Main {
         Don_Hang_View dhView = new Don_Hang_View();
         Chi_Tiet_Don_Hang_View ctdhView = new Chi_Tiet_Don_Hang_View();
         Gio_Hang_View ghView = new Gio_Hang_View();
-        Don_Hang_Controller dhController = new Don_Hang_Controller(mainFrame, dhView, dhModel, ctdhView, ghView);
+        Them_Gio_Hang tghView = new Them_Gio_Hang();
+        Don_Hang_Controller dhController = new Don_Hang_Controller(mainFrame, dhView, dhModel, ctdhView, ghView, dshView, tghView);
         Danh_Sach_Hoa_Controller dshController = new Danh_Sach_Hoa_Controller(mainFrame, dshView, dshModel, chiTietHoaView);
         Main_Controller mainController = new Main_Controller(mainModel, mainFrame, v, khView, khModel, dshView, dshModel, dhView, dhModel);       
         cl.loginAction();
@@ -80,7 +82,8 @@ public class Main {
         dhController.giamGioHangAction();
         dhController.xoaGioHangAction();
         dhController.ThoatGioHang();
-        
+        dhController.themDonHangAction();
+        dhController.thoatChiTietDonHangAction();
     }
     
 }

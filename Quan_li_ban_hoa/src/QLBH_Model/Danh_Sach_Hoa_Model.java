@@ -92,7 +92,7 @@ public class Danh_Sach_Hoa_Model extends BaseModel{
               ps.setString(7, loaiHoa);
               ps.setString(8, ghiChu);
               int rs = ps.executeUpdate();
-               return rs > 0;
+              return rs > 0;
         } catch (Exception e) {
             e.printStackTrace();
         }
