@@ -171,4 +171,19 @@ public class Danh_Sach_Hoa_Model extends BaseModel{
         }
         return "";
     }
+    
+    public boolean capNhatSoLuongHoaSauKhiThemGioHang(String maHoa, int soLuong){
+        String sql = "UPDATE HOA SET SOLUONG = ? WHERE MAHOA = ?";
+        try {
+              Connection conn = getConnection();
+              PreparedStatement ps = conn.prepareStatement(sql);   
+              ps.setInt(1, soLuong);
+              ps.setString(2, maHoa);
+              int rs = ps.executeUpdate();
+               return rs > 0;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
 }

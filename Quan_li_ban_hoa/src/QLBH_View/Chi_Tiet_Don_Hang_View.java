@@ -7,7 +7,6 @@ package QLBH_View;
 import QLBH_Function.Nhan_vien;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import javax.swing.JComboBox;
 import javax.swing.JTextField;
 
 /**
@@ -95,7 +94,7 @@ public class Chi_Tiet_Don_Hang_View extends javax.swing.JFrame {
     }
 
     public String getTxtSoDienThoai() {
-        return txtTim.getText();
+        return txtSoDienThoai.getText();
     }
 
     public String getTxtMaDonHang() {
@@ -137,6 +136,21 @@ public class Chi_Tiet_Don_Hang_View extends javax.swing.JFrame {
     public String getTxtTenKhachHang() {
         return txtTenKhachHang.getText();
     }
+    
+     public void btnXemThanhToanActionListener(ActionListener actionListener) {
+        btnXemThanhToan.addActionListener(actionListener);
+    }
+     
+      public void btnLuuThanhToanActionListener(ActionListener actionListener) {
+        btnLuu.addActionListener(actionListener);
+    }
+
+    public String getTxtTongTien() {
+        return txtTongTien.getText();
+    }
+      
+    
+
     
     
 
@@ -190,9 +204,10 @@ public class Chi_Tiet_Don_Hang_View extends javax.swing.JFrame {
         txtVIP = new javax.swing.JTextField();
         txtVAT = new javax.swing.JTextField();
         txtTongTien = new javax.swing.JTextField();
+        btnXemThanhToan = new javax.swing.JButton();
         jPanel8 = new javax.swing.JPanel();
         jButton6 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
+        btnLuu = new javax.swing.JButton();
         jPanel7 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
@@ -457,6 +472,8 @@ public class Chi_Tiet_Don_Hang_View extends javax.swing.JFrame {
         txtTongTien.setFont(new java.awt.Font("Times New Roman", 2, 14)); // NOI18N
         txtTongTien.setHorizontalAlignment(javax.swing.JTextField.LEFT);
 
+        btnXemThanhToan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/QLBH_Images/Xem.png"))); // NOI18N
+
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
@@ -466,7 +483,9 @@ public class Chi_Tiet_Don_Hang_View extends javax.swing.JFrame {
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addComponent(jLabel12)
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnXemThanhToan)
+                        .addGap(11, 11, 11))
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel13)
@@ -489,7 +508,9 @@ public class Chi_Tiet_Don_Hang_View extends javax.swing.JFrame {
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel12)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel12)
+                    .addComponent(btnXemThanhToan))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel13)
@@ -521,9 +542,9 @@ public class Chi_Tiet_Don_Hang_View extends javax.swing.JFrame {
         jButton6.setText("Hủy");
         jButton6.setPreferredSize(new java.awt.Dimension(200, 30));
 
-        jButton7.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        jButton7.setText("Lưu");
-        jButton7.setPreferredSize(new java.awt.Dimension(200, 30));
+        btnLuu.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        btnLuu.setText("Lưu");
+        btnLuu.setPreferredSize(new java.awt.Dimension(200, 30));
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
@@ -533,7 +554,7 @@ public class Chi_Tiet_Don_Hang_View extends javax.swing.JFrame {
                 .addGap(151, 151, 151)
                 .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 207, Short.MAX_VALUE)
-                .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnLuu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(151, 151, 151))
         );
         jPanel8Layout.setVerticalGroup(
@@ -542,7 +563,7 @@ public class Chi_Tiet_Don_Hang_View extends javax.swing.JFrame {
                 .addGap(19, 19, 19)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnLuu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(22, Short.MAX_VALUE))
         );
 
@@ -694,14 +715,15 @@ public class Chi_Tiet_Don_Hang_View extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnLuu;
     private javax.swing.JButton btnThemGioHang;
     private javax.swing.JButton btnThoat;
     private javax.swing.JButton btnTim;
     private javax.swing.JButton btnXemGioHang;
+    private javax.swing.JButton btnXemThanhToan;
     private javax.swing.JComboBox<String> cbxNhanVien;
     private javax.swing.JComboBox<String> cbxTrangThai;
     private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

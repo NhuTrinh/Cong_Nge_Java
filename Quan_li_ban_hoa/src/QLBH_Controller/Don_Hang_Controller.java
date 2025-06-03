@@ -187,7 +187,8 @@ public class Don_Hang_Controller {
                 timKhachHangChiTietDonHangAction();
                 loadListNhanVienToChiTietDonHang();
                 themHoaVaoGioHangAction();
-                
+                btnXemThanhToanActionListener();
+                btnLuuThanhToanActionListener();
             }
         });
     }
@@ -206,7 +207,7 @@ public class Don_Hang_Controller {
         ctdhView.btnTimGioHangActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
-                String soDienThoai = ctdhView.getTxtSoDienThoai();
+                String soDienThoai = ctdhView.getTxtTim();
                 System.out.println("SDT: " + soDienThoai);
                 Khach_Hang kh = dhModel.timKhachHangTheoSoDienThoai(soDienThoai);
                 ctdhView.setTxtTenKhachHang(kh.getTenKhachHang());
@@ -233,12 +234,6 @@ public class Don_Hang_Controller {
         dhModel.themThongTinGiaoHangVaoDonHang(maDonHang, tenNguoiNhan, soDienThoaiNhan, diaChiNhan);
     }
     
-    public void themThongTinThanhToan() {
-        String maDonHang = ctdhView.getTxtMaDonHang();
-        
-        //dhModel.themThongTinGiaoHangVaoDonHang(maDonHang, tenNguoiNhan, soDienThoaiNhan, diaChiNhan);
-    }
-    
     public void themHoaVaoGioHangAction() {
         ctdhView.btnThemGioHangActionListener(new ActionListener(){
             @Override
@@ -261,6 +256,10 @@ public class Don_Hang_Controller {
                 String maHoa = sp.getMaHoa();
                 Double giaBan = sp.getGia();
                 dhModel.luuSanPhamVaoGioHang(maDonHang, maHoa, soLuong, giaBan);
+                tghView.setTxtSoLuong("");
+                Danh_Sach_Hoa_Model dshModel = new Danh_Sach_Hoa_Model();
+                dshModel.capNhatSoLuongHoaSauKhiThemGioHang(maHoa, sp.getSoLuong()- soLuong);
+                tghView.setTableThemGioHang(dshModel.getAllHoa());
             }
         });
     }
@@ -279,5 +278,70 @@ public class Don_Hang_Controller {
         dhModel.taoDonHangTam(maDonHang, ngayLap, trangThai, 1.0, maNhanVien, maKhachHang);
     }
     
+    
+    
+    public double tongTienHoa(String maDonHang) {
+        return dhModel.tinhTongTienHoaTuGioHang(maDonHang);
+    }
+    
+    public void btnXemThanhToanActionListener() {
+        ctdhView.btnXemThanhToanActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String maDonHang = ctdhView.getTxtMaDonHang();
+                double tienHoa = dhModel.tinhTongTienHoaTuGioHang(maDonHang);
+                int soLuongHoa = dhModel.tongSoLuongHoaTrongGioHang(maDonHang);
+                double vanChuyen = 0.0;
+                double camHoa = 0.0;
+                double VIP = 0.0;
+                if(soLuongHoa >= 20) {
+                    vanChuyen = 50_000;
+                    camHoa = 10_000;
+                } else {
+                    vanChuyen = 20_000;
+                }
+                System.out.println("SDT: " + ctdhView.getTxtSoDienThoai());
+                Khach_Hang kh = dhModel.timKhachHangTheoSoDienThoai(ctdhView.getTxtSoDienThoai());
+                String xepLoai = kh.getXepLoai();
+                if(xepLoai.equals("1"))
+                {
+                    VIP = 10_000;
+                } else if(xepLoai.equals("2"))
+                {
+                    VIP = 15_000;
+                }
+                double VAT = (tienHoa + camHoa + vanChuyen)*0.1;
+                ctdhView.setTxtTienHoa(String.valueOf(tienHoa));
+                ctdhView.setTxtTienVanChuyen(String.valueOf(vanChuyen));
+                ctdhView.setTxtTienCamHoa(String.valueOf(camHoa));
+                ctdhView.setTxtVIP(String.valueOf(VIP));
+                ctdhView.setTxtVAT(String.valueOf(VAT));
+                dhModel.themThongTinThanhToan(maDonHang, tienHoa, vanChuyen, camHoa, VAT, VIP);
+                ctdhView.setTxtTongTien(String.valueOf(dhModel.layTongThanhToanDonHang(maDonHang)));
+            }
+        });
+    }
+    
+    public boolean btnLuuThanhToanActionListener() {
+        ctdhView.btnLuuThanhToanActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String maDonHang = ctdhView.getTxtMaDonHang();
+                double tongTien = Double.parseDouble(ctdhView.getTxtTongTien());
+                dhModel.capNhatDonHang(maDonHang, tongTien);
+                themThongTinNguoiNhan();
+            }
+        });
+        return 1 > 0;
+    }
+    
+    public void thoatThemGioHang() {
+        tghView.btnThoatActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                tghView.dispose();
+            }
+        });
+    }
 
 }
