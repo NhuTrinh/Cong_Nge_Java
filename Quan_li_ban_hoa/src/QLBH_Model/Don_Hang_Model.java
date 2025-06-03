@@ -210,7 +210,7 @@ public class Don_Hang_Model extends BaseModel{
         return null;
     } 
     
-    public void themThongTinGiaoHangVaoDonHang (String maDonHang, String tenNguoiNhan, String soDienThoaiNhan, String diaChiNhan ) {
+    public boolean themThongTinGiaoHangVaoDonHang (String maDonHang, String tenNguoiNhan, String soDienThoaiNhan, String diaChiNhan ) {
         String sql = "INSERT INTO GIAOHANG (SODH, TENNGUOINHAN, SODIENTHOAI, DIACHI) VALUES (?, ?, ?, ?)";
         try {
             
@@ -220,13 +220,15 @@ public class Don_Hang_Model extends BaseModel{
               ps.setString(2, tenNguoiNhan);
               ps.setString(3, soDienThoaiNhan);
               ps.setString(4, diaChiNhan);
-              ResultSet rs = ps.executeQuery();
+              int rs = ps.executeUpdate();
+              return rs > 0;
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return false;
     } 
     
-    public void luuSanPhamVaoGioHang (String maDonHang, String maHoa, int soLuong, double giaBan) {
+    public boolean luuSanPhamVaoGioHang (String maDonHang, String maHoa, int soLuong, double giaBan) {
         String sql = "INSERT INTO CTDONHANG (SODH, MAHOA, SOLUONG, GIABAN) VALUES (?, ?, ?, ?)";
         try {
             
@@ -236,13 +238,15 @@ public class Don_Hang_Model extends BaseModel{
               ps.setString(2, maHoa);
               ps.setInt(3, soLuong);
               ps.setDouble(4, giaBan);
-              ResultSet rs = ps.executeQuery();
+              int rs = ps.executeUpdate();
+              return rs > 0;
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return false;
     } 
     
-    public void taoDonHangTam (String maDonHang, String ngayLap, String trangThai, double giaBan, String maNhanVien, String maKhachHang) {
+    public boolean taoDonHangTam (String maDonHang, String ngayLap, String trangThai, double giaBan, String maNhanVien, String maKhachHang) {
         String sql = "INSERT INTO DONHANG (SODH, NGAYLAP, TRANGTHAI, GIABAN, MANHANVIEN, MAKHACHHANG) VALUES (?, ?, ?, ?, ?, ?)";
         try {
             
@@ -254,10 +258,108 @@ public class Don_Hang_Model extends BaseModel{
               ps.setDouble(4, giaBan);
               ps.setString(5, maNhanVien);
               ps.setString(6, maKhachHang);
-              ResultSet rs = ps.executeQuery();
+              int rs = ps.executeUpdate();
+              return rs > 0;
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return false;
     } 
+    
+    public double tinhTongTienHoaTuGioHang(String maDonHang) {
+        String sql = "SELECT THANHTIEN FROM CTDONHANG WHERE SODH = ?";
+        double tongTien = 0.0;
+        try {
+            
+              Connection conn = getConnection();
+              PreparedStatement ps = conn.prepareStatement(sql);  
+              ps.setString(1, maDonHang);
+              ResultSet rs = ps.executeQuery();
+              while(rs.next())
+              {
+                  tongTien = tongTien + rs.getDouble("THANHTIEN");
+              } 
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return tongTien;
         
+    }
+    
+    public int tongSoLuongHoaTrongGioHang(String maDonHang) {
+        String sql = "SELECT SOLUONG FROM CTDONHANG WHERE SODH = ?";
+        int soLuong = 0;
+        try {
+            
+              Connection conn = getConnection();
+              PreparedStatement ps = conn.prepareStatement(sql);  
+              ps.setString(1, maDonHang);
+              ResultSet rs = ps.executeQuery();
+              while(rs.next())
+              {
+                  soLuong = soLuong + rs.getInt("SOLUONG");
+              } 
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return soLuong;
+        
+    }
+    
+    public boolean themThongTinThanhToan (String maDonHang, double tienHang, double vanChuyen, double phiCamHoa, double VAT, double VIP) {
+        String sql = "INSERT INTO THANHTOAN (SODH, TIENHANG, VANCHUYEN, PHICAMHOA, VAT, VIP) VALUES (?, ?, ?, ?, ?, ?)";
+        try {
+            
+              Connection conn = getConnection();
+              PreparedStatement ps = conn.prepareStatement(sql);  
+              ps.setString(1, maDonHang);
+              ps.setDouble(2, tienHang);
+              ps.setDouble(3, vanChuyen);
+              ps.setDouble(4, phiCamHoa);
+              ps.setDouble(5, VAT);
+              ps.setDouble(6, VIP);
+              int rs = ps.executeUpdate();
+              return rs > 0;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    } 
+    
+    public double layTongThanhToanDonHang(String maDonHang) {
+        String sql = "SELECT TONGTIEN FROM THANHTOAN WHERE SODH = ?";
+        double tongTien = 0.0;
+        try {
+            
+              Connection conn = getConnection();
+              PreparedStatement ps = conn.prepareStatement(sql);  
+              ps.setString(1, maDonHang);
+              ResultSet rs = ps.executeQuery();
+              while(rs.next())
+              {
+                  tongTien = rs.getDouble("TONGTIEN");
+              } 
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return tongTien;
+        
+    }
+    
+    public boolean capNhatDonHang(String maDonHang, double tongTien){
+        String sql = "UPDATE DONHANG SET GIABAN = ? WHERE SODH = ?";
+        try {
+            
+              Connection conn = getConnection();
+              PreparedStatement ps = conn.prepareStatement(sql);  
+              ps.setDouble(1, tongTien);
+              ps.setString(2, maDonHang);
+              int rs = ps.executeUpdate();
+              return rs > 0;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        
+        return false;
+    }
 }

@@ -84,6 +84,7 @@ public class Main {
         dhController.ThoatGioHang();
         dhController.themDonHangAction();
         dhController.thoatChiTietDonHangAction();
+        dhController.thoatThemGioHang();
     }
     
 }

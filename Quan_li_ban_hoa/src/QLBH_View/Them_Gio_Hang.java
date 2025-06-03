@@ -73,6 +73,16 @@ public class Them_Gio_Hang extends javax.swing.JFrame {
         }
         return null;
     }
+    
+    public void btnThoatActionListener(ActionListener actionListener) {
+        btnThoat.addActionListener(actionListener);
+    }
+
+    public void setTxtSoLuong(String txtSoLuong) {
+        this.txtSoLuong.setText(txtSoLuong);
+    }
+    
+    
 
 
     /**
@@ -87,7 +97,7 @@ public class Them_Gio_Hang extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        btnThoat = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblThemGioHang = new javax.swing.JTable();
@@ -101,7 +111,7 @@ public class Them_Gio_Hang extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Times New Roman", 3, 24)); // NOI18N
         jLabel1.setText("Thêm giỏ hàng");
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/QLBH_Images/Dong.png"))); // NOI18N
+        btnThoat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/QLBH_Images/Dong.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -111,14 +121,14 @@ public class Them_Gio_Hang extends javax.swing.JFrame {
                 .addContainerGap(163, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addGap(96, 96, 96)
-                .addComponent(jButton1)
+                .addComponent(btnThoat)
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton1)
+                .addComponent(btnThoat)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -258,7 +268,7 @@ public class Them_Gio_Hang extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnThem;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnThoat;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;

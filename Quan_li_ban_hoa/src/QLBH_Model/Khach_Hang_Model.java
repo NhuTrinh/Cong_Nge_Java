@@ -125,4 +125,20 @@ public class Khach_Hang_Model extends BaseModel{
         }
         return false;
     }
+    
+    public int layXepLoaiKhachHang(String maKhachHang){
+        String sql = "SELECT XEPLOAI FROM KHACHHANG WHERE MAKHACHHANG = ?";
+        try {
+              Connection conn = getConnection();
+              PreparedStatement ps = conn.prepareStatement(sql);   
+              ResultSet rs = ps.executeQuery();
+              while(rs.next())
+              {
+                  return rs.getInt("XEPLOAI");
+              }  
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
 }
