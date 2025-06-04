@@ -78,13 +78,14 @@ public class Main {
         mainController.donHangAction();
         dhController.xoaAction();
         dhController.xemAction();
-        dhController.ThemGioHangAction();
-        dhController.giamGioHangAction();
-        dhController.xoaGioHangAction();
-        dhController.ThoatGioHang();
-        dhController.themDonHangAction();
-        dhController.thoatChiTietDonHangAction();
-        dhController.thoatThemGioHang();
+        dhController.capNhatDonHangAction();
+        //dhController.themGioHangAction();
+        //dhController.giamGioHangAction();
+        //dhController.xoaGioHangAction();
+        //dhController.thoatGioHang();
+        //dhController.themDonHangAction();
+        //dhController.thoatChiTietDonHangAction();
+        //dhController.thoatThemGioHang();
     }
     
 }
