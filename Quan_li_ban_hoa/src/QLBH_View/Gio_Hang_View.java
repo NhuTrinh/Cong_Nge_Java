@@ -74,6 +74,12 @@ public class Gio_Hang_View extends javax.swing.JFrame {
     public void btnGiamActionListener(ActionListener all) {
         btnGiam.addActionListener(all);
     }
+    
+    public void disableGioHang() {
+        btnGiam.setVisible(false);
+        btnThem.setVisible(false);
+        btnXoa.setVisible(false);
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.

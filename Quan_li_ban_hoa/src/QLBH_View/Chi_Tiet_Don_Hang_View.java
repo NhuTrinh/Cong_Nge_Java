@@ -7,6 +7,7 @@ package QLBH_View;
 import QLBH_Function.Nhan_vien;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import javax.swing.JComboBox;
 import javax.swing.JTextField;
 
 /**
@@ -21,13 +22,33 @@ public class Chi_Tiet_Don_Hang_View extends javax.swing.JFrame {
     public Chi_Tiet_Don_Hang_View() {
         initComponents();
     }
-    
+
     public void disableFieldsKhachHang() {
         lblTimKiem.setVisible(false);
         txtTim.setVisible(false);
         btnTim.setVisible(false);
         lblHuongDan.setVisible(false);
     }
+
+    public void disableChiTietDonHang() {
+        txtMaDonHang.setEditable(false);
+        cbxNhanVien.setEditable(false);
+        cbxTrangThai.setEditable(false);
+        txtTenKhachHang.setEditable(false);
+        txtSoDienThoai.setEditable(false);
+        txtTenNguoiNhan.setEditable(false);
+        txtSoDienThoaiNhan.setEditable(false);
+        txtDiaChiNhan.setEditable(false);
+        txtTienHoa.setEditable(false);
+        txtTienVanChuyen.setEditable(false);
+        txtTienCamHoa.setEditable(false);
+        txtVIP.setEditable(false);
+        txtVAT.setEditable(false);
+        txtTongTien.setEditable(false);
+        btnLuu.setVisible(false);
+        btnThemGioHang.setVisible(false);
+    }
+    
 
     public void setTxtSoDienThoai(String txtSoDienThoai) {
         this.txtSoDienThoai.setText(txtSoDienThoai);
@@ -72,16 +93,28 @@ public class Chi_Tiet_Don_Hang_View extends javax.swing.JFrame {
     public void setTxtVIP(String txtVIP) {
         this.txtVIP.setText(txtVIP);
     }
-    
+
+    public void setCbxNhanVien(String maNhanVien) {
+        this.cbxNhanVien.setSelectedItem(maNhanVien);
+    }
+
+    public void setCbxTrangThai(String trangThai) {
+        this.cbxTrangThai.setSelectedItem(trangThai);
+    }
+
+    public void setTxtMaDonHang(String txtMaDonHang) {
+        this.txtMaDonHang.setText(txtMaDonHang);
+    }
+
     public void btnXemGioHangActionListener(ActionListener actionListener) {
         btnXemGioHang.addActionListener(actionListener);
     }
-    
-     public void btnThoatGioHangActionListener(ActionListener actionListener) {
+
+    public void btnThoatGioHangActionListener(ActionListener actionListener) {
         btnThoat.addActionListener(actionListener);
     }
-     
-      public void btnTimGioHangActionListener(ActionListener actionListener) {
+
+    public void btnTimGioHangActionListener(ActionListener actionListener) {
         btnTim.addActionListener(actionListener);
     }
 
@@ -100,13 +133,12 @@ public class Chi_Tiet_Don_Hang_View extends javax.swing.JFrame {
     public String getTxtMaDonHang() {
         return txtMaDonHang.getText();
     }
-    
+
     public void loadDanhSachNhanVien(ArrayList<Nhan_vien> dsnv) {
-        for(Nhan_vien nv : dsnv)
-        {
+        for (Nhan_vien nv : dsnv) {
             cbxNhanVien.addItem(nv.getMaNhanVien());
         }
-        
+
     }
 
     public String getTxtDiaChiNhan() {
@@ -120,7 +152,7 @@ public class Chi_Tiet_Don_Hang_View extends javax.swing.JFrame {
     public String getTxtTenNguoiNhan() {
         return txtTenNguoiNhan.getText();
     }
-    
+
     public void btnThemGioHangActionListener(ActionListener actionListener) {
         btnThemGioHang.addActionListener(actionListener);
     }
@@ -136,23 +168,18 @@ public class Chi_Tiet_Don_Hang_View extends javax.swing.JFrame {
     public String getTxtTenKhachHang() {
         return txtTenKhachHang.getText();
     }
-    
-     public void btnXemThanhToanActionListener(ActionListener actionListener) {
+
+    public void btnXemThanhToanActionListener(ActionListener actionListener) {
         btnXemThanhToan.addActionListener(actionListener);
     }
-     
-      public void btnLuuThanhToanActionListener(ActionListener actionListener) {
+
+    public void btnLuuThanhToanActionListener(ActionListener actionListener) {
         btnLuu.addActionListener(actionListener);
     }
 
     public String getTxtTongTien() {
         return txtTongTien.getText();
     }
-      
-    
-
-    
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -770,5 +797,4 @@ public class Chi_Tiet_Don_Hang_View extends javax.swing.JFrame {
     private javax.swing.JTextField txtVIP;
     // End of variables declaration//GEN-END:variables
 
-    
 }

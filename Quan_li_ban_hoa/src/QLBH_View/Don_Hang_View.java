@@ -24,7 +24,7 @@ public class Don_Hang_View extends javax.swing.JFrame {
     }
     
     public void setTableDonHang(ArrayList<Don_Hang> dskh) {
-        String[] colunmName = {"Mã đơn hàng", "Ngày lập", "Trạng thái", "Tên nhân viên", "Tên khách hàng", "Tổng tiền"};
+        String[] colunmName = {"Mã đơn hàng", "Ngày lập", "Trạng thái", "Mã nhân viên", "Tên khách hàng", "Tổng tiền"};
         DefaultTableModel dtmDSDH = new DefaultTableModel(colunmName, 0);
         
         for(Don_Hang dh : dskh)
@@ -50,6 +50,11 @@ public class Don_Hang_View extends javax.swing.JFrame {
         btnThem.addActionListener(all);
     }
     
+    public void btnCapNhatActionListener(ActionListener all)
+    {
+        btnCapNhat.addActionListener(all);
+    }
+    
     public Don_Hang getDonHangSelectedRow()
     {
         int selectedRow = tblDonHang.getSelectedRow();
@@ -57,7 +62,7 @@ public class Don_Hang_View extends javax.swing.JFrame {
         String trangThai = "";
         String ngayLap = "";
         double tongTien = 0.0;
-        String tenNhanVien = "";
+        String maNhanVien = "";
         String tenKhachHang = "";
 
         
@@ -65,14 +70,15 @@ public class Don_Hang_View extends javax.swing.JFrame {
              maDonHang = tblDonHang.getValueAt(selectedRow, 0).toString();
              ngayLap = tblDonHang.getValueAt(selectedRow, 1).toString();
              trangThai = tblDonHang.getValueAt(selectedRow, 2).toString();
-             tenNhanVien = tblDonHang.getValueAt(selectedRow, 3).toString();
+             maNhanVien = tblDonHang.getValueAt(selectedRow, 3).toString();
              tenKhachHang = tblDonHang.getValueAt(selectedRow, 4).toString();
              tongTien = Double.parseDouble(tblDonHang.getValueAt(selectedRow, 5).toString());
-             Don_Hang dh = new Don_Hang(maDonHang, ngayLap, trangThai, tenNhanVien, tenKhachHang, tongTien);
+             Don_Hang dh = new Don_Hang(maDonHang, ngayLap, trangThai, maNhanVien, tenKhachHang, tongTien);
              return dh;
         }
         return null;
     }
+    
     
     
 
@@ -98,7 +104,7 @@ public class Don_Hang_View extends javax.swing.JFrame {
         jPanel4 = new javax.swing.JPanel();
         btnXem = new javax.swing.JButton();
         btnThem = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
+        btnCapNhat = new javax.swing.JButton();
         btnXoa = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -191,9 +197,9 @@ public class Don_Hang_View extends javax.swing.JFrame {
         btnThem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/QLBH_Images/Them.png"))); // NOI18N
         btnThem.setText("Thêm");
 
-        jButton7.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/QLBH_Images/Cap_nhat.png"))); // NOI18N
-        jButton7.setText("Cập nhật");
+        btnCapNhat.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        btnCapNhat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/QLBH_Images/Cap_nhat.png"))); // NOI18N
+        btnCapNhat.setText("Cập nhật");
 
         btnXoa.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         btnXoa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/QLBH_Images/Xoa.png"))); // NOI18N
@@ -209,7 +215,7 @@ public class Don_Hang_View extends javax.swing.JFrame {
                 .addGap(81, 81, 81)
                 .addComponent(btnThem)
                 .addGap(81, 81, 81)
-                .addComponent(jButton7)
+                .addComponent(btnCapNhat)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnXoa)
                 .addGap(15, 15, 15))
@@ -221,7 +227,7 @@ public class Don_Hang_View extends javax.swing.JFrame {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnXem)
                     .addComponent(btnThem)
-                    .addComponent(jButton7)
+                    .addComponent(btnCapNhat)
                     .addComponent(btnXoa))
                 .addContainerGap(10, Short.MAX_VALUE))
         );
@@ -301,6 +307,7 @@ public class Don_Hang_View extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCapNhat;
     private javax.swing.JButton btnThem;
     private javax.swing.JButton btnXem;
     private javax.swing.JButton btnXoa;
@@ -308,7 +315,6 @@ public class Don_Hang_View extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton7;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

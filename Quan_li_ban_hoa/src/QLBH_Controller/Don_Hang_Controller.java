@@ -33,6 +33,7 @@ import java.util.ArrayList;
  * @author TOSHIBA
  */
 public class Don_Hang_Controller {
+
     private MainFrame mainView;
     private Don_Hang_View dhView;
     private Don_Hang_Model dhModel;
@@ -49,30 +50,39 @@ public class Don_Hang_Controller {
         this.ghView = ghView;
         this.dshView = dshView;
         this.tghView = tghView;
-    }        
-    
+    }
+
     public void xoaAction() {
-        dhView.btnXoaActionListener(new ActionListener(){
+        dhView.btnXoaActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Don_Hang dh = dhView.getDonHangSelectedRow();
                 String maDonHang = dh.getMaDonHang();
+                dhModel.xoaThanhToan(maDonHang);
+                dhModel.xoaThongTinGiaoHang(maDonHang);
                 dhModel.xoaCTDonHang(maDonHang);
                 dhModel.xoaDonHang(maDonHang);
                 dhView.setTableDonHang(dhModel.getAllDonHang());
             }
         });
     }
-    
+
     public void xemAction() {
-        dhView.btnXemActionListener(new ActionListener(){
+        dhView.btnXemActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Don_Hang dh = dhView.getDonHangSelectedRow();
                 String tenKhachHang = dh.getMaKhachHang();
                 Khach_Hang_Model khModel = new Khach_Hang_Model();
                 Khach_Hang kh = khModel.getAllKhachHangTheoTen(tenKhachHang);
+                ctdhView.disableChiTietDonHang();
+                ghView.disableGioHang();
                 ctdhView.disableFieldsKhachHang();
+                ctdhView.setTxtMaDonHang(dh.getMaDonHang());
+                loadListNhanVienToChiTietDonHang();
+                System.out.println("Ma Nhan Vien: " + dh.getMaNhanVien());
+                ctdhView.setCbxNhanVien(dh.getMaNhanVien());
+                ctdhView.setCbxTrangThai(dh.getTrangThai());
                 ctdhView.setTxtTenKhachHang(dh.getMaKhachHang());
                 ctdhView.setTxtSoDienThoai(kh.getSoDienThoai());
                 Giao_Hang gh = dhModel.getAllGiaoHangTheoMaDon(dh.getMaDonHang());
@@ -89,24 +99,25 @@ public class Don_Hang_Controller {
                 ctdhView.setVisible(true);
                 dhView.setVisible(false);
                 xemGioHangAction(dh.getMaDonHang());
+
             }
         });
     }
-    
+
     public void xemGioHangAction(String maDonHang) {
-        ctdhView.btnXemGioHangActionListener(new ActionListener(){
+        ctdhView.btnXemGioHangActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 ghView.setTableGioHang(dhModel.getAllGioHangTheoMaDon(maDonHang));
                 ghView.setVisible(true);
                 ctdhView.setVisible(false);
             }
-            
+
         });
     }
-    
-    public void ThemGioHangAction() {
-        ghView.btnThemActionListener(new ActionListener(){
+
+    public void themGioHangAction() {
+        ghView.btnThemActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Gio_Hang gh = ghView.getGioHangSelectedRow();
@@ -121,9 +132,9 @@ public class Don_Hang_Controller {
             }
         });
     }
-    
-    public void ThoatGioHang() {
-        ghView.btnThoatActionListener(new ActionListener(){
+
+    public void thoatGioHang() {
+        ghView.btnThoatActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 ghView.dispose();
@@ -131,9 +142,9 @@ public class Don_Hang_Controller {
             }
         });
     }
-    
+
     public void xoaGioHangAction() {
-        ghView.btnXoaActionListener(new ActionListener(){
+        ghView.btnXoaActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Gio_Hang gh = ghView.getGioHangSelectedRow();
@@ -144,9 +155,9 @@ public class Don_Hang_Controller {
             }
         });
     }
-    
+
     public void giamGioHangAction() {
-        ghView.btnGiamActionListener(new ActionListener(){
+        ghView.btnGiamActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Gio_Hang gh = ghView.getGioHangSelectedRow();
@@ -161,24 +172,24 @@ public class Don_Hang_Controller {
             }
         });
     }
-    
-        public void setAllValueInCTDHIsEmpty() {
-            ctdhView.setTxtTenKhachHang("");
-            ctdhView.setTxtSoDienThoai("");
-            ctdhView.setTxtTim("");
-            ctdhView.setTxtTenNguoiNhan("");
-            ctdhView.setTxtSoDienThoaiNhan("");
-            ctdhView.setTxtDiaChiNhan("");
-            ctdhView.setTxtTienHoa("");
-            ctdhView.setTxtTienVanChuyen("");
-            ctdhView.setTxtTienCamHoa("");
-            ctdhView.setTxtVAT("");
-            ctdhView.setTxtVIP("");
-            ctdhView.setTxtTongTien("");
-        }
-        
-        public void themDonHangAction() {
-        dhView.btnThemActionListener(new ActionListener(){
+
+    public void setAllValueInCTDHIsEmpty() {
+        ctdhView.setTxtTenKhachHang("");
+        ctdhView.setTxtSoDienThoai("");
+        ctdhView.setTxtTim("");
+        ctdhView.setTxtTenNguoiNhan("");
+        ctdhView.setTxtSoDienThoaiNhan("");
+        ctdhView.setTxtDiaChiNhan("");
+        ctdhView.setTxtTienHoa("");
+        ctdhView.setTxtTienVanChuyen("");
+        ctdhView.setTxtTienCamHoa("");
+        ctdhView.setTxtVAT("");
+        ctdhView.setTxtVIP("");
+        ctdhView.setTxtTongTien("");
+    }
+
+    public void themDonHangAction() {
+        dhView.btnThemActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 setAllValueInCTDHIsEmpty();
@@ -192,9 +203,9 @@ public class Don_Hang_Controller {
             }
         });
     }
-        
-        public void thoatChiTietDonHangAction() {
-        ctdhView.btnThoatGioHangActionListener(new ActionListener(){
+
+    public void thoatChiTietDonHangAction() {
+        ctdhView.btnThoatGioHangActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 ctdhView.dispose();
@@ -202,9 +213,9 @@ public class Don_Hang_Controller {
             }
         });
     }
-        
+
     public void timKhachHangChiTietDonHangAction() {
-        ctdhView.btnTimGioHangActionListener(new ActionListener(){
+        ctdhView.btnTimGioHangActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String soDienThoai = ctdhView.getTxtTim();
@@ -220,22 +231,28 @@ public class Don_Hang_Controller {
     public void loadListNhanVienToChiTietDonHang() {
         Dang_Nhap_Model dnModel = new Dang_Nhap_Model();
         ArrayList<Nhan_vien> dsnv = dnModel.getAllNhanVienTheoMa();
-        for(Nhan_vien nv : dsnv){
+        for (Nhan_vien nv : dsnv) {
             System.out.println(nv);
         }
         ctdhView.loadDanhSachNhanVien(dsnv);
     }
-    
+
     public void themThongTinNguoiNhan() {
         String maDonHang = ctdhView.getTxtMaDonHang();
         String tenNguoiNhan = ctdhView.getTxtTenNguoiNhan();
         String soDienThoaiNhan = ctdhView.getTxtSoDienThoaiNhan();
         String diaChiNhan = ctdhView.getTxtDiaChiNhan();
-        dhModel.themThongTinGiaoHangVaoDonHang(maDonHang, tenNguoiNhan, soDienThoaiNhan, diaChiNhan);
+        if(dhModel.kiemTraMaDonHangTrongBangGiaoHang(maDonHang))
+        {
+            dhModel.capNhatThongTinGiaoHangVaoDonHang(maDonHang, tenNguoiNhan, soDienThoaiNhan, diaChiNhan);
+        } else {
+           dhModel.themThongTinGiaoHangVaoDonHang(maDonHang, tenNguoiNhan, soDienThoaiNhan, diaChiNhan); 
+        }
+        
     }
-    
+
     public void themHoaVaoGioHangAction() {
-        ctdhView.btnThemGioHangActionListener(new ActionListener(){
+        ctdhView.btnThemGioHangActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String maDonHang = ctdhView.getTxtMaDonHang();
@@ -243,12 +260,13 @@ public class Don_Hang_Controller {
                 tghView.setTableThemGioHang(dshModel.getAllHoa());
                 tghView.setVisible(true);
                 themSanPhamAction(maDonHang);
+                thoatThemGioHang();
             }
         });
     }
-    
+
     public void themSanPhamAction(String maDonHang) {
-        tghView.btnThemVaoGioHangActionListener(new ActionListener(){
+        tghView.btnThemVaoGioHangActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 int soLuong = Integer.parseInt(tghView.getTxtSoLuong());
@@ -258,12 +276,12 @@ public class Don_Hang_Controller {
                 dhModel.luuSanPhamVaoGioHang(maDonHang, maHoa, soLuong, giaBan);
                 tghView.setTxtSoLuong("");
                 Danh_Sach_Hoa_Model dshModel = new Danh_Sach_Hoa_Model();
-                dshModel.capNhatSoLuongHoaSauKhiThemGioHang(maHoa, sp.getSoLuong()- soLuong);
+                dshModel.capNhatSoLuongHoaSauKhiThemGioHang(maHoa, sp.getSoLuong() - soLuong);
                 tghView.setTableThemGioHang(dshModel.getAllHoa());
             }
         });
     }
-    
+
     public void themDonHangTam() {
         String maDonHang = ctdhView.getTxtMaDonHang();
         String trangThai = ctdhView.getCbxTrangThai();
@@ -277,15 +295,13 @@ public class Don_Hang_Controller {
         String ngayLap = now.format(formatter);
         dhModel.taoDonHangTam(maDonHang, ngayLap, trangThai, 1.0, maNhanVien, maKhachHang);
     }
-    
-    
-    
+
     public double tongTienHoa(String maDonHang) {
         return dhModel.tinhTongTienHoaTuGioHang(maDonHang);
     }
-    
+
     public void btnXemThanhToanActionListener() {
-        ctdhView.btnXemThanhToanActionListener(new ActionListener(){
+        ctdhView.btnXemThanhToanActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String maDonHang = ctdhView.getTxtMaDonHang();
@@ -294,7 +310,7 @@ public class Don_Hang_Controller {
                 double vanChuyen = 0.0;
                 double camHoa = 0.0;
                 double VIP = 0.0;
-                if(soLuongHoa >= 20) {
+                if (soLuongHoa >= 20) {
                     vanChuyen = 50_000;
                     camHoa = 10_000;
                 } else {
@@ -303,43 +319,88 @@ public class Don_Hang_Controller {
                 System.out.println("SDT: " + ctdhView.getTxtSoDienThoai());
                 Khach_Hang kh = dhModel.timKhachHangTheoSoDienThoai(ctdhView.getTxtSoDienThoai());
                 String xepLoai = kh.getXepLoai();
-                if(xepLoai.equals("1"))
-                {
+                if (xepLoai.equals("1")) {
                     VIP = 10_000;
-                } else if(xepLoai.equals("2"))
-                {
+                } else if (xepLoai.equals("2")) {
                     VIP = 15_000;
                 }
-                double VAT = (tienHoa + camHoa + vanChuyen)*0.1;
+                double VAT = (tienHoa + camHoa + vanChuyen) * 0.1;
                 ctdhView.setTxtTienHoa(String.valueOf(tienHoa));
                 ctdhView.setTxtTienVanChuyen(String.valueOf(vanChuyen));
                 ctdhView.setTxtTienCamHoa(String.valueOf(camHoa));
                 ctdhView.setTxtVIP(String.valueOf(VIP));
                 ctdhView.setTxtVAT(String.valueOf(VAT));
-                dhModel.themThongTinThanhToan(maDonHang, tienHoa, vanChuyen, camHoa, VAT, VIP);
+                if(dhModel.kiemTraMaDonHangTrongBangThanhToan(maDonHang)) {
+                    dhModel.capNhatThongTinThanhToan(maDonHang, tienHoa, vanChuyen, camHoa, VAT, VIP);
+                } else {
+                    dhModel.themThongTinThanhToan(maDonHang, tienHoa, vanChuyen, camHoa, VAT, VIP);
+                }
                 ctdhView.setTxtTongTien(String.valueOf(dhModel.layTongThanhToanDonHang(maDonHang)));
             }
         });
     }
-    
+
     public boolean btnLuuThanhToanActionListener() {
-        ctdhView.btnLuuThanhToanActionListener(new ActionListener(){
+        ctdhView.btnLuuThanhToanActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String maDonHang = ctdhView.getTxtMaDonHang();
                 double tongTien = Double.parseDouble(ctdhView.getTxtTongTien());
                 dhModel.capNhatDonHang(maDonHang, tongTien);
                 themThongTinNguoiNhan();
+                ctdhView.setVisible(false);
+                dhView.setTableDonHang(dhModel.getAllDonHang());
+                dhView.setVisible(true);
             }
         });
         return 1 > 0;
     }
-    
+
     public void thoatThemGioHang() {
-        tghView.btnThoatActionListener(new ActionListener(){
+        tghView.btnThoatActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 tghView.dispose();
+            }
+        });
+    }
+
+    public void capNhatDonHangAction() {
+        dhView.btnCapNhatActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Don_Hang dh = dhView.getDonHangSelectedRow();
+                String tenKhachHang = dh.getMaKhachHang();
+                Khach_Hang_Model khModel = new Khach_Hang_Model();
+                Khach_Hang kh = khModel.getAllKhachHangTheoTen(tenKhachHang);
+                ctdhView.setTxtMaDonHang(dh.getMaDonHang());
+                loadListNhanVienToChiTietDonHang();
+                System.out.println("Ma Nhan Vien: " + dh.getMaNhanVien());
+                ctdhView.setCbxNhanVien(dh.getMaNhanVien());
+                ctdhView.setCbxTrangThai(dh.getTrangThai());
+                ctdhView.setTxtTenKhachHang(dh.getMaKhachHang());
+                ctdhView.setTxtSoDienThoai(kh.getSoDienThoai());
+                Giao_Hang gh = dhModel.getAllGiaoHangTheoMaDon(dh.getMaDonHang());
+                ctdhView.setTxtTenNguoiNhan(gh.getTenNguoiNhan());
+                ctdhView.setTxtSoDienThoaiNhan(gh.getSoDienThoai());
+                ctdhView.setTxtDiaChiNhan(gh.getDiaChi());
+                Thanh_Toan cttt = dhModel.getAllThanhToanTheoMaDon(dh.getMaDonHang());
+                ctdhView.setTxtTienHoa(String.valueOf(cttt.getTienHang()));
+                ctdhView.setTxtTienVanChuyen(String.valueOf(cttt.getPhiVanChuyen()));
+                ctdhView.setTxtTienCamHoa(String.valueOf(cttt.getPhiCamHoa()));
+                ctdhView.setTxtVAT(String.valueOf(cttt.getVAT()));
+                ctdhView.setTxtVIP(String.valueOf(cttt.getVIP()));
+                ctdhView.setTxtTongTien(String.valueOf(cttt.getTongTien()));
+                ctdhView.setVisible(true);
+                dhView.setVisible(false);
+                xemGioHangAction(dh.getMaDonHang());
+                themHoaVaoGioHangAction();
+                themGioHangAction();
+                giamGioHangAction();
+                xoaGioHangAction();
+                btnXemThanhToanActionListener();
+                thoatGioHang();
+                btnLuuThanhToanActionListener();
             }
         });
     }
