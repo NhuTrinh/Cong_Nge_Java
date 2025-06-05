@@ -106,7 +106,7 @@ public class MainFrame extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("QUẢN LÝ BÁN HOA");
 
-        jPanel2.setBackground(new java.awt.Color(0, 102, 51));
+        jPanel2.setBackground(new java.awt.Color(0, 102, 0));
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 3, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));

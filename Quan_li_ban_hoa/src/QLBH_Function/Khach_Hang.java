@@ -6,7 +6,14 @@ package QLBH_Function;
 
 /**
  *
- * @author TOSHIBA
+ * @author
+ * Trịnh Nguyễn Huỳnh Như - 23540024
+ * Phạm Nguyễn Hoàng Long - 23540017
+ */
+
+/**
+ * Lớp Khach_Hang dùng để quản lý thông tin khách hàng.
+ * Bao gồm các thuộc tính và phương thức xử lý liên quan đến khách hàng.
  */
 public class Khach_Hang {
     private String maKhachHang;

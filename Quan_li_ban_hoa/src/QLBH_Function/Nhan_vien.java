@@ -6,8 +6,9 @@ package QLBH_Function;
 
 /**
  *
- * @author TOSHIBA
+ * @author Trịnh Nguyễn Huỳnh Như - 23540024; Phạm Nguyễn Hoàng Long - 23540017
  */
+
 public class Nhan_vien {
     private String maNhanVien;
     private String tenNhanVien;

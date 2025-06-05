@@ -10,94 +10,179 @@ import javax.swing.JTextField;
 
 /**
  *
- * @author TOSHIBA
+ * @author Trịnh Nguyễn Huỳnh Như - 23540024; Phạm Nguyễn Hoàng Long - 23540017
+ */
+/**
+ * Giao diện chính của khách hàng
  */
 public class Khach_Hang_Tao_Cap_Nhat extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Khach_Hang
-     */
     public Khach_Hang_Tao_Cap_Nhat() {
         initComponents();
     }
-    
-    public void btnLuuActionListener(ActionListener all){
+
+    /**
+     * Gán sự kiện xử lý khi người dùng nhấn nút "Lưu".
+     *
+     * @param all Đối tượng ActionListener sẽ được thực thi khi nút được nhấn
+     */
+    public void btnLuuActionListener(ActionListener all) {
         btnLuu.addActionListener(all);
     }
-    
+
+    /**
+     * Gán sự kiện xử lý khi người dùng nhấn nút "Hủy".
+     *
+     * @param all Đối tượng ActionListener sẽ được thực thi khi nút được nhấn
+     */
     public void btnHuyActionListener(ActionListener all) {
         btnHuy.addActionListener(all);
     }
-    
+
+    /**
+     * Gán sự kiện xử lý khi người dùng nhấn nút "Thoát".
+     *
+     * @param all Đối tượng ActionListener sẽ được thực thi khi nút được nhấn
+     */
     public void btnThoatActionListener(ActionListener all) {
         btnThoat.addActionListener(all);
     }
 
+    /**
+     * Hiển thị địa chỉ trên giao diện
+     *
+     * @param txtDiaChi diaChi
+     */
     public void setTxtDiaChi(String txtDiaChi) {
         this.txtDiaChi.setText(txtDiaChi);
     }
 
+    /**
+     * Hiển thị email trên giao diện
+     *
+     * @param txtEmail email
+     */
     public void setTxtEmail(String txtEmail) {
         this.txtEmail.setText(txtEmail);
     }
 
+    /**
+     * Hiển thị ma khach hang trên giao diện
+     *
+     * @param txtMaKhachHang mã khách hàng
+     */
     public void setTxtMaKhachHang(String txtMaKhachHang) {
         this.txtMaKhachHang.setText(txtMaKhachHang);
     }
 
+    /**
+     * Hiển thị số điện thoại trên giao diện
+     *
+     * @param txtSoDienThoai số điện thoại
+     */
     public void setTxtSoDienThoai(String txtSoDienThoai) {
         this.txtSoDienThoai.setText(txtSoDienThoai);
     }
 
+    /**
+     * Hiển thị tên khách hàng trên giao diện
+     *
+     * @param txtTenKhachHang tên khách hàng
+     */
     public void setTxtTenKhachHang(String txtTenKhachHang) {
         this.txtTenKhachHang.setText(txtTenKhachHang);
     }
 
+    /**
+     * Hiển thị xếp loại khách hàng trên giao diện
+     *
+     * @param txtXepLoai xếp loại khách hàng
+     */
     public void setTxtXepLoai(String txtXepLoai) {
         this.txtXepLoai.setText(txtXepLoai);
     }
 
+    /**
+     * Disable mã khách hàng trên giao diện
+     *
+     */
     public void setTxtMaKhachHangDisable() {
         this.txtMaKhachHang.setEditable(false);
     }
-    
+
+    /**
+     * Enable mã khách hàng trên giao diện
+     *
+     */
     public void setTxtMaKhachHangEnable() {
         this.txtMaKhachHang.setEditable(true);
     }
-    
+
+    /**
+     * Lấy địa chỉ trên giao diện
+     *
+     * @return String địa chỉ
+     */
     public String getTxtDiaChi() {
         return txtDiaChi.getText();
     }
 
+    /**
+     * Lấy email trên giao diện
+     *
+     * @return String email
+     */
     public String getTxtEmail() {
         return txtEmail.getText();
     }
 
+    /**
+     * Lấy mã khách hàng trên giao diện
+     *
+     * @return String mã khách hàng
+     */
     public String getTxtMaKhachHang() {
         return txtMaKhachHang.getText();
     }
 
+    /**
+     * Lấy số điện thoại trên giao diện
+     *
+     * @return String số điện thoại
+     */
     public String getTxtSoDienThoai() {
         return txtSoDienThoai.getText();
     }
 
+    /**
+     * Lấy tên khách hàng trên giao diện
+     *
+     * @return String tên khách hàng
+     */
     public String getTxtTenKhachHang() {
         return txtTenKhachHang.getText();
     }
 
+    /**
+     * Lấy xếp loại trên giao diện
+     *
+     * @return String xếp loại
+     */
     public String getTxtXepLoai() {
         return txtXepLoai.getText();
     }
-    
+
+    /**
+     * Kiểm tra mã khách hàng có được edit hay không
+     *
+     */
     public boolean checkEditableOfTxtMaKhachHang() {
-        if(txtMaKhachHang.isEditable())
-        {
+        if (txtMaKhachHang.isEditable()) {
             return true;
         } else {
             return false;
         }
     }
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -133,7 +218,7 @@ public class Khach_Hang_Tao_Cap_Nhat extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Khách hàng > Chi tiết khách hàng");
 
-        jPanel2.setBackground(new java.awt.Color(0, 102, 51));
+        jPanel2.setBackground(new java.awt.Color(0, 102, 0));
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 3, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
@@ -285,33 +370,31 @@ public class Khach_Hang_Tao_Cap_Nhat extends javax.swing.JFrame {
                 .addContainerGap(30, Short.MAX_VALUE))
         );
 
-        jPanel4.setBackground(new java.awt.Color(0, 102, 51));
+        jPanel4.setBackground(new java.awt.Color(0, 102, 0));
 
-        btnHuy.setBackground(new java.awt.Color(255, 102, 102));
         btnHuy.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         btnHuy.setText("Hủy");
-        btnHuy.setPreferredSize(new java.awt.Dimension(200, 40));
+        btnHuy.setPreferredSize(new java.awt.Dimension(114, 30));
 
-        btnLuu.setBackground(new java.awt.Color(255, 255, 102));
         btnLuu.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         btnLuu.setText("Lưu");
-        btnLuu.setPreferredSize(new java.awt.Dimension(200, 40));
+        btnLuu.setPreferredSize(new java.awt.Dimension(114, 30));
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(50, 50, 50)
+                .addGap(82, 82, 82)
                 .addComponent(btnHuy, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnLuu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(50, 50, 50))
+                .addGap(82, 82, 82))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addContainerGap(15, Short.MAX_VALUE)
+                .addContainerGap(25, Short.MAX_VALUE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnHuy, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnLuu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
