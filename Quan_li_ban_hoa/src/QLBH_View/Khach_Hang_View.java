@@ -14,125 +14,210 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author TOSHIBA
+ * @author Trịnh Nguyễn Huỳnh Như - 23540024; Phạm Nguyễn Hoàng Long - 23540017
+ */
+/**
+ * Giao diện chính của khách hàng
  */
 public class Khach_Hang_View extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Khach
-     */
     public Khach_Hang_View() {
         initComponents();
     }
-    
-    public void setTableKhachHang(ArrayList<Khach_Hang> dskh)
-    {
+
+    /**
+     * Hiển thị danh sách khách hàng dưới dạng bảng
+     *
+     * @param ArrayList<Khach_Hang> dskh danh sách khách hàng
+     */
+    public void setTableKhachHang(ArrayList<Khach_Hang> dskh) {
         String[] colunmName = {"Mã khách hàng", "Tên khách hàng", "Số điện thoại", "Địa chỉ"};
         DefaultTableModel dtmDSKH = new DefaultTableModel(colunmName, 0);
-        
-        for(Khach_Hang kh : dskh)
-        {
+
+        for (Khach_Hang kh : dskh) {
             dtmDSKH.addRow(kh.getArrKH());
         }
-        
+
         tblKhachHang.setModel(dtmDSKH);
     }
-    
-    public void btnThoatActionListener(ActionListener all)
-    {
+
+    /**
+     * Gán sự kiện xử lý khi người dùng nhấn nút "Thoát".
+     *
+     * @param all Đối tượng ActionListener sẽ được thực thi khi nút được nhấn
+     */
+    public void btnThoatActionListener(ActionListener all) {
         btnThoat.addActionListener(all);
     }
-    
-    public void btnXemActionListener(ActionListener all){
+
+    /**
+     * Gán sự kiện xử lý khi người dùng nhấn nút "Xem".
+     *
+     * @param all Đối tượng ActionListener sẽ được thực thi khi nút được nhấn
+     */
+    public void btnXemActionListener(ActionListener all) {
         btnXem.addActionListener(all);
     }
-    
-    public void btnThemActionListener(ActionListener all){
+
+    /**
+     * Gán sự kiện xử lý khi người dùng nhấn nút "Thêm".
+     *
+     * @param all Đối tượng ActionListener sẽ được thực thi khi nút được nhấn
+     */
+    public void btnThemActionListener(ActionListener all) {
         btnThem.addActionListener(all);
     }
-    
-    public void btnXoaActionListener(ActionListener all){
+
+    /**
+     * Gán sự kiện xử lý khi người dùng nhấn nút "Thêm".
+     *
+     * @param all Đối tượng ActionListener sẽ được thực thi khi nút được nhấn
+     */
+    public void btnXoaActionListener(ActionListener all) {
         btnXoa.addActionListener(all);
     }
-    
-    public void getInformationSelectedRow()
-    {
+
+    /**
+     * Gán sự kiện xử lý khi người dùng nhấn nút "Đơn Hàng".
+     *
+     * @param all Đối tượng ActionListener sẽ được thực thi khi nút được nhấn
+     */
+    public void btnDonHangActionListener(ActionListener all) {
+        btnDonHang.addActionListener(all);
+    }
+
+    /**
+     * Gán sự kiện xử lý khi người dùng nhấn nút "Danh sách hoa".
+     *
+     * @param all Đối tượng ActionListener sẽ được thực thi khi nút được nhấn
+     */
+    public void btnDanhSachHoaActionListener(ActionListener all) {
+        btnDanhSachHoa.addActionListener(all);
+    }
+
+    /**
+     * Gán sự kiện xử lý khi người dùng nhấn nút "Cập Nhật".
+     *
+     * @param all Đối tượng ActionListener sẽ được thực thi khi nút được nhấn
+     */
+    public void btnCapNhatActionListener(ActionListener all) {
+        btnCapNhat.addActionListener(all);
+    }
+
+    /**
+     * Lấy thông tin từ dòng được chọn
+     */
+    public void getInformationSelectedRow() {
         int selectedRow = tblKhachHang.getSelectedRow();
         System.out.println("vo day chua" + selectedRow);
         String maKhachHang = "";
         String tenKhachHang = "";
         String soDienThoai = "";
         String diaChi = "";
-        
-        if(selectedRow != -1) {
-             maKhachHang = tblKhachHang.getValueAt(selectedRow, 0).toString();
-             tenKhachHang = tblKhachHang.getValueAt(selectedRow, 1).toString();
-             soDienThoai = tblKhachHang.getValueAt(selectedRow, 2).toString();
-             diaChi = tblKhachHang.getValueAt(selectedRow, 3).toString();
-             System.out.println("ma" + maKhachHang);
-             System.out.println("ten" + tenKhachHang);
-             System.out.println("dia" + diaChi);
-             System.out.println("e" + soDienThoai);
+
+        if (selectedRow != -1) {
+            maKhachHang = tblKhachHang.getValueAt(selectedRow, 0).toString();
+            tenKhachHang = tblKhachHang.getValueAt(selectedRow, 1).toString();
+            soDienThoai = tblKhachHang.getValueAt(selectedRow, 2).toString();
+            diaChi = tblKhachHang.getValueAt(selectedRow, 3).toString();
+            System.out.println("ma" + maKhachHang);
+            System.out.println("ten" + tenKhachHang);
+            System.out.println("dia" + diaChi);
+            System.out.println("e" + soDienThoai);
         }
-        
+
         txtMaKhachHang.setText(maKhachHang);
         txtTenKhachHang.setText(tenKhachHang);
         txtSoDienThoai.setText(soDienThoai);
         txtDiaChi.setText(diaChi);
     }
-    
-    public Khach_Hang getKhachHangSelectedRow()
-    {
+
+    /**
+     * Lấy thông tin từ dòng được chọn
+     *
+     * @return Khach Hang
+     */
+    public Khach_Hang getKhachHangSelectedRow() {
         int selectedRow = tblKhachHang.getSelectedRow();
         System.out.println("vo day chua" + selectedRow);
         String maKhachHang = "";
         String tenKhachHang = "";
         String soDienThoai = "";
         String diaChi = "";
-        
-        if(selectedRow != -1) {
-             maKhachHang = tblKhachHang.getValueAt(selectedRow, 0).toString();
-             tenKhachHang = tblKhachHang.getValueAt(selectedRow, 1).toString();
-             soDienThoai = tblKhachHang.getValueAt(selectedRow, 2).toString();
-             diaChi = tblKhachHang.getValueAt(selectedRow, 3).toString();
-             Khach_Hang kh = new Khach_Hang(maKhachHang, tenKhachHang, soDienThoai, "", "", diaChi);
-             return kh;
+
+        if (selectedRow != -1) {
+            maKhachHang = tblKhachHang.getValueAt(selectedRow, 0).toString();
+            tenKhachHang = tblKhachHang.getValueAt(selectedRow, 1).toString();
+            soDienThoai = tblKhachHang.getValueAt(selectedRow, 2).toString();
+            diaChi = tblKhachHang.getValueAt(selectedRow, 3).toString();
+            Khach_Hang kh = new Khach_Hang(maKhachHang, tenKhachHang, soDienThoai, "", "", diaChi);
+            return kh;
         }
         return null;
     }
-    
-     public void btnCapNhatActionListener(ActionListener all){
-        btnCapNhat.addActionListener(all);
-    }
 
+    /**
+     * Hiển thị mã khách hàng trên giao diện
+     *
+     * @param textMaKhachHang mã khách hàng
+     */
     public void setTextMaKhachHang(String textMaKhachHang) {
         this.txtMaKhachHang.setText(textMaKhachHang);
     }
 
+    /**
+     * Hiển thị địa chỉ trên giao diện
+     *
+     * @param txtDiaChi địa chỉ
+     */
     public void setTxtDiaChi(String txtDiaChi) {
         this.txtDiaChi.setText(txtDiaChi);
     }
 
+    /**
+     * Hiển thị email trên giao diện
+     *
+     * @param txtEmail email
+     */
     public void setTxtEmail(String txtEmail) {
         this.txtEmail.setText(txtEmail);
     }
 
+    /**
+     * Hiển thị số điện thoại trên giao diện
+     *
+     * @param txtSoDienThoai số điện thoại khách hàng
+     */
     public void setTxtSoDienThoai(String txtSoDienThoai) {
         this.txtSoDienThoai.setText(txtSoDienThoai);
     }
 
+    /**
+     * Hiển thị tên khách hàng trên giao diện
+     *
+     * @param txtTenKhachHang tên khách hàng
+     */
     public void setTxtTenKhachHang(String txtTenKhachHang) {
         this.txtTenKhachHang.setText(txtTenKhachHang);
     }
 
+    /**
+     * Hiển thị xếp loại khách hàng trên giao diện
+     *
+     * @param txtXepLoai xếp loại của khách hàng
+     */
     public void setTxtXepLoai(String txtXepLoai) {
         this.txtXepLoai.setText(txtXepLoai);
     }
 
+    /**
+     * Lấy mã khách hàng trên giao diện
+     *
+     * @return String mã khách hàng
+     */
     public String getTxtMaKhachHang() {
         return txtMaKhachHang.getText();
     }
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -151,8 +236,8 @@ public class Khach_Hang_View extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         btnThoat = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        btnDonHang = new javax.swing.JButton();
+        btnDanhSachHoa = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -182,7 +267,7 @@ public class Khach_Hang_View extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Khách hàng");
 
-        jPanel2.setBackground(new java.awt.Color(0, 102, 51));
+        jPanel2.setBackground(new java.awt.Color(0, 102, 0));
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 3, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
@@ -190,19 +275,19 @@ public class Khach_Hang_View extends javax.swing.JFrame {
 
         btnThoat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/QLBH_Images/Dong.png"))); // NOI18N
 
-        jButton2.setBackground(new java.awt.Color(255, 204, 204));
+        jButton2.setBackground(new java.awt.Color(204, 204, 204));
         jButton2.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/QLBH_Images/Khach_hang.png"))); // NOI18N
         jButton2.setText("Khách hàng");
 
-        jButton3.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/QLBH_Images/Don_hang.png"))); // NOI18N
-        jButton3.setText("Đơn hàng");
+        btnDonHang.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        btnDonHang.setIcon(new javax.swing.ImageIcon(getClass().getResource("/QLBH_Images/Don_hang.png"))); // NOI18N
+        btnDonHang.setText("Đơn hàng");
 
-        jButton4.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/QLBH_Images/Danh_muc_hoa.png"))); // NOI18N
-        jButton4.setText("Danh mục hoa");
-        jButton4.setToolTipText("");
+        btnDanhSachHoa.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        btnDanhSachHoa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/QLBH_Images/Danh_muc_hoa.png"))); // NOI18N
+        btnDanhSachHoa.setText("Danh mục hoa");
+        btnDanhSachHoa.setToolTipText("");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -218,9 +303,9 @@ public class Khach_Hang_View extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnThoat))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jButton3)
+                        .addComponent(btnDonHang)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btnDanhSachHoa, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(25, 25, 25))
         );
         jPanel2Layout.setVerticalGroup(
@@ -233,8 +318,8 @@ public class Khach_Hang_View extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton2)
-                    .addComponent(jButton3)
-                    .addComponent(jButton4))
+                    .addComponent(btnDonHang)
+                    .addComponent(btnDanhSachHoa))
                 .addGap(15, 15, 15))
         );
 
@@ -369,7 +454,7 @@ public class Khach_Hang_View extends javax.swing.JFrame {
             .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 290, Short.MAX_VALUE)
         );
 
-        jPanel5.setBackground(new java.awt.Color(0, 102, 51));
+        jPanel5.setBackground(new java.awt.Color(0, 102, 0));
 
         btnThem.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         btnThem.setForeground(new java.awt.Color(0, 51, 0));
@@ -499,13 +584,13 @@ public class Khach_Hang_View extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCapNhat;
+    private javax.swing.JButton btnDanhSachHoa;
+    private javax.swing.JButton btnDonHang;
     private javax.swing.JButton btnThem;
     private javax.swing.JButton btnThoat;
     private javax.swing.JButton btnXem;
     private javax.swing.JButton btnXoa;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

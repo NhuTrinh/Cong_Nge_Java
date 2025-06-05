@@ -13,44 +13,71 @@ import javax.swing.JTextField;
 
 /**
  *
- * @author TOSHIBA
+ * @author Trịnh Nguyễn Huỳnh Như - 23540024; Phạm Nguyễn Hoàng Long - 23540017
+ */
+/**
+ * Giao diện chính của đăng nhập
  */
 public class Dang_Nhap_View extends javax.swing.JDialog {
 
-    /**
-     * Creates new form Dang_Nhap
-     */
     public Dang_Nhap_View(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
     }
-    
-    public void btnDangNhapActionListener(ActionListener all)
-    {
+
+    /**
+     * Gán sự kiện xử lý khi người dùng nhấn nút "Đăng nhập".
+     *
+     * @param all Đối tượng ActionListener sẽ được thực thi khi nút được nhấn
+     */
+    public void btnDangNhapActionListener(ActionListener all) {
         btnDangNhap.addActionListener(all);
     }
 
+    /**
+     * Hiển thị mật khẩu trên giao diện
+     *
+     * @param matKhauString mật khẩu
+     */
     public void setTxtMatKhau(String matKhauString) {
         txtMatKhau.setText(matKhauString);
     }
 
+    /**
+     * Hiển thị tên đăng nhập trên giao diện
+     *
+     * @param tenDangNhapString tên đăng nhập
+     */
     public void setTxtTenDangNhap(String tenDangNhapString) {
         txtTenDangNhap.setText(tenDangNhapString);
     }
 
+    /**
+     * Lấy mật khẩu trên giao diện
+     *
+     * @return String mật khẩu
+     */
     public String getTxtMatKhau() {
-        return new String (txtMatKhau.getPassword());
+        return new String(txtMatKhau.getPassword());
     }
 
+    /**
+     * Lấy tên đăng nhập trên giao diện
+     *
+     * @return String tên đăng nhập
+     */
     public String getTxtTenDangNhap() {
         return txtTenDangNhap.getText();
     }
 
+    /**
+     * Lấy thông báo lỗi trên giao diện
+     *
+     * @param errorString thông báo lỗi
+     */
     public void setLblThongBaoLoi(String errorString) {
         lblThongBaoLoi.setText(errorString);
     }
-    
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -76,7 +103,7 @@ public class Dang_Nhap_View extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("ĐĂNG NHẬP");
 
-        jpnDangNhap.setBackground(new java.awt.Color(0, 102, 51));
+        jpnDangNhap.setBackground(new java.awt.Color(0, 102, 0));
         jpnDangNhap.setForeground(new java.awt.Color(255, 153, 153));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/QLBH_Images/Hinh_nen.jpeg"))); // NOI18N
