@@ -14,7 +14,9 @@ import QLBH_View.Hoa_Tao_Cap_Nhat;
 import QLBH_View.Khach_Hang_View;
 import QLBH_View.MainFrame;
 import QLBH_View.Thong_Bao_Loi;
+import QLBH_View.Thong_Bao_Loi_Danh_Muc_Hoa;
 import QLBH_View.Thong_bao_xoa;
+import QLBH_View.Thong_bao_xoa_Danh_Muc_Hoa;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.lang.invoke.MethodHandles;
@@ -37,8 +39,8 @@ public class Danh_Sach_Hoa_Controller {
     public Hoa_Tao_Cap_Nhat hoaTaoCapNhatView; // Giao diện tạo hoặc cập nhật hoa
     public Don_Hang_View dhView;  // Giao diện đơn hàng
     public Khach_Hang_View khView; // Giao diện khách hàng
-    public Thong_Bao_Loi tbView; // Cảnh báo
-    public Thong_bao_xoa tbXoaView; //Cảnh báo xóa
+    public Thong_Bao_Loi_Danh_Muc_Hoa tbView; // Cảnh báo
+    public Thong_bao_xoa_Danh_Muc_Hoa tbXoaView; //Cảnh báo xóa
 
     /**
      * Hàm khởi tạo
@@ -57,7 +59,7 @@ public class Danh_Sach_Hoa_Controller {
      * @param tbXoaView Giao diện cảnh báo xóa.
      * 
      */
-    public Danh_Sach_Hoa_Controller(MainFrame mainView, Danh_Sach_Hoa_View dshView, Danh_Sach_Hoa_Model dshModel, Hoa_Tao_Cap_Nhat hoaTaoCapNhatView, Don_Hang_View dhView, Khach_Hang_View khView,Thong_Bao_Loi tbView, Thong_bao_xoa tbXoaView) {
+    public Danh_Sach_Hoa_Controller(MainFrame mainView, Danh_Sach_Hoa_View dshView, Danh_Sach_Hoa_Model dshModel, Hoa_Tao_Cap_Nhat hoaTaoCapNhatView, Don_Hang_View dhView, Khach_Hang_View khView,Thong_Bao_Loi_Danh_Muc_Hoa tbView, Thong_bao_xoa_Danh_Muc_Hoa tbXoaView) {
         this.mainView = mainView;
         this.dshView = dshView;
         this.dshModel = dshModel;

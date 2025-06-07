@@ -22,7 +22,9 @@ import QLBH_View.Gio_Hang_View;
 import QLBH_View.MainFrame;
 import QLBH_View.Them_Gio_Hang;
 import QLBH_View.Thong_Bao_Loi;
+import QLBH_View.Thong_Bao_Loi_Don_Hang;
 import QLBH_View.Thong_bao_xoa;
+import QLBH_View.Thong_bao_xoa_Don_Hang;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.security.interfaces.DSAKey;
@@ -51,15 +53,15 @@ import java.util.ArrayList;
  */
 public class Don_Hang_Controller {
 
-    private MainFrame mainView;
-    private Don_Hang_View dhView;
-    private Don_Hang_Model dhModel;
-    private Chi_Tiet_Don_Hang_View ctdhView;
-    private Gio_Hang_View ghView;
-    private Danh_Sach_Hoa_View dshView;
-    private Them_Gio_Hang tghView;
-    private Thong_Bao_Loi tbView;
-    private Thong_bao_xoa tbXoaView;
+    public MainFrame mainView;
+    public Don_Hang_View dhView;
+    public Don_Hang_Model dhModel;
+    public Chi_Tiet_Don_Hang_View ctdhView;
+    public Gio_Hang_View ghView;
+    public Danh_Sach_Hoa_View dshView;
+    public Them_Gio_Hang tghView;
+    public Thong_Bao_Loi_Don_Hang tbView;
+    public Thong_bao_xoa_Don_Hang tbXoaView;
 
     /**
      * Khởi tạo Don_Hang_Controller với các view và model cần thiết. Dùng để
@@ -74,7 +76,7 @@ public class Don_Hang_Controller {
      * @param dshView Giao diện danh sách hoa.
      * @param tghView Giao diện thêm hoa vào giỏ hàng.
      */
-    public Don_Hang_Controller(MainFrame mainView, Don_Hang_View dhView, Don_Hang_Model dhModel, Chi_Tiet_Don_Hang_View ctdhView, Gio_Hang_View ghView, Danh_Sach_Hoa_View dshView, Them_Gio_Hang tghView, Thong_Bao_Loi tbView, Thong_bao_xoa tbXoaView) {
+    public Don_Hang_Controller(MainFrame mainView, Don_Hang_View dhView, Don_Hang_Model dhModel, Chi_Tiet_Don_Hang_View ctdhView, Gio_Hang_View ghView, Danh_Sach_Hoa_View dshView, Them_Gio_Hang tghView, Thong_Bao_Loi_Don_Hang tbView, Thong_bao_xoa_Don_Hang tbXoaView) {
         this.mainView = mainView;
         this.dhView = dhView;
         this.dhModel = dhModel;
@@ -114,6 +116,7 @@ public class Don_Hang_Controller {
                 Khach_Hang kh = khModel.getAllKhachHangTheoTen(tenKhachHang);
                 ctdhView.disableChiTietDonHang();
                 ghView.disableGioHang();
+                ctdhView.enableBtnXemGioHang();
                 ctdhView.disableFieldsKhachHang();
                 ctdhView.setTxtMaDonHang(dh.getMaDonHang());
                 loadListNhanVienToChiTietDonHang();
@@ -262,6 +265,7 @@ public class Don_Hang_Controller {
                 ctdhView.disableBtnXemGioHang();
                 ctdhView.enableChiTietDonHang();
                 ctdhView.enableFieldsKhachHang();
+                ghView.enableGioHang();
                 setAllValueInCTDHIsEmpty();
                 dhView.dispose();
                 ctdhView.setVisible(true);
@@ -517,8 +521,10 @@ public class Don_Hang_Controller {
                 Don_Hang dh = dhView.getDonHangSelectedRow();
                 String tenKhachHang = dh.getMaKhachHang();
                 Khach_Hang_Model khModel = new Khach_Hang_Model();
+                ctdhView.enableBtnXemGioHang();
                 ctdhView.enableChiTietDonHang();
                 ctdhView.enableFieldsKhachHang();
+                ghView.enableGioHang();
                 Khach_Hang kh = khModel.getAllKhachHangTheoTen(tenKhachHang);
                 ctdhView.setTxtMaDonHang(dh.getMaDonHang());
                 loadListNhanVienToChiTietDonHang();
@@ -553,6 +559,8 @@ public class Don_Hang_Controller {
                 xoaGioHangAction();
                 thoatGioHang();
                 thoatThemGioHang();
+                thoatChiTietDonHangAction();
+                huyXemChiTietDonHangAction();
             }
         });
     }

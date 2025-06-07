@@ -25,7 +25,11 @@ import QLBH_View.Khach_Hang_View;
 import QLBH_View.MainFrame;
 import QLBH_View.Them_Gio_Hang;
 import QLBH_View.Thong_Bao_Loi;
+import QLBH_View.Thong_Bao_Loi_Danh_Muc_Hoa;
+import QLBH_View.Thong_Bao_Loi_Don_Hang;
 import QLBH_View.Thong_bao_xoa;
+import QLBH_View.Thong_bao_xoa_Danh_Muc_Hoa;
+import QLBH_View.Thong_bao_xoa_Don_Hang;
 import java.awt.Frame;
 import javax.swing.JFrame;
 
@@ -58,6 +62,10 @@ public class Main {
         Hoa_Tao_Cap_Nhat chiTietHoaView = new Hoa_Tao_Cap_Nhat(); //Tạo cập nhật hoa
         Thong_Bao_Loi tbView = new Thong_Bao_Loi(); //Thông báo 
         Thong_bao_xoa tbXoaView = new Thong_bao_xoa(); // Cảnh báo xóa
+        Thong_Bao_Loi_Don_Hang tbDonHangView = new Thong_Bao_Loi_Don_Hang(); //Thông báo 
+        Thong_bao_xoa_Don_Hang tbXoaDonHangView = new Thong_bao_xoa_Don_Hang(); // Cảnh báo xóa
+        Thong_Bao_Loi_Danh_Muc_Hoa tbDanhMucHoaView = new Thong_Bao_Loi_Danh_Muc_Hoa(); //Thông báo 
+        Thong_bao_xoa_Danh_Muc_Hoa tbXoaDanhMucHoaView = new Thong_bao_xoa_Danh_Muc_Hoa(); // Cảnh báo xóa
         
         // Khởi tạo Model
         Dang_Nhap_Model m = new Dang_Nhap_Model(); //Đăng nhập
@@ -69,8 +77,8 @@ public class Main {
         // Khởi tạo Controller
         Khach_Hang_Controller khController = new Khach_Hang_Controller(mainFrame, khView, khModel, khTaoCapNhatView, dhView, dshView, tbView,tbXoaView); //Khách hàng
         Dang_Nhap_Controller cl = new Dang_Nhap_Controller(m, v, mainFrame); //Đăng nhập
-        Don_Hang_Controller dhController = new Don_Hang_Controller(mainFrame, dhView, dhModel, ctdhView, ghView, dshView, tghView, tbView, tbXoaView); //Đơn hàng
-        Danh_Sach_Hoa_Controller dshController = new Danh_Sach_Hoa_Controller(mainFrame, dshView, dshModel, chiTietHoaView, dhView, khView, tbView, tbXoaView); //Danh sách hoa
+        Don_Hang_Controller dhController = new Don_Hang_Controller(mainFrame, dhView, dhModel, ctdhView, ghView, dshView, tghView, tbDonHangView,tbXoaDonHangView); //Đơn hàng
+        Danh_Sach_Hoa_Controller dshController = new Danh_Sach_Hoa_Controller(mainFrame, dshView, dshModel, chiTietHoaView, dhView, khView, tbDanhMucHoaView, tbXoaDanhMucHoaView); //Danh sách hoa
         Main_Controller mainController = new Main_Controller(mainModel, mainFrame, v, khView, khModel, dshView, dshModel, dhView, dhModel); //Trang chủ      
         
         //Log in vào hệ thống
@@ -106,12 +114,6 @@ public class Main {
         //Xóa khách hàng
         khController.xoaAction();
         
-        //Đi đến đơn hàng từ khách hàng
-        khController.donHangAction();
-        
-        //Đi đến danh mục hoa từ khách hàng
-        khController.danhSachHoaAction();
-        
         
         //Thoát khỏi danh mục hoa
         dshController.thoatAction();
@@ -128,11 +130,6 @@ public class Main {
         //Xóa hoa
         dshController.xoaAction();
         
-        //Đi đến khách hàng
-        dshController.khachHangAction();
-        
-        //Đi đến đơn hàng
-        dshController.donHangAction();
         
         
         //Thoát khỏi đơn hàng
