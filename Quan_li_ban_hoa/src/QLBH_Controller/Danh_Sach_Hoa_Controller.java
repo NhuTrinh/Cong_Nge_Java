@@ -14,6 +14,7 @@ import QLBH_View.Hoa_Tao_Cap_Nhat;
 import QLBH_View.Khach_Hang_View;
 import QLBH_View.MainFrame;
 import QLBH_View.Thong_Bao_Loi;
+import QLBH_View.Thong_bao_xoa;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.lang.invoke.MethodHandles;
@@ -36,7 +37,8 @@ public class Danh_Sach_Hoa_Controller {
     public Hoa_Tao_Cap_Nhat hoaTaoCapNhatView; // Giao diện tạo hoặc cập nhật hoa
     public Don_Hang_View dhView;  // Giao diện đơn hàng
     public Khach_Hang_View khView; // Giao diện khách hàng
-    public Thong_Bao_Loi tbView;
+    public Thong_Bao_Loi tbView; // Cảnh báo
+    public Thong_bao_xoa tbXoaView; //Cảnh báo xóa
 
     /**
      * Hàm khởi tạo
@@ -51,8 +53,11 @@ public class Danh_Sach_Hoa_Controller {
      * @param hoaTaoCapNhatView Giao diện tạo hoặc cập nhật thông tin hoa.
      * @param dhView Giao diện xử lý đơn hàng.
      * @param khView Giao diện xử lý thông tin khách hàng.
+     * @param tbView Giao diện cảnh báo.
+     * @param tbXoaView Giao diện cảnh báo xóa.
+     * 
      */
-    public Danh_Sach_Hoa_Controller(MainFrame mainView, Danh_Sach_Hoa_View dshView, Danh_Sach_Hoa_Model dshModel, Hoa_Tao_Cap_Nhat hoaTaoCapNhatView, Don_Hang_View dhView, Khach_Hang_View khView,Thong_Bao_Loi tbView) {
+    public Danh_Sach_Hoa_Controller(MainFrame mainView, Danh_Sach_Hoa_View dshView, Danh_Sach_Hoa_Model dshModel, Hoa_Tao_Cap_Nhat hoaTaoCapNhatView, Don_Hang_View dhView, Khach_Hang_View khView,Thong_Bao_Loi tbView, Thong_bao_xoa tbXoaView) {
         this.mainView = mainView;
         this.dshView = dshView;
         this.dshModel = dshModel;
@@ -60,6 +65,7 @@ public class Danh_Sach_Hoa_Controller {
         this.dhView = dhView;
         this.khView = khView;
         this.tbView = tbView;
+        this.tbXoaView = tbXoaView;
     }
 
     /**
@@ -184,9 +190,10 @@ public class Danh_Sach_Hoa_Controller {
             public void actionPerformed(ActionEvent e) {
                 San_Pham sp = dshView.getHoaSelectedRow();
                 String maHoa = sp.getMaHoa();
-                dshModel.xoaHoa(maHoa);
-                dshView.setTableSanPham(dshModel.getAllHoa());
-                setAllValueInDSHoaIsEmpty();
+                tbXoaView.setVisible(true);
+                dongYXoaAction(maHoa);
+                huyXoaAction();
+                thoatThongBaoXoaAction();
             }
         });
     }
@@ -247,7 +254,7 @@ public class Danh_Sach_Hoa_Controller {
     /**
      * Chuyển từ giao diện danh sách hoa sang giao diện khách hàng
      */
-    public void danhSachHoaAction() {
+    public void khachHangAction() {
         dshView.btnKhachhangActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -313,6 +320,45 @@ public class Danh_Sach_Hoa_Controller {
         dshView.setLblGia("");
         dshView.setLblLoaiHoa("");
         dshView.setLblGhiChu("");
+    }
+    
+       /**
+     * Hiện cảnh báo và đòng ý trên cảnh báo
+     */
+    public void dongYXoaAction(String maHoa) {
+        tbXoaView.btnDongYActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                tbXoaView.dispose();
+                dshModel.xoaHoa(maHoa);
+                dshView.setTableSanPham(dshModel.getAllHoa());
+                setAllValueInDSHoaIsEmpty();
+            }
+        });
+    }
+    
+    /**
+     * Hiện thông báo lỗi và Hủy trên cảnh báo
+     */
+    public void huyXoaAction() {
+        tbXoaView.btnHuyActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                tbXoaView.dispose();
+            }
+        });
+    }
+    
+    /**
+     * Hiện thông báo lỗi và Thoát trên cảnh báo
+     */
+    public void thoatThongBaoXoaAction() {
+        tbXoaView.btnThoatActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                tbXoaView.dispose();
+            }
+        });
     }
 
 }

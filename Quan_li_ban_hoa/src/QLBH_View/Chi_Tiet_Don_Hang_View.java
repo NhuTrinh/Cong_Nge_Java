@@ -34,6 +34,16 @@ public class Chi_Tiet_Don_Hang_View extends javax.swing.JFrame {
         btnTim.setVisible(false);
         lblHuongDan.setVisible(false);
     }
+    
+    /**
+     *Hiện các trường tìm kiếm khách hàng khi không cần thiết
+     */
+    public void enableFieldsKhachHang() {
+        lblTimKiem.setVisible(true);
+        txtTim.setVisible(true);
+        btnTim.setVisible(true);
+        lblHuongDan.setVisible(true);
+    }
 
     /**
      * Vô hiệu hóa các trường chi tiết đơn hàng để không cho phép chỉnh sửa và
@@ -56,6 +66,36 @@ public class Chi_Tiet_Don_Hang_View extends javax.swing.JFrame {
         txtTongTien.setEditable(false);
         btnLuu.setVisible(false);
         btnThemGioHang.setVisible(false);
+    }
+    
+    /**
+     * Cho phép chỉnh sửa các trường chi tiết đơn hàng để không cho phép chỉnh sửa và
+     * 
+     */
+    public void enableChiTietDonHang() {
+        txtMaDonHang.setEditable(true);
+        cbxNhanVien.setEditable(true);
+        cbxTrangThai.setEditable(true);
+        txtTenKhachHang.setEditable(true);
+        txtSoDienThoai.setEditable(true);
+        txtTenNguoiNhan.setEditable(true);
+        txtSoDienThoaiNhan.setEditable(true);
+        txtDiaChiNhan.setEditable(true);
+        txtTienHoa.setEditable(true);
+        txtTienVanChuyen.setEditable(true);
+        txtTienCamHoa.setEditable(true);
+        txtVIP.setEditable(true);
+        txtVAT.setEditable(true);
+        txtTongTien.setEditable(true);
+        btnLuu.setVisible(true);
+        btnThemGioHang.setVisible(true);
+    }
+    
+    /**
+     * Ẩn nút xem giở hàng khi thêm mới đơn hàng
+     */
+    public void disableBtnXemGioHang() {
+        btnXemGioHang.setVisible(false);
     }
 
     /**
@@ -287,7 +327,7 @@ public class Chi_Tiet_Don_Hang_View extends javax.swing.JFrame {
         jMenuItem1.setText("jMenuItem1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Chi tiết đơn hàng");
+        setTitle("CHI TIẾT ĐƠN HÀNG");
 
         jPanel2.setBackground(new java.awt.Color(0, 102, 0));
 

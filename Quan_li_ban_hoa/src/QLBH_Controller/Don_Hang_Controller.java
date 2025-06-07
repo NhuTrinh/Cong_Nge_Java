@@ -21,6 +21,8 @@ import QLBH_View.Don_Hang_View;
 import QLBH_View.Gio_Hang_View;
 import QLBH_View.MainFrame;
 import QLBH_View.Them_Gio_Hang;
+import QLBH_View.Thong_Bao_Loi;
+import QLBH_View.Thong_bao_xoa;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.security.interfaces.DSAKey;
@@ -56,6 +58,8 @@ public class Don_Hang_Controller {
     private Gio_Hang_View ghView;
     private Danh_Sach_Hoa_View dshView;
     private Them_Gio_Hang tghView;
+    private Thong_Bao_Loi tbView;
+    private Thong_bao_xoa tbXoaView;
 
     /**
      * Khởi tạo Don_Hang_Controller với các view và model cần thiết. Dùng để
@@ -70,7 +74,7 @@ public class Don_Hang_Controller {
      * @param dshView Giao diện danh sách hoa.
      * @param tghView Giao diện thêm hoa vào giỏ hàng.
      */
-    public Don_Hang_Controller(MainFrame mainView, Don_Hang_View dhView, Don_Hang_Model dhModel, Chi_Tiet_Don_Hang_View ctdhView, Gio_Hang_View ghView, Danh_Sach_Hoa_View dshView, Them_Gio_Hang tghView) {
+    public Don_Hang_Controller(MainFrame mainView, Don_Hang_View dhView, Don_Hang_Model dhModel, Chi_Tiet_Don_Hang_View ctdhView, Gio_Hang_View ghView, Danh_Sach_Hoa_View dshView, Them_Gio_Hang tghView, Thong_Bao_Loi tbView, Thong_bao_xoa tbXoaView) {
         this.mainView = mainView;
         this.dhView = dhView;
         this.dhModel = dhModel;
@@ -78,6 +82,8 @@ public class Don_Hang_Controller {
         this.ghView = ghView;
         this.dshView = dshView;
         this.tghView = tghView;
+        this.tbView = tbView;
+        this.tbXoaView = tbXoaView;
     }
 
     // Thiết lập sự kiện xóa đơn hàng khi nút xóa được nhấn
@@ -87,11 +93,11 @@ public class Don_Hang_Controller {
             public void actionPerformed(ActionEvent e) {
                 Don_Hang dh = dhView.getDonHangSelectedRow();
                 String maDonHang = dh.getMaDonHang();
-                dhModel.xoaThanhToan(maDonHang);
-                dhModel.xoaThongTinGiaoHang(maDonHang);
-                dhModel.xoaCTDonHang(maDonHang);
-                dhModel.xoaDonHang(maDonHang);
-                dhView.setTableDonHang(dhModel.getAllDonHang());
+                tbXoaView.setVisible(true);
+                dongYXoaAction(maDonHang);
+                huyXoaAction();
+                thoatThongBaoXoaAction();
+                
             }
         });
     }
@@ -130,7 +136,9 @@ public class Don_Hang_Controller {
                 ctdhView.setVisible(true);
                 dhView.setVisible(false);
                 xemGioHangAction(dh.getMaDonHang());
-
+                thoatChiTietDonHangAction();
+                huyXemChiTietDonHangAction();
+                thoatGioHang();
             }
         });
     }
@@ -250,14 +258,26 @@ public class Don_Hang_Controller {
         dhView.btnThemActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                ctdhView.setTxtMaDonHang("");
+                ctdhView.disableBtnXemGioHang();
+                ctdhView.enableChiTietDonHang();
+                ctdhView.enableFieldsKhachHang();
                 setAllValueInCTDHIsEmpty();
                 dhView.dispose();
                 ctdhView.setVisible(true);
                 timKhachHangChiTietDonHangAction();
                 loadListNhanVienToChiTietDonHang();
                 themHoaVaoGioHangAction();
+                themGioHangAction();
                 btnXemThanhToanActionListener();
                 btnLuuThanhToanActionListener();
+                thoatChiTietDonHangAction();
+                huyXemChiTietDonHangAction();
+                themGioHangAction();
+                giamGioHangAction();
+                xoaGioHangAction();
+                thoatGioHang();
+                thoatThemGioHang();
             }
         });
     }
@@ -269,11 +289,29 @@ public class Don_Hang_Controller {
         ctdhView.btnThoatGioHangActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                ctdhView.dispose();
-                dhView.setVisible(true);
+                tbView.setVisible(true);
+                dongYThongBaoAction();
+                huyThongBaoAction();
+                thoatThongBaoAction();
             }
         });
     }
+    
+    // Xử lý sự kiện thoát khỏi chi tiết đơn hàng:
+    // - Đóng giao diện chi tiết đơn hàng
+    // - Hiện lại giao diện danh sách đơn hàng
+    public void huyXemChiTietDonHangAction() {
+        ctdhView.btnHuyChiTietDonHangActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                tbView.setVisible(true);
+                dongYThongBaoAction();
+                huyThongBaoAction();
+                thoatThongBaoAction();
+            }
+        });
+    }
+    
 
     // Tìm khách hàng theo số điện thoại trong chi tiết đơn hàng:
     // - Lấy số điện thoại nhập từ giao diện
@@ -479,6 +517,8 @@ public class Don_Hang_Controller {
                 Don_Hang dh = dhView.getDonHangSelectedRow();
                 String tenKhachHang = dh.getMaKhachHang();
                 Khach_Hang_Model khModel = new Khach_Hang_Model();
+                ctdhView.enableChiTietDonHang();
+                ctdhView.enableFieldsKhachHang();
                 Khach_Hang kh = khModel.getAllKhachHangTheoTen(tenKhachHang);
                 ctdhView.setTxtMaDonHang(dh.getMaDonHang());
                 loadListNhanVienToChiTietDonHang();
@@ -508,6 +548,92 @@ public class Don_Hang_Controller {
                 btnXemThanhToanActionListener();
                 thoatGioHang();
                 btnLuuThanhToanActionListener();
+                themGioHangAction();
+                giamGioHangAction();
+                xoaGioHangAction();
+                thoatGioHang();
+                thoatThemGioHang();
+            }
+        });
+    }
+    
+    /**
+     * Hiện thông báo lỗi và đòng ý trên thông báo
+     */
+    public void dongYThongBaoAction() {
+        tbView.btnDongYActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                tbView.dispose();
+                ctdhView.dispose();
+                ctdhView.setTxtMaDonHang("");
+                setAllValueInCTDHIsEmpty();
+                dhView.setVisible(true);
+            }
+        });
+    }
+    
+    /**
+     * Hiện thông báo lỗi và Hủy trên thông báo
+     */
+    public void huyThongBaoAction() {
+        tbXoaView.btnHuyActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                tbXoaView.dispose();
+            }
+        });
+    }
+    
+    /**
+     * Hiện thông báo lỗi và Thoát trên thông báo
+     */
+    public void thoatThongBaoAction() {
+        tbXoaView.btnThoatActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                tbXoaView.dispose();
+            }
+        });
+    }
+    
+    /**
+     * Hiện cảnh báo và đòng ý trên cảnh báo
+     */
+    public void dongYXoaAction(String maDonHang) {
+        tbXoaView.btnDongYActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                tbXoaView.dispose();
+                dhModel.xoaThanhToan(maDonHang);
+                dhModel.xoaThongTinGiaoHang(maDonHang);
+                dhModel.xoaCTDonHang(maDonHang);
+                dhModel.xoaDonHang(maDonHang);
+                dhView.setTableDonHang(dhModel.getAllDonHang());
+            }
+        });
+    }
+    
+    /**
+     * Hiện thông báo lỗi và Hủy trên cảnh báo
+     */
+    public void huyXoaAction() {
+        tbXoaView.btnHuyActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                tbXoaView.dispose();
+            }
+        });
+    }
+    
+    /**
+     * Hiện thông báo lỗi và Thoát trên cảnh báo
+     */
+    public void thoatThongBaoXoaAction() {
+        tbXoaView.btnThoatActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                tbXoaView.dispose();
             }
         });
     }
