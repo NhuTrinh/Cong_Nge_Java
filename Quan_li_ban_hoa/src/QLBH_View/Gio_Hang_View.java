@@ -11,32 +11,42 @@ import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 
 /**
+ * Giao diện giỏ hàng Hiển thị danh sách các sản phẩm trong giỏ hàng và các nút
+ * thao tác
  *
- * @author TOSHIBA
+ * @author Trịnh Nguyễn Huỳnh Như - 23540024; Phạm Nguyễn Hoàng Long - 23540017
  */
 public class Gio_Hang_View extends javax.swing.JFrame {
 
     /**
-     * Creates new form Gio_Hang_View
+     * Khởi tạo form Gio_Hang_View
      */
     public Gio_Hang_View() {
         initComponents();
     }
-    
+
+    /**
+     * Cập nhật bảng hiển thị giỏ hàng
+     *
+     * @param dsgh danh sách sản phẩm trong giỏ hàng
+     */
     public void setTableGioHang(ArrayList<Gio_Hang> dsgh) {
         String[] colunmName = {"Mã đơn hàng", "Tên hoa", "Số lượng", "Giá bán", "Thành tiền"};
         DefaultTableModel gh = new DefaultTableModel(colunmName, 0);
-        
-        for(Gio_Hang hoa : dsgh)
-        {
+
+        for (Gio_Hang hoa : dsgh) {
             gh.addRow(hoa.getArrGioHang());
         }
-        
+
         tblGioHang.setModel(gh);
     }
-    
-    public Gio_Hang getGioHangSelectedRow()
-    {
+
+    /**
+     * Lấy đối tượng giỏ hàng ở dòng được chọn
+     *
+     * @return đối tượng Gio_Hang hoặc null nếu chưa chọn dòng
+     */
+    public Gio_Hang getGioHangSelectedRow() {
         int selectedRow = tblGioHang.getSelectedRow();
         String maDon = "";
         String tenHoa = "";
@@ -44,37 +54,38 @@ public class Gio_Hang_View extends javax.swing.JFrame {
         double giaBan = 0.0;
         double thanhTien = 0.0;
 
-
-        
-        if(selectedRow != -1) {
-             maDon = tblGioHang.getValueAt(selectedRow, 0).toString();
-             tenHoa = tblGioHang.getValueAt(selectedRow, 1).toString();
-             soLuong = Integer.parseInt(tblGioHang.getValueAt(selectedRow, 2).toString());
-             giaBan = Double.parseDouble(tblGioHang.getValueAt(selectedRow, 3).toString());
-             thanhTien = Double.parseDouble(tblGioHang.getValueAt(selectedRow, 4).toString());
-             Gio_Hang gh = new Gio_Hang(maDon, tenHoa, soLuong, giaBan, thanhTien);
-             return gh;
+        if (selectedRow != -1) {
+            maDon = tblGioHang.getValueAt(selectedRow, 0).toString();
+            tenHoa = tblGioHang.getValueAt(selectedRow, 1).toString();
+            soLuong = Integer.parseInt(tblGioHang.getValueAt(selectedRow, 2).toString());
+            giaBan = Double.parseDouble(tblGioHang.getValueAt(selectedRow, 3).toString());
+            thanhTien = Double.parseDouble(tblGioHang.getValueAt(selectedRow, 4).toString());
+            Gio_Hang gh = new Gio_Hang(maDon, tenHoa, soLuong, giaBan, thanhTien);
+            return gh;
         }
         return null;
     }
-    
-    public void btnThemActionListener(ActionListener all)
-    {
+
+    // Các phương thức thêm ActionListener cho các nút chức năng
+    public void btnThemActionListener(ActionListener all) {
         btnThem.addActionListener(all);
     }
-    
+
     public void btnThoatActionListener(ActionListener all) {
         btnThoat.addActionListener(all);
     }
-    
+
     public void btnXoaActionListener(ActionListener all) {
         btnXoa.addActionListener(all);
     }
-    
+
     public void btnGiamActionListener(ActionListener all) {
         btnGiam.addActionListener(all);
     }
-    
+
+    /**
+     * Ẩn các nút điều khiển giỏ hàng
+     */
     public void disableGioHang() {
         btnGiam.setVisible(false);
         btnThem.setVisible(false);
@@ -282,9 +293,4 @@ public class Gio_Hang_View extends javax.swing.JFrame {
     private javax.swing.JTable tblGioHang;
     // End of variables declaration//GEN-END:variables
 
-    
-
-    
-
-   
 }

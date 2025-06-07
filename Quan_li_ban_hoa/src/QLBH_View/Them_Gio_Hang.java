@@ -12,78 +12,98 @@ import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 /**
+ * Lớp giao diện Thêm sản phẩm vào giỏ hàng
  *
- * @author TOSHIBA
+ * @author Trịnh Nguyễn Huỳnh Như - 23540024; Phạm Nguyễn Hoàng Long - 23540017
  */
 public class Them_Gio_Hang extends javax.swing.JFrame {
 
     /**
-     * Creates new form Them_Gio_Hang
+     * Khởi tạo giao diện Thêm giỏ hàng
      */
     public Them_Gio_Hang() {
         initComponents();
     }
-    
-    public void setTableThemGioHang(ArrayList<San_Pham> dssp)
-    {
-        String[] colunmName = {"Mã hoa", "Tên hoa", "Quốc gia", "Màu sắc",  "Số lượng", "Đơn giá", "Mã loại hoa", "Ghi chú"};
+
+    /**
+     * Thiết lập dữ liệu cho bảng danh sách sản phẩm
+     *
+     * @param dssp danh sách sản phẩm
+     */
+    public void setTableThemGioHang(ArrayList<San_Pham> dssp) {
+        String[] colunmName = {"Mã hoa", "Tên hoa", "Quốc gia", "Màu sắc", "Số lượng", "Đơn giá", "Mã loại hoa", "Ghi chú"};
         DefaultTableModel dtmDSSP = new DefaultTableModel(colunmName, 0);
-        
-        for(San_Pham sp : dssp)
-        {
+
+        for (San_Pham sp : dssp) {
             dtmDSSP.addRow(sp.getArrThemGioHangSP());
         }
-        
+
         tblThemGioHang.setModel(dtmDSSP);
     }
 
+    /**
+     * Lấy số lượng người dùng nhập
+     *
+     * @return số lượng dưới dạng String
+     */
     public String getTxtSoLuong() {
         return txtSoLuong.getText();
     }
 
-    public void btnThemVaoGioHangActionListener(ActionListener all)
-    {
+    /**
+     * Thêm ActionListener cho nút Thêm vào giỏ hàng
+     *
+     * @param all ActionListener xử lý sự kiện
+     */
+    public void btnThemVaoGioHangActionListener(ActionListener all) {
         btnThem.addActionListener(all);
     }
-    
-    public San_Pham getHoaSelectedRow()
-    {
+
+    /**
+     * Lấy thông tin sản phẩm được chọn trên bảng
+     *
+     * @return đối tượng San_Pham được chọn hoặc null nếu không có dòng nào được
+     * chọn
+     */
+    public San_Pham getHoaSelectedRow() {
         int selectedRow = tblThemGioHang.getSelectedRow();
         String maHoa = "";
         String tenHoa = "";
         String quocGia = "";
         String mauSac = "";
-        int soLuong  = 0;
+        int soLuong = 0;
         double gia = 0.0;
         String loaiHoa = "";
         String ghiChu = "";
 
-        
-        if(selectedRow != -1) {
-             maHoa = tblThemGioHang.getValueAt(selectedRow, 0).toString();
-             tenHoa = tblThemGioHang.getValueAt(selectedRow, 1).toString();
-             quocGia = tblThemGioHang.getValueAt(selectedRow, 2).toString();
-             mauSac = tblThemGioHang.getValueAt(selectedRow, 3).toString();
-             soLuong = Integer.parseInt(tblThemGioHang.getValueAt(selectedRow, 4).toString());
-             gia = Double.parseDouble(tblThemGioHang.getValueAt(selectedRow, 5).toString());
-             loaiHoa = tblThemGioHang.getValueAt(selectedRow, 6).toString();
-             ghiChu = tblThemGioHang.getValueAt(selectedRow, 7).toString();
-             San_Pham sp = new San_Pham(maHoa, tenHoa, ghiChu, quocGia, mauSac, soLuong, gia, loaiHoa);
-             return sp;
+        if (selectedRow != -1) {
+            maHoa = tblThemGioHang.getValueAt(selectedRow, 0).toString();
+            tenHoa = tblThemGioHang.getValueAt(selectedRow, 1).toString();
+            quocGia = tblThemGioHang.getValueAt(selectedRow, 2).toString();
+            mauSac = tblThemGioHang.getValueAt(selectedRow, 3).toString();
+            soLuong = Integer.parseInt(tblThemGioHang.getValueAt(selectedRow, 4).toString());
+            gia = Double.parseDouble(tblThemGioHang.getValueAt(selectedRow, 5).toString());
+            loaiHoa = tblThemGioHang.getValueAt(selectedRow, 6).toString();
+            ghiChu = tblThemGioHang.getValueAt(selectedRow, 7).toString();
+            San_Pham sp = new San_Pham(maHoa, tenHoa, ghiChu, quocGia, mauSac, soLuong, gia, loaiHoa);
+            return sp;
         }
         return null;
     }
-    
+
+    /**
+     * Thêm ActionListener cho nút Thoát
+     *
+     * @param actionListener ActionListener xử lý sự kiện
+     */
     public void btnThoatActionListener(ActionListener actionListener) {
         btnThoat.addActionListener(actionListener);
     }
 
+    // Các setter
     public void setTxtSoLuong(String txtSoLuong) {
         this.txtSoLuong.setText(txtSoLuong);
     }
-    
-    
-
 
     /**
      * This method is called from within the constructor to initialize the form.

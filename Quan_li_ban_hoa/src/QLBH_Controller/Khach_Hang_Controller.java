@@ -11,7 +11,9 @@ import QLBH_View.Don_Hang_View;
 import QLBH_View.Khach_Hang_Tao_Cap_Nhat;
 import QLBH_View.Khach_Hang_View;
 import QLBH_View.MainFrame;
+import QLBH_View.Thong_Bao_Loi;
 import java.awt.AWTEventMulticaster;
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.nio.channels.AcceptPendingException;
@@ -33,6 +35,7 @@ public class Khach_Hang_Controller {
     public Khach_Hang_Tao_Cap_Nhat khTaoCapNhatView;
     public Don_Hang_View dhView;
     public Danh_Sach_Hoa_View dshView;
+    public Thong_Bao_Loi tbView;
 
     /**
      * Hàm khởi tạo
@@ -47,13 +50,14 @@ public class Khach_Hang_Controller {
      * chi tiết hoa
      *
      */
-    public Khach_Hang_Controller(MainFrame mainView, Khach_Hang_View khView, Khach_Hang_Model khModel, Khach_Hang_Tao_Cap_Nhat khTaoCapNhatView, Don_Hang_View dhView, Danh_Sach_Hoa_View dshView) {
+    public Khach_Hang_Controller(MainFrame mainView, Khach_Hang_View khView, Khach_Hang_Model khModel, Khach_Hang_Tao_Cap_Nhat khTaoCapNhatView, Don_Hang_View dhView, Danh_Sach_Hoa_View dshView, Thong_Bao_Loi tbView) {
         this.mainView = mainView;
         this.khView = khView;
         this.khModel = khModel;
         this.khTaoCapNhatView = khTaoCapNhatView;
         this.dhView = dhView;
         this.dshView = dshView;
+        this.tbView = tbView;
     }
 
     /**
@@ -179,9 +183,10 @@ public class Khach_Hang_Controller {
         khTaoCapNhatView.btnHuyActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                khTaoCapNhatView.dispose();
-                setAllValueInKhachHangTaoCapNhatViewToEmpty();
-                khView.setVisible(true);
+                tbView.setVisible(true);
+                dongYThongBaoAction();
+                huyThongBaoAction();
+                thoatThongBaoAction();
             }
         });
     }
@@ -193,9 +198,49 @@ public class Khach_Hang_Controller {
         khTaoCapNhatView.btnThoatActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                tbView.setVisible(true);
+                dongYThongBaoAction();
+                huyThongBaoAction();
+                thoatThongBaoAction();
+            }
+        });
+    }
+    
+    /**
+     * Hiện thông báo lỗi và đòng ý trên thông báo
+     */
+    public void dongYThongBaoAction() {
+        tbView.btnDongYActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                tbView.dispose();
                 khTaoCapNhatView.dispose();
                 setAllValueInKhachHangTaoCapNhatViewToEmpty();
                 khView.setVisible(true);
+            }
+        });
+    }
+    
+    /**
+     * Hiện thông báo lỗi và Hủy trên thông báo
+     */
+    public void huyThongBaoAction() {
+        tbView.btnHuyActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                tbView.dispose();
+            }
+        });
+    }
+    
+    /**
+     * Hiện thông báo lỗi và Thoát trên thông báo
+     */
+    public void thoatThongBaoAction() {
+        tbView.btnThoatActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                tbView.dispose();
             }
         });
     }

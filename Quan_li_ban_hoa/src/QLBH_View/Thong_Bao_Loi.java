@@ -4,19 +4,49 @@
  */
 package QLBH_View;
 
+import java.awt.event.ActionListener;
+
 /**
  *
- * @author TOSHIBA
+ * @author Trịnh Nguyễn Huỳnh Như - 23540024; Phạm Nguyễn Hoàng Long - 23540017
  */
-public class Thong_Bao_Loi extends javax.swing.JDialog {
+public class Thong_Bao_Loi extends javax.swing.JFrame {
 
     /**
      * Creates new form Thong_Bao_Loi
      */
-    public Thong_Bao_Loi(java.awt.Frame parent, boolean modal) {
-        super(parent, modal);
+    public Thong_Bao_Loi() {
         initComponents();
     }
+    
+    /**
+     * Thêm ActionListener cho nút Đồng ý trên thông báo lỗi
+     *
+     * @param all ActionListener xử lý sự kiện
+     */
+    public void btnDongYActionListener(ActionListener all) {
+        btnDongY.addActionListener(all);
+    }
+    
+    /**
+     * Thêm ActionListener cho nút Hủy trên thông báo lỗi
+     *
+     * @param all ActionListener xử lý sự kiện
+     */
+    public void btnHuyActionListener(ActionListener all) {
+        btnHuy.addActionListener(all);
+    }
+    
+    /**
+     * Thêm ActionListener cho nút Thoát trên thông báo lỗi
+     *
+     * @param all ActionListener xử lý sự kiện
+     */
+    public void btnThoatActionListener(ActionListener all) {
+        btnThoat.addActionListener(all);
+    }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -29,18 +59,20 @@ public class Thong_Bao_Loi extends javax.swing.JDialog {
 
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
+        btnThoat = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        btnHuy = new javax.swing.JButton();
+        btnDongY = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Thông báo");
 
         jPanel2.setBackground(new java.awt.Color(204, 204, 255));
+        jPanel2.setToolTipText("");
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/QLBH_Images/Dong.png"))); // NOI18N
+        btnThoat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/QLBH_Images/Dong.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -48,14 +80,14 @@ public class Thong_Bao_Loi extends javax.swing.JDialog {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addComponent(btnThoat)
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addComponent(btnThoat)
                 .addContainerGap())
         );
 
@@ -80,17 +112,17 @@ public class Thong_Bao_Loi extends javax.swing.JDialog {
                 .addContainerGap(10, Short.MAX_VALUE))
         );
 
-        jButton2.setBackground(new java.awt.Color(0, 0, 255));
-        jButton2.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("Hủy");
-        jButton2.setPreferredSize(new java.awt.Dimension(72, 30));
+        btnHuy.setBackground(new java.awt.Color(0, 0, 255));
+        btnHuy.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        btnHuy.setForeground(new java.awt.Color(255, 255, 255));
+        btnHuy.setText("Hủy");
+        btnHuy.setPreferredSize(new java.awt.Dimension(72, 30));
 
-        jButton3.setBackground(new java.awt.Color(255, 0, 0));
-        jButton3.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
-        jButton3.setForeground(new java.awt.Color(255, 255, 255));
-        jButton3.setText("Đồng ý");
-        jButton3.setPreferredSize(new java.awt.Dimension(72, 30));
+        btnDongY.setBackground(new java.awt.Color(255, 0, 0));
+        btnDongY.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        btnDongY.setForeground(new java.awt.Color(255, 255, 255));
+        btnDongY.setText("Đồng ý");
+        btnDongY.setPreferredSize(new java.awt.Dimension(72, 30));
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -98,9 +130,9 @@ public class Thong_Bao_Loi extends javax.swing.JDialog {
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(50, 50, 50)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnHuy, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnDongY, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(50, 50, 50))
         );
         jPanel4Layout.setVerticalGroup(
@@ -108,8 +140,8 @@ public class Thong_Bao_Loi extends javax.swing.JDialog {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(10, 10, 10)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnHuy, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnDongY, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -181,7 +213,7 @@ public class Thong_Bao_Loi extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                Thong_Bao_Loi dialog = new Thong_Bao_Loi(new javax.swing.JFrame(), true);
+                Thong_Bao_Loi dialog = new Thong_Bao_Loi();
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -194,9 +226,9 @@ public class Thong_Bao_Loi extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton btnDongY;
+    private javax.swing.JButton btnHuy;
+    private javax.swing.JButton btnThoat;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

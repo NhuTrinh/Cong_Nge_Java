@@ -10,38 +10,57 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 /**
+ * MainFrame - cửa sổ chính của ứng dụng quản lý bán hoa
  *
- * @author TOSHIBA
+ * @author Trịnh Nguyễn Huỳnh Như - 23540024; Phạm Nguyễn Hoàng Long - 23540017
  */
 public class MainFrame extends javax.swing.JFrame {
+
     /**
-     * Creates new form Main
+     * Khởi tạo MainFrame và các thành phần giao diện
      */
     public MainFrame() {
         initComponents();
-        
+
     }
-    
-    public void btnThoatActionListener(ActionListener all)
-    {
+
+    /**
+     * Thêm ActionListener cho nút Thoát
+     *
+     * @param all ActionListener xử lý sự kiện
+     */
+    public void btnThoatActionListener(ActionListener all) {
         btnThoat.addActionListener(all);
     }
-    
-    public void btnKhachHangActionListener(ActionListener all)
-    {
+
+    /**
+     * Thêm ActionListener cho nút Khách hàng
+     *
+     * @param all ActionListener xử lý sự kiện
+     */
+    public void btnKhachHangActionListener(ActionListener all) {
         btnKhachHang.addActionListener(all);
     }
-    
-    public void btnDanhMucHoaActionListener(ActionListener all)
-    {
+
+    /**
+     * Thêm ActionListener cho nút Danh mục hoa
+     *
+     * @param all ActionListener xử lý sự kiện
+     */
+    public void btnDanhMucHoaActionListener(ActionListener all) {
         btnDanhMuc.addActionListener(all);
     }
-    
-    public void btnDonHangActionListener(ActionListener all)
-    {
+
+    /**
+     * Thêm ActionListener cho nút Đơn hàng
+     *
+     * @param all ActionListener xử lý sự kiện
+     */
+    public void btnDonHangActionListener(ActionListener all) {
         btnDonHang.addActionListener(all);
     }
- 
+
+    // Các getter
     public JTextField getTxtBoPhan() {
         return txtBoPhan;
     }
@@ -54,6 +73,7 @@ public class MainFrame extends javax.swing.JFrame {
         return txtSoDienThoai;
     }
 
+    // Các setter
     public void setTxtBoPhan(String txtBoPhan) {
         this.txtBoPhan.setText(txtBoPhan);
     }
@@ -69,9 +89,6 @@ public class MainFrame extends javax.swing.JFrame {
     public void setTxtSoDienThoai(String txtSoDienThoai) {
         this.txtSoDienThoai.setText(txtSoDienThoai);
     }
-    
-    
-    
 
     /**
      * This method is called from within the constructor to initialize the form.

@@ -9,27 +9,33 @@ import javax.swing.JComboBox;
 import javax.swing.JTextField;
 
 /**
+ * Form tạo và cập nhật thông tin hoa
  *
- * @author TOSHIBA
+ * @author Trịnh Nguyễn Huỳnh Như - 23540024; Phạm Nguyễn Hoàng Long - 23540017
  */
 public class Hoa_Tao_Cap_Nhat extends javax.swing.JFrame {
 
     /**
-     * Creates new form Hoa_Tao_Cap_Nhat
+     * Khởi tạo form Hoa_Tao_Cap_Nhat
      */
     public Hoa_Tao_Cap_Nhat() {
         initComponents();
     }
-    
+
+    /**
+     * Kiểm tra trạng thái có thể chỉnh sửa của trường mã hoa
+     *
+     * @return true nếu có thể chỉnh sửa, false nếu không
+     */
     public boolean checkEditableOfTxtMa() {
-        if(txtMaHoa.isEditable())
-        {
+        if (txtMaHoa.isEditable()) {
             return true;
         } else {
             return false;
         }
     }
 
+    // Các getter trả về giá trị các trường nhập liệu
     public String getTxtMaHoa() {
         return txtMaHoa.getText();
     }
@@ -37,7 +43,7 @@ public class Hoa_Tao_Cap_Nhat extends javax.swing.JFrame {
     public void setTxtMaHoa(String txtMaHoa) {
         this.txtMaHoa.setText(txtMaHoa);
     }
-    
+
     public void setTxtMaHoaEnable() {
         this.txtMaHoa.setEditable(true);
     }
@@ -45,7 +51,6 @@ public class Hoa_Tao_Cap_Nhat extends javax.swing.JFrame {
     public String getTxtGia() {
         return txtGia.getText();
     }
-
 
     public String getTxtMauSac() {
         return txtMauSac.getText();
@@ -70,11 +75,11 @@ public class Hoa_Tao_Cap_Nhat extends javax.swing.JFrame {
     public String getTxtGhiChu() {
         return txtGhiChu.getText();
     }
-    
-        public void setTxtMaHoaDisable() {
+
+    // Các setter để cập nhật giá trị vào các trường nhập liệu
+    public void setTxtMaHoaDisable() {
         this.txtMaHoa.setEditable(false);
     }
-    
 
     public void setTxtGia(String txtGia) {
         this.txtGia.setText(txtGia);
@@ -99,16 +104,37 @@ public class Hoa_Tao_Cap_Nhat extends javax.swing.JFrame {
     public void setTxtTenHoa(String txtTenHoa) {
         this.txtTenHoa.setText(txtTenHoa);
     }
-    
+
     public void setCbxLoaiHoa(String maLoaiHoa) {
         this.cbxLoaiHoa.setSelectedItem(maLoaiHoa);
         System.out.println("Co phai loi tu day");
     }
-    
-    
-    
+
+    /**
+     * Thêm ActionListener cho nút Lưu
+     *
+     * @param all ActionListener xử lý sự kiện
+     */
     public void btnLuuActionListener(ActionListener all) {
         btnLuu.addActionListener(all);
+    }
+    
+    /**
+     * Gán sự kiện xử lý khi người dùng nhấn nút "Hủy".
+     *
+     * @param all Đối tượng ActionListener sẽ được thực thi khi nút được nhấn
+     */
+    public void btnHuyActionListener(ActionListener all) {
+        btnHuy.addActionListener(all);
+    }
+
+    /**
+     * Gán sự kiện xử lý khi người dùng nhấn nút "Thoát".
+     *
+     * @param all Đối tượng ActionListener sẽ được thực thi khi nút được nhấn
+     */
+    public void btnThoatActionListener(ActionListener all) {
+        btnThoat.addActionListener(all);
     }
 
     /**
@@ -124,7 +150,7 @@ public class Hoa_Tao_Cap_Nhat extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        btnThoat = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -143,7 +169,7 @@ public class Hoa_Tao_Cap_Nhat extends javax.swing.JFrame {
         cbxLoaiHoa = new javax.swing.JComboBox<>();
         txtGhiChu = new javax.swing.JTextField();
         jPanel4 = new javax.swing.JPanel();
-        jButton2 = new javax.swing.JButton();
+        btnHuy = new javax.swing.JButton();
         btnLuu = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -158,7 +184,7 @@ public class Hoa_Tao_Cap_Nhat extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("THÔNG TIN HOA");
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/QLBH_Images/Dong.png"))); // NOI18N
+        btnThoat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/QLBH_Images/Dong.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -170,7 +196,7 @@ public class Hoa_Tao_Cap_Nhat extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addGap(173, 173, 173)
-                        .addComponent(jButton1)
+                        .addComponent(btnThoat)
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel2)
@@ -181,7 +207,7 @@ public class Hoa_Tao_Cap_Nhat extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1)
+                    .addComponent(btnThoat)
                     .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2)
@@ -334,9 +360,9 @@ public class Hoa_Tao_Cap_Nhat extends javax.swing.JFrame {
 
         jPanel4.setBackground(new java.awt.Color(0, 102, 0));
 
-        jButton2.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jButton2.setText("Hủy");
-        jButton2.setPreferredSize(new java.awt.Dimension(150, 30));
+        btnHuy.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        btnHuy.setText("Hủy");
+        btnHuy.setPreferredSize(new java.awt.Dimension(150, 30));
 
         btnLuu.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         btnLuu.setText("Lưu");
@@ -348,7 +374,7 @@ public class Hoa_Tao_Cap_Nhat extends javax.swing.JFrame {
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(90, 90, 90)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnHuy, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnLuu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(90, 90, 90))
@@ -358,7 +384,7 @@ public class Hoa_Tao_Cap_Nhat extends javax.swing.JFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(10, 10, 10)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnHuy, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnLuu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(10, Short.MAX_VALUE))
         );
@@ -435,10 +461,10 @@ public class Hoa_Tao_Cap_Nhat extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnHuy;
     private javax.swing.JButton btnLuu;
+    private javax.swing.JButton btnThoat;
     private javax.swing.JComboBox<String> cbxLoaiHoa;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
@@ -462,9 +488,4 @@ public class Hoa_Tao_Cap_Nhat extends javax.swing.JFrame {
     private javax.swing.JTextField txtTenHoa;
     // End of variables declaration//GEN-END:variables
 
-    
-
-    
-
-    
 }

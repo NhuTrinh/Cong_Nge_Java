@@ -5,10 +5,14 @@
 package QLBH_Function;
 
 /**
+ * Lớp Thanh_Toan đại diện cho thông tin thanh toán của một đơn hàng. Bao gồm
+ * các khoản tiền hàng, phí vận chuyển, phí cắm hoa, VAT, ưu đãi VIP, và tổng
+ * tiền.
  *
- * @author TOSHIBA
+ * @author Trịnh Nguyễn Huỳnh Như - 23540024; Phạm Nguyễn Hoàng Long - 23540017
  */
 public class Thanh_Toan {
+
     private int maThanhToan;
     private String maDonHang;
     private Double tienHang;
@@ -18,6 +22,9 @@ public class Thanh_Toan {
     private Double VIP;
     private Double tongTien;
 
+    /**
+     * Constructor khởi tạo đối tượng Thanh_Toan.
+     */
     public Thanh_Toan(int maThanhToan, String maDonHang, Double tienHang, Double phiVanChuyen, Double phiCamHoa, Double VAT, Double VIP, Double tongTien) {
         this.maThanhToan = maThanhToan;
         this.maDonHang = maDonHang;
@@ -29,6 +36,7 @@ public class Thanh_Toan {
         this.tongTien = tongTien;
     }
 
+    // Getters
     public int getMaThanhToan() {
         return maThanhToan;
     }
@@ -60,6 +68,5 @@ public class Thanh_Toan {
     public Double getTongTien() {
         return tongTien;
     }
-    
-    
+
 }
