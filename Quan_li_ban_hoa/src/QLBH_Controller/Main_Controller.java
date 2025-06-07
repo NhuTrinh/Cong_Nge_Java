@@ -80,6 +80,7 @@ public class Main_Controller {
                 mainView.dispose();
                 khView.setTableKhachHang(khModel.getAllKhachHang());
                 khView.setVisible(true);
+                khView.disableMenu();
             }
         });
     }
@@ -95,6 +96,7 @@ public class Main_Controller {
                 mainView.dispose();
                 dhView.setTableDonHang(dhModel.getAllDonHang());
                 dhView.setVisible(true);
+                dhView.disableMenu();
             }
         });
     }
@@ -110,6 +112,7 @@ public class Main_Controller {
                 mainView.dispose();
                 dshView.setTableSanPham(dshModel.getAllHoa());
                 dshView.setVisible(true);
+                dshView.disableMenu();
             }
         });
     }

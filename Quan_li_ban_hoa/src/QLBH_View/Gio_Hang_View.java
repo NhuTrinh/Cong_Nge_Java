@@ -91,6 +91,15 @@ public class Gio_Hang_View extends javax.swing.JFrame {
         btnThem.setVisible(false);
         btnXoa.setVisible(false);
     }
+    
+    /**
+     * hiện các nút điều khiển giỏ hàng
+     */
+    public void enableGioHang() {
+        btnGiam.setVisible(true);
+        btnThem.setVisible(true);
+        btnXoa.setVisible(true);
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.

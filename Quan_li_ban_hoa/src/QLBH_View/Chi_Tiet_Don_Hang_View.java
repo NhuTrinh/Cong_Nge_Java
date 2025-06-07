@@ -97,6 +97,13 @@ public class Chi_Tiet_Don_Hang_View extends javax.swing.JFrame {
     public void disableBtnXemGioHang() {
         btnXemGioHang.setVisible(false);
     }
+    
+    /**
+     * Ẩn nút xem giở hàng khi thêm mới đơn hàng
+     */
+    public void enableBtnXemGioHang() {
+        btnXemGioHang.setVisible(true);
+    }
 
     /**
      * Đăng ký sự kiện cho nút Xem giỏ hàng

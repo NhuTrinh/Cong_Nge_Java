@@ -24,6 +24,15 @@ public class Khach_Hang_View extends javax.swing.JFrame {
     public Khach_Hang_View() {
         initComponents();
     }
+    
+    /**
+     * ẩn các nút điều khiển giỏ hàng
+     */
+    public void disableMenu() {
+        btnDonHang.setEnabled(false);
+        btnDanhSachHoa.setEnabled(false);
+        btnKhachHang.setEnabled(false);
+    }
 
     /**
      * Hiển thị danh sách khách hàng dưới dạng bảng
@@ -235,7 +244,7 @@ public class Khach_Hang_View extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         btnThoat = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnKhachHang = new javax.swing.JButton();
         btnDonHang = new javax.swing.JButton();
         btnDanhSachHoa = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
@@ -275,10 +284,10 @@ public class Khach_Hang_View extends javax.swing.JFrame {
 
         btnThoat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/QLBH_Images/Dong.png"))); // NOI18N
 
-        jButton2.setBackground(new java.awt.Color(204, 204, 204));
-        jButton2.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/QLBH_Images/Khach_hang.png"))); // NOI18N
-        jButton2.setText("Khách hàng");
+        btnKhachHang.setBackground(new java.awt.Color(204, 204, 204));
+        btnKhachHang.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        btnKhachHang.setIcon(new javax.swing.ImageIcon(getClass().getResource("/QLBH_Images/Khach_hang.png"))); // NOI18N
+        btnKhachHang.setText("Khách hàng");
 
         btnDonHang.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         btnDonHang.setIcon(new javax.swing.ImageIcon(getClass().getResource("/QLBH_Images/Don_hang.png"))); // NOI18N
@@ -295,7 +304,7 @@ public class Khach_Hang_View extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(25, 25, 25)
-                .addComponent(jButton2)
+                .addComponent(btnKhachHang)
                 .addGap(158, 158, 158)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
@@ -317,7 +326,7 @@ public class Khach_Hang_View extends javax.swing.JFrame {
                     .addComponent(btnThoat))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2)
+                    .addComponent(btnKhachHang)
                     .addComponent(btnDonHang)
                     .addComponent(btnDanhSachHoa))
                 .addGap(15, 15, 15))
@@ -586,11 +595,11 @@ public class Khach_Hang_View extends javax.swing.JFrame {
     private javax.swing.JButton btnCapNhat;
     private javax.swing.JButton btnDanhSachHoa;
     private javax.swing.JButton btnDonHang;
+    private javax.swing.JButton btnKhachHang;
     private javax.swing.JButton btnThem;
     private javax.swing.JButton btnThoat;
     private javax.swing.JButton btnXem;
     private javax.swing.JButton btnXoa;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

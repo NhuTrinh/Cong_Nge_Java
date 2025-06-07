@@ -25,6 +25,15 @@ public class Danh_Sach_Hoa_View extends javax.swing.JFrame {
     public Danh_Sach_Hoa_View() {
         initComponents();
     }
+    
+    /**
+     * ẩn các nút điều khiển giỏ hàng
+     */
+    public void disableMenu() {
+        btnDonHang.setEnabled(false);
+        btnDanhSachHoa.setEnabled(false);
+        btnKhachHang.setEnabled(false);
+    }
 
     /**
      * Cập nhật bảng hiển thị danh sách sản phẩm hoa
@@ -142,7 +151,7 @@ public class Danh_Sach_Hoa_View extends javax.swing.JFrame {
         btnThoat = new javax.swing.JButton();
         btnKhachHang = new javax.swing.JButton();
         btnDonHang = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        btnDanhSachHoa = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -191,10 +200,10 @@ public class Danh_Sach_Hoa_View extends javax.swing.JFrame {
         btnDonHang.setText("Đơn hàng");
         btnDonHang.setToolTipText("");
 
-        jButton4.setBackground(new java.awt.Color(204, 204, 204));
-        jButton4.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/QLBH_Images/Danh_muc_hoa.png"))); // NOI18N
-        jButton4.setText("Danh mục hoa");
+        btnDanhSachHoa.setBackground(new java.awt.Color(204, 204, 204));
+        btnDanhSachHoa.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        btnDanhSachHoa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/QLBH_Images/Danh_muc_hoa.png"))); // NOI18N
+        btnDanhSachHoa.setText("Danh mục hoa");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -210,7 +219,7 @@ public class Danh_Sach_Hoa_View extends javax.swing.JFrame {
                     .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton4, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnDanhSachHoa, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(btnThoat, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addGap(10, 10, 10))
         );
@@ -226,7 +235,7 @@ public class Danh_Sach_Hoa_View extends javax.swing.JFrame {
                 .addGap(15, 15, 15)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnKhachHang)
-                    .addComponent(jButton4)
+                    .addComponent(btnDanhSachHoa)
                     .addComponent(btnDonHang))
                 .addContainerGap(15, Short.MAX_VALUE))
         );
@@ -524,13 +533,13 @@ public class Danh_Sach_Hoa_View extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCapNhat;
+    private javax.swing.JButton btnDanhSachHoa;
     private javax.swing.JButton btnDonHang;
     private javax.swing.JButton btnKhachHang;
     private javax.swing.JButton btnThem;
     private javax.swing.JButton btnThoat;
     private javax.swing.JButton btnXem;
     private javax.swing.JButton btnXoa;
-    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
