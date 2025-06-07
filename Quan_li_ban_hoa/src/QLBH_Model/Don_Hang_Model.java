@@ -18,11 +18,16 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 
 /**
+ * Model xử lý các thao tác liên quan đến đơn hàng, giỏ hàng, giao hàng và thanh
+ * toán.
  *
- * @author TOSHIBA
+ * @author Trịnh Nguyễn Huỳnh Như - 23540024; Phạm Nguyễn Hoàng Long - 23540017
  */
 public class Don_Hang_Model extends BaseModel {
 
+    /**
+     * Lấy danh sách tất cả đơn hàng.
+     */
     public ArrayList<Don_Hang> getAllDonHang() {
         ArrayList<Don_Hang> dsdh = new ArrayList<>();
         String sql = "select * from DONHANG";
@@ -45,6 +50,9 @@ public class Don_Hang_Model extends BaseModel {
         return dsdh;
     }
 
+    /**
+     * Xóa chi tiết đơn hàng theo mã đơn hàng.
+     */
     public boolean xoaCTDonHang(String maDonHang) {
         String sql = "DELETE FROM CTDONHANG WHERE SODH = ?";
         try {
@@ -59,6 +67,9 @@ public class Don_Hang_Model extends BaseModel {
         return false;
     }
 
+    /**
+     * Xóa đơn hàng theo mã đơn hàng.
+     */
     public boolean xoaDonHang(String maDonHang) {
         String sql = "DELETE FROM DONHANG WHERE SODH = ?";
         try {
@@ -73,6 +84,9 @@ public class Don_Hang_Model extends BaseModel {
         return false;
     }
 
+    /**
+     * Lấy thông tin giao hàng theo mã đơn hàng.
+     */
     public Giao_Hang getAllGiaoHangTheoMaDon(String maDonHang) {
         String sql = "select * from GIAOHANG WHERE SODH = ?";
         try {
@@ -91,6 +105,9 @@ public class Don_Hang_Model extends BaseModel {
         return null;
     }
 
+    /**
+     * Lấy thông tin thanh toán theo mã đơn hàng.
+     */
     public Thanh_Toan getAllThanhToanTheoMaDon(String maDonHang) {
         String sql = "select * from THANHTOAN WHERE SODH = ?";
         try {
@@ -109,6 +126,9 @@ public class Don_Hang_Model extends BaseModel {
         return null;
     }
 
+    /**
+     * Lấy danh sách giỏ hàng theo mã đơn hàng.
+     */
     public ArrayList<Gio_Hang> getAllGioHangTheoMaDon(String maDonHang) {
         String sql = "select * from CTDONHANG WHERE SODH = ?";
         ArrayList<Gio_Hang> dsgh = new ArrayList<>();
@@ -133,6 +153,9 @@ public class Don_Hang_Model extends BaseModel {
         return dsgh;
     }
 
+    /**
+     * Cập nhật số lượng hoa trong giỏ hàng theo mã hoa.
+     */
     public boolean updateSoLuongHoa(String maHoa, int soLuong) {
 
         String sql = "UPDATE CTDONHANG SET SOLUONG = ? WHERE MAHOA = ?";
@@ -153,6 +176,9 @@ public class Don_Hang_Model extends BaseModel {
         return false;
     }
 
+    /**
+     * Lấy mã đơn hàng từ mã hoa trong giỏ hàng.
+     */
     public String getMaDonTuMaHoa(String maHoa) {
 
         String sql = "SELECT SODH FROM CTDONHANG WHERE MAHOA = ?";
@@ -172,6 +198,9 @@ public class Don_Hang_Model extends BaseModel {
         return null;
     }
 
+    /**
+     * Xóa sản phẩm trong giỏ hàng theo mã hoa.
+     */
     public void deleteHoaTrongGioHang(String maHoa) {
         String sql = "DELETE FROM CTDONHANG WHERE MAHOA = ?";
         Danh_Sach_Hoa_Model dsModel = new Danh_Sach_Hoa_Model();
@@ -187,6 +216,9 @@ public class Don_Hang_Model extends BaseModel {
         }
     }
 
+    /**
+     * Tìm khách hàng theo số điện thoại.
+     */
     public Khach_Hang timKhachHangTheoSoDienThoai(String soDienThoai) {
         String sql = "SELECT * FROM KHACHHANG WHERE SODIENTHOAI = ?";
         try {
@@ -205,6 +237,9 @@ public class Don_Hang_Model extends BaseModel {
         return null;
     }
 
+    /**
+     * Thêm thông tin giao hàng cho đơn hàng.
+     */
     public boolean themThongTinGiaoHangVaoDonHang(String maDonHang, String tenNguoiNhan, String soDienThoaiNhan, String diaChiNhan) {
         String sql = "INSERT INTO GIAOHANG (SODH, TENNGUOINHAN, SODIENTHOAI, DIACHI) VALUES (?, ?, ?, ?)";
         try {
@@ -223,6 +258,9 @@ public class Don_Hang_Model extends BaseModel {
         return false;
     }
 
+    /**
+     * Cập nhật thông tin giao hàng cho đơn hàng.
+     */
     public boolean capNhatThongTinGiaoHangVaoDonHang(String maDonHang, String tenNguoiNhan, String soDienThoaiNhan, String diaChiNhan) {
         String sql = "UPDATE GIAOHANG SET TENNGUOINHAN = ?, SODIENTHOAI = ?, DIACHI = ? WHERE SODH = ?";
         try {
@@ -241,6 +279,9 @@ public class Don_Hang_Model extends BaseModel {
         return false;
     }
 
+    /**
+     * Kiểm tra xem mã đơn hàng có trong bảng giao hàng không.
+     */
     public boolean kiemTraMaDonHangTrongBangGiaoHang(String maDonHang) {
         String sql = "SELECT * FROM GIAOHANG WHERE SODH = ?";
         try {
@@ -256,6 +297,9 @@ public class Don_Hang_Model extends BaseModel {
         return false;
     }
 
+    /**
+     * Lưu sản phẩm vào giỏ hàng theo mã đơn hàng.
+     */
     public boolean luuSanPhamVaoGioHang(String maDonHang, String maHoa, int soLuong, double giaBan) {
         String sql = "INSERT INTO CTDONHANG (SODH, MAHOA, SOLUONG, GIABAN) VALUES (?, ?, ?, ?)";
         try {
@@ -274,6 +318,9 @@ public class Don_Hang_Model extends BaseModel {
         return false;
     }
 
+    /**
+     * Tạo đơn hàng tạm với thông tin cơ bản.
+     */
     public boolean taoDonHangTam(String maDonHang, String ngayLap, String trangThai, double giaBan, String maNhanVien, String maKhachHang) {
         String sql = "INSERT INTO DONHANG (SODH, NGAYLAP, TRANGTHAI, GIABAN, MANHANVIEN, MAKHACHHANG) VALUES (?, ?, ?, ?, ?, ?)";
         try {
@@ -294,6 +341,9 @@ public class Don_Hang_Model extends BaseModel {
         return false;
     }
 
+    /**
+     * Tính tổng tiền các hoa trong giỏ hàng theo mã đơn hàng.
+     */
     public double tinhTongTienHoaTuGioHang(String maDonHang) {
         String sql = "SELECT THANHTIEN FROM CTDONHANG WHERE SODH = ?";
         double tongTien = 0.0;
@@ -313,6 +363,9 @@ public class Don_Hang_Model extends BaseModel {
 
     }
 
+    /**
+     * Tính tổng số lượng hoa trong giỏ hàng theo mã đơn hàng.
+     */
     public int tongSoLuongHoaTrongGioHang(String maDonHang) {
         String sql = "SELECT SOLUONG FROM CTDONHANG WHERE SODH = ?";
         int soLuong = 0;
@@ -332,6 +385,9 @@ public class Don_Hang_Model extends BaseModel {
 
     }
 
+    /**
+     * Thêm thông tin thanh toán cho đơn hàng.
+     */
     public boolean themThongTinThanhToan(String maDonHang, double tienHang, double vanChuyen, double phiCamHoa, double VAT, double VIP) {
         String sql = "INSERT INTO THANHTOAN (SODH, TIENHANG, VANCHUYEN, PHICAMHOA, VAT, VIP) VALUES (?, ?, ?, ?, ?, ?)";
         try {
@@ -352,6 +408,9 @@ public class Don_Hang_Model extends BaseModel {
         return false;
     }
 
+    /**
+     * Cập nhật thông tin thanh toán cho đơn hàng.
+     */
     public boolean capNhatThongTinThanhToan(String maDonHang, double tienHang, double vanChuyen, double phiCamHoa, double VAT, double VIP) {
         String sql = "UPDATE THANHTOAN SET TIENHANG = ?, VANCHUYEN = ?, PHICAMHOA = ?, VAT = ?, VIP = ? WHERE SODH = ?";
         try {
@@ -372,6 +431,9 @@ public class Don_Hang_Model extends BaseModel {
         return false;
     }
 
+    /**
+     * Kiểm tra mã đơn hàng có trong bảng thanh toán không.
+     */
     public boolean kiemTraMaDonHangTrongBangThanhToan(String maDonHang) {
         String sql = "SELECT * FROM THANHTOAN WHERE SODH = ?";
         try {
@@ -387,6 +449,9 @@ public class Don_Hang_Model extends BaseModel {
         return false;
     }
 
+    /**
+     * Lấy tổng tiền thanh toán của đơn hàng.
+     */
     public double layTongThanhToanDonHang(String maDonHang) {
         String sql = "SELECT TONGTIEN FROM THANHTOAN WHERE SODH = ?";
         double tongTien = 0.0;
@@ -406,6 +471,9 @@ public class Don_Hang_Model extends BaseModel {
 
     }
 
+    /**
+     * Cập nhật tổng tiền trong đơn hàng.
+     */
     public boolean capNhatDonHang(String maDonHang, double tongTien) {
         String sql = "UPDATE DONHANG SET GIABAN = ? WHERE SODH = ?";
         try {
@@ -423,6 +491,9 @@ public class Don_Hang_Model extends BaseModel {
         return false;
     }
 
+    /**
+     * Xóa thông tin thanh toán của đơn hàng.
+     */
     public boolean xoaThanhToan(String maDonHang) {
         String sql = "DELETE FROM THANHTOAN WHERE SODH = ?";
         try {
@@ -436,7 +507,10 @@ public class Don_Hang_Model extends BaseModel {
         }
         return false;
     }
-    
+
+    /**
+     * Xóa thông tin giao hàng của đơn hàng.
+     */
     public boolean xoaThongTinGiaoHang(String maDonHang) {
         String sql = "DELETE FROM GIAOHANG WHERE SODH = ?";
         try {
@@ -450,7 +524,10 @@ public class Don_Hang_Model extends BaseModel {
         }
         return false;
     }
-    
+
+    /**
+     * Xóa giỏ hàng theo mã đơn hàng.
+     */
     public boolean xoaGioHang(String maDonHang) {
         String sql = "DELETE FROM CTDONHANG WHERE SODH = ?";
         try {

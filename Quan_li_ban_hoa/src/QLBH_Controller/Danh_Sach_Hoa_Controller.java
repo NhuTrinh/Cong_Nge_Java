@@ -13,6 +13,7 @@ import QLBH_View.Don_Hang_View;
 import QLBH_View.Hoa_Tao_Cap_Nhat;
 import QLBH_View.Khach_Hang_View;
 import QLBH_View.MainFrame;
+import QLBH_View.Thong_Bao_Loi;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.lang.invoke.MethodHandles;
@@ -35,7 +36,10 @@ public class Danh_Sach_Hoa_Controller {
     public Hoa_Tao_Cap_Nhat hoaTaoCapNhatView; // Giao diện tạo hoặc cập nhật hoa
     public Don_Hang_View dhView;  // Giao diện đơn hàng
     public Khach_Hang_View khView; // Giao diện khách hàng
+    public Thong_Bao_Loi tbView;
 
+    /**
+     * Hàm khởi tạo
     /**
      * Khởi tạo một đối tượng Danh_Sach_Hoa_Controller. Constructor này liên kết
      * các thành phần View và Model cần thiết để quản lý giao diện danh sách
@@ -48,13 +52,14 @@ public class Danh_Sach_Hoa_Controller {
      * @param dhView Giao diện xử lý đơn hàng.
      * @param khView Giao diện xử lý thông tin khách hàng.
      */
-    public Danh_Sach_Hoa_Controller(MainFrame mainView, Danh_Sach_Hoa_View dshView, Danh_Sach_Hoa_Model dshModel, Hoa_Tao_Cap_Nhat hoaTaoCapNhatView, Don_Hang_View dhView, Khach_Hang_View khView) {
+    public Danh_Sach_Hoa_Controller(MainFrame mainView, Danh_Sach_Hoa_View dshView, Danh_Sach_Hoa_Model dshModel, Hoa_Tao_Cap_Nhat hoaTaoCapNhatView, Don_Hang_View dhView, Khach_Hang_View khView,Thong_Bao_Loi tbView) {
         this.mainView = mainView;
         this.dshView = dshView;
         this.dshModel = dshModel;
         this.hoaTaoCapNhatView = hoaTaoCapNhatView;
         this.dhView = dhView;
         this.khView = khView;
+        this.tbView = tbView;
     }
 
     /**
@@ -106,6 +111,8 @@ public class Danh_Sach_Hoa_Controller {
                 }
                 hoaTaoCapNhatView.setVisible(true);
                 luuHoa();
+                huyAction();
+                thoatAddUpdateAction(); 
             }
         });
     }
@@ -162,6 +169,8 @@ public class Danh_Sach_Hoa_Controller {
                 hoaTaoCapNhatView.setTxtMaHoaDisable();
                 hoaTaoCapNhatView.setVisible(true);
                 luuHoa();
+                huyAction();
+                thoatAddUpdateAction();          
             }
         });
     }
@@ -178,6 +187,46 @@ public class Danh_Sach_Hoa_Controller {
                 dshModel.xoaHoa(maHoa);
                 dshView.setTableSanPham(dshModel.getAllHoa());
                 setAllValueInDSHoaIsEmpty();
+            }
+        });
+    }
+    
+    
+    /**
+     * Hiện thông báo lỗi và đòng ý trên thông báo
+     */
+    public void dongYThongBaoAction() {
+        tbView.btnDongYActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                tbView.dispose();
+                hoaTaoCapNhatView.dispose();
+                setValueIsEmpty();
+                dshView.setVisible(true);
+            }
+        });
+    }
+    
+    /**
+     * Hiện thông báo lỗi và Hủy trên thông báo
+     */
+    public void huyThongBaoAction() {
+        tbView.btnHuyActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                tbView.dispose();
+            }
+        });
+    }
+    
+    /**
+     * Hiện thông báo lỗi và Thoát trên thông báo
+     */
+    public void thoatThongBaoAction() {
+        tbView.btnThoatActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                tbView.dispose();
             }
         });
     }
@@ -204,6 +253,36 @@ public class Danh_Sach_Hoa_Controller {
             public void actionPerformed(ActionEvent e) {
                 dshView.setVisible(false);
                 khView.setVisible(true);
+            }
+        });
+    }
+    
+    /**
+     * Hủy hành động thêm hoặc cập nhật hoa
+     */
+    public void huyAction() {
+        hoaTaoCapNhatView.btnHuyActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                tbView.setVisible(true);
+                dongYThongBaoAction();
+                huyThongBaoAction();
+                thoatThongBaoAction();
+            }
+        });
+    }
+    
+    /**
+     * Thoát khỏi giao diện thêm và cập nhật hoa
+     */
+    public void thoatAddUpdateAction() {
+        hoaTaoCapNhatView.btnThoatActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                tbView.setVisible(true);
+                dongYThongBaoAction();
+                huyThongBaoAction();
+                thoatThongBaoAction();
             }
         });
     }

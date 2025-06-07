@@ -11,52 +11,62 @@ import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 
 /**
+ * Giao diện danh sách đơn hàng Hiển thị bảng đơn hàng và các nút thao tác
  *
- * @author TOSHIBA
+ * @author Trịnh Nguyễn Huỳnh Như - 23540024; Phạm Nguyễn Hoàng Long - 23540017
  */
 public class Don_Hang_View extends javax.swing.JFrame {
 
     /**
-     * Creates new form Don_Hang
+     * Khởi tạo form Don_Hang_View
      */
     public Don_Hang_View() {
         initComponents();
     }
-    
+
+    /**
+     * Cập nhật bảng hiển thị danh sách đơn hàng
+     *
+     * @param dskh danh sách đơn hàng cần hiển thị
+     */
     public void setTableDonHang(ArrayList<Don_Hang> dskh) {
         String[] colunmName = {"Mã đơn hàng", "Ngày lập", "Trạng thái", "Mã nhân viên", "Tên khách hàng", "Tổng tiền"};
         DefaultTableModel dtmDSDH = new DefaultTableModel(colunmName, 0);
-        
-        for(Don_Hang dh : dskh)
-        {
+
+        for (Don_Hang dh : dskh) {
             dtmDSDH.addRow(dh.getArrDH());
         }
-        
+
         tblDonHang.setModel(dtmDSDH);
     }
-    
-    public void btnXoaActionListener(ActionListener all)
-    {
+
+    // Các phương thức thêm ActionListener cho các nút chức năng
+    public void btnXoaActionListener(ActionListener all) {
         btnXoa.addActionListener(all);
     }
-    
-    public void btnXemActionListener(ActionListener all)
-    {
+
+    public void btnXemActionListener(ActionListener all) {
         btnXem.addActionListener(all);
     }
-    
-    public void btnThemActionListener(ActionListener all)
-    {
+
+    public void btnThemActionListener(ActionListener all) {
         btnThem.addActionListener(all);
     }
-    
-    public void btnCapNhatActionListener(ActionListener all)
-    {
+
+    public void btnCapNhatActionListener(ActionListener all) {
         btnCapNhat.addActionListener(all);
     }
     
-    public Don_Hang getDonHangSelectedRow()
-    {
+    public void btnThoatActionListener(ActionListener all) {
+        btnThoat.addActionListener(all);
+    }
+
+    /**
+     * Lấy đối tượng đơn hàng ở dòng được chọn trên bảng
+     *
+     * @return đối tượng Don_Hang hoặc null nếu chưa chọn dòng
+     */
+    public Don_Hang getDonHangSelectedRow() {
         int selectedRow = tblDonHang.getSelectedRow();
         String maDonHang = "";
         String trangThai = "";
@@ -65,22 +75,18 @@ public class Don_Hang_View extends javax.swing.JFrame {
         String maNhanVien = "";
         String tenKhachHang = "";
 
-        
-        if(selectedRow != -1) {
-             maDonHang = tblDonHang.getValueAt(selectedRow, 0).toString();
-             ngayLap = tblDonHang.getValueAt(selectedRow, 1).toString();
-             trangThai = tblDonHang.getValueAt(selectedRow, 2).toString();
-             maNhanVien = tblDonHang.getValueAt(selectedRow, 3).toString();
-             tenKhachHang = tblDonHang.getValueAt(selectedRow, 4).toString();
-             tongTien = Double.parseDouble(tblDonHang.getValueAt(selectedRow, 5).toString());
-             Don_Hang dh = new Don_Hang(maDonHang, ngayLap, trangThai, maNhanVien, tenKhachHang, tongTien);
-             return dh;
+        if (selectedRow != -1) {
+            maDonHang = tblDonHang.getValueAt(selectedRow, 0).toString();
+            ngayLap = tblDonHang.getValueAt(selectedRow, 1).toString();
+            trangThai = tblDonHang.getValueAt(selectedRow, 2).toString();
+            maNhanVien = tblDonHang.getValueAt(selectedRow, 3).toString();
+            tenKhachHang = tblDonHang.getValueAt(selectedRow, 4).toString();
+            tongTien = Double.parseDouble(tblDonHang.getValueAt(selectedRow, 5).toString());
+            Don_Hang dh = new Don_Hang(maDonHang, ngayLap, trangThai, maNhanVien, tenKhachHang, tongTien);
+            return dh;
         }
         return null;
     }
-    
-    
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -93,7 +99,7 @@ public class Don_Hang_View extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
+        btnThoat = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
@@ -109,9 +115,9 @@ public class Don_Hang_View extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel2.setBackground(new java.awt.Color(0, 102, 51));
+        jPanel2.setBackground(new java.awt.Color(0, 102, 0));
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/QLBH_Images/Dong.png"))); // NOI18N
+        btnThoat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/QLBH_Images/Dong.png"))); // NOI18N
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 3, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
@@ -141,7 +147,7 @@ public class Don_Hang_View extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1)
+                        .addComponent(btnThoat)
                         .addContainerGap())
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jButton3)
@@ -155,7 +161,7 @@ public class Don_Hang_View extends javax.swing.JFrame {
                 .addGap(9, 9, 9)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
-                    .addComponent(jButton1))
+                    .addComponent(btnThoat))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton2)
@@ -188,6 +194,8 @@ public class Don_Hang_View extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
+
+        jPanel4.setBackground(new java.awt.Color(0, 102, 0));
 
         btnXem.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         btnXem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/QLBH_Images/Xem.png"))); // NOI18N
@@ -309,9 +317,9 @@ public class Don_Hang_View extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCapNhat;
     private javax.swing.JButton btnThem;
+    private javax.swing.JButton btnThoat;
     private javax.swing.JButton btnXem;
     private javax.swing.JButton btnXoa;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;

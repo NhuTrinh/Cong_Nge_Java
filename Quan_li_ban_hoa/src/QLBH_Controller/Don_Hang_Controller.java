@@ -29,8 +29,23 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 /**
+ * Lớp Don_Hang_Controller chịu trách nhiệm điều phối luồng xử lý giữa các View
+ * và Model trong chức năng quản lý đơn hàng của ứng dụng bán hoa.
  *
- * @author TOSHIBA
+ * Chức năng chính: - Khởi tạo và kết nối các thành phần giao diện liên quan đến
+ * đơn hàng (Don_Hang_View), chi tiết đơn hàng, giỏ hàng và thêm sản phẩm vào
+ * giỏ. - Xử lý các sự kiện từ người dùng như: + Chọn đơn hàng trong bảng để lấy
+ * mã khách hàng. + Thêm sản phẩm vào giỏ hàng. + Xem giỏ hàng. + Xem chi tiết
+ * đơn hàng đã chọn. + Thêm đơn hàng mới từ dữ liệu trong giỏ hàng. + Xoá đơn
+ * hàng được chọn. - Tương tác với Don_Hang_Model để thực hiện các thao tác với
+ * cơ sở dữ liệu như: + Lấy danh sách đơn hàng. + Tính tổng tiền giỏ hàng theo
+ * khách hàng. + Thêm mới đơn hàng và chi tiết đơn hàng. + Xoá đơn hàng và chi
+ * tiết liên quan. + Reset giỏ hàng sau khi hoàn tất đơn hàng.
+ *
+ * Lớp này hoạt động theo mô hình MVC (Model - View - Controller), đóng vai trò
+ * Controller để đảm bảo sự tách biệt giữa logic xử lý và giao diện.
+ *
+ * @author Trịnh Nguyễn Huỳnh Như - 23540024; Phạm Nguyễn Hoàng Long - 23540017
  */
 public class Don_Hang_Controller {
 
@@ -42,6 +57,19 @@ public class Don_Hang_Controller {
     private Danh_Sach_Hoa_View dshView;
     private Them_Gio_Hang tghView;
 
+    /**
+     * Khởi tạo Don_Hang_Controller với các view và model cần thiết. Dùng để
+     * điều phối giữa các màn hình liên quan đến đơn hàng, giỏ hàng và danh sách
+     * hoa.
+     *
+     * @param mainView Frame chính của ứng dụng.
+     * @param dhView Giao diện danh sách đơn hàng.
+     * @param dhModel Model xử lý dữ liệu đơn hàng.
+     * @param ctdhView Giao diện chi tiết đơn hàng.
+     * @param ghView Giao diện giỏ hàng.
+     * @param dshView Giao diện danh sách hoa.
+     * @param tghView Giao diện thêm hoa vào giỏ hàng.
+     */
     public Don_Hang_Controller(MainFrame mainView, Don_Hang_View dhView, Don_Hang_Model dhModel, Chi_Tiet_Don_Hang_View ctdhView, Gio_Hang_View ghView, Danh_Sach_Hoa_View dshView, Them_Gio_Hang tghView) {
         this.mainView = mainView;
         this.dhView = dhView;
@@ -52,6 +80,7 @@ public class Don_Hang_Controller {
         this.tghView = tghView;
     }
 
+    // Thiết lập sự kiện xóa đơn hàng khi nút xóa được nhấn
     public void xoaAction() {
         dhView.btnXoaActionListener(new ActionListener() {
             @Override
@@ -67,6 +96,8 @@ public class Don_Hang_Controller {
         });
     }
 
+    // Thiết lập sự kiện xem chi tiết đơn hàng khi nút xem được nhấn
+    // Hiển thị thông tin đơn hàng, khách hàng, giao hàng và thanh toán lên giao diện chi tiết
     public void xemAction() {
         dhView.btnXemActionListener(new ActionListener() {
             @Override
@@ -104,6 +135,8 @@ public class Don_Hang_Controller {
         });
     }
 
+    // Thiết lập sự kiện xem giỏ hàng khi nút xem giỏ hàng được nhấn
+    // Hiển thị giỏ hàng theo mã đơn hàng và chuyển giao diện sang xem giỏ hàng
     public void xemGioHangAction(String maDonHang) {
         ctdhView.btnXemGioHangActionListener(new ActionListener() {
             @Override
@@ -116,6 +149,8 @@ public class Don_Hang_Controller {
         });
     }
 
+    // Thiết lập sự kiện thêm số lượng hoa trong giỏ hàng khi nút thêm được nhấn
+    // Tăng số lượng hoa lên 1 và cập nhật lại bảng giỏ hàng
     public void themGioHangAction() {
         ghView.btnThemActionListener(new ActionListener() {
             @Override
@@ -132,7 +167,19 @@ public class Don_Hang_Controller {
             }
         });
     }
+    
+    //Thoat đơn hàng
+    public void thoatDonHang() {
+        dhView.btnThoatActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                dhView.dispose();
+                mainView.setVisible(true);
+            }
+        });
+    }
 
+    //Thoat giỏ hang
     public void thoatGioHang() {
         ghView.btnThoatActionListener(new ActionListener() {
             @Override
@@ -143,6 +190,8 @@ public class Don_Hang_Controller {
         });
     }
 
+    // Thiết lập sự kiện thoát giỏ hàng khi nút thoát được nhấn
+    // Đóng cửa sổ giỏ hàng và hiển thị lại chi tiết đơn hàng
     public void xoaGioHangAction() {
         ghView.btnXoaActionListener(new ActionListener() {
             @Override
@@ -155,6 +204,8 @@ public class Don_Hang_Controller {
             }
         });
     }
+// Thiết lập sự kiện giảm số lượng hoa trong giỏ hàng khi nút giảm được nhấn
+// Cập nhật số lượng hoa trong model và làm mới bảng giỏ hàng
 
     public void giamGioHangAction() {
         ghView.btnGiamActionListener(new ActionListener() {
@@ -173,6 +224,7 @@ public class Don_Hang_Controller {
         });
     }
 
+    // Xóa sạch tất cả các trường dữ liệu trong chi tiết đơn hàng (CTDH)
     public void setAllValueInCTDHIsEmpty() {
         ctdhView.setTxtTenKhachHang("");
         ctdhView.setTxtSoDienThoai("");
@@ -188,6 +240,12 @@ public class Don_Hang_Controller {
         ctdhView.setTxtTongTien("");
     }
 
+    // Xử lý sự kiện thêm đơn hàng mới: 
+    // - Xóa trắng các trường trong chi tiết đơn hàng
+    // - Đóng giao diện đơn hàng hiện tại
+    // - Hiện giao diện chi tiết đơn hàng
+    // - Thiết lập các hành động tìm khách hàng, tải danh sách nhân viên,
+    //   thêm hoa vào giỏ hàng, xem và lưu thanh toán
     public void themDonHangAction() {
         dhView.btnThemActionListener(new ActionListener() {
             @Override
@@ -204,6 +262,9 @@ public class Don_Hang_Controller {
         });
     }
 
+    // Xử lý sự kiện thoát khỏi chi tiết đơn hàng:
+    // - Đóng giao diện chi tiết đơn hàng
+    // - Hiện lại giao diện danh sách đơn hàng
     public void thoatChiTietDonHangAction() {
         ctdhView.btnThoatGioHangActionListener(new ActionListener() {
             @Override
@@ -214,6 +275,11 @@ public class Don_Hang_Controller {
         });
     }
 
+    // Tìm khách hàng theo số điện thoại trong chi tiết đơn hàng:
+    // - Lấy số điện thoại nhập từ giao diện
+    // - Tìm khách hàng tương ứng từ model
+    // - Hiển thị tên và số điện thoại khách hàng lên giao diện
+    // - Thêm đơn hàng tạm thời
     public void timKhachHangChiTietDonHangAction() {
         ctdhView.btnTimGioHangActionListener(new ActionListener() {
             @Override
@@ -228,6 +294,10 @@ public class Don_Hang_Controller {
         });
     }
 
+    // Load danh sách nhân viên vào chi tiết đơn hàng:
+    // - Lấy danh sách nhân viên từ model đăng nhập
+    // - In ra console để kiểm tra
+    // - Hiển thị danh sách nhân viên lên combobox trong giao diện chi tiết đơn hàng
     public void loadListNhanVienToChiTietDonHang() {
         Dang_Nhap_Model dnModel = new Dang_Nhap_Model();
         ArrayList<Nhan_vien> dsnv = dnModel.getAllNhanVienTheoMa();
@@ -237,20 +307,29 @@ public class Don_Hang_Controller {
         ctdhView.loadDanhSachNhanVien(dsnv);
     }
 
+    // Thêm hoặc cập nhật thông tin người nhận cho đơn hàng:
+    // - Lấy dữ liệu người nhận từ giao diện chi tiết đơn hàng
+    // - Kiểm tra mã đơn hàng đã tồn tại trong bảng giao hàng chưa
+    // - Nếu có, cập nhật thông tin giao hàng
+    // - Nếu chưa, thêm mới thông tin giao hàng
     public void themThongTinNguoiNhan() {
         String maDonHang = ctdhView.getTxtMaDonHang();
         String tenNguoiNhan = ctdhView.getTxtTenNguoiNhan();
         String soDienThoaiNhan = ctdhView.getTxtSoDienThoaiNhan();
         String diaChiNhan = ctdhView.getTxtDiaChiNhan();
-        if(dhModel.kiemTraMaDonHangTrongBangGiaoHang(maDonHang))
-        {
+        if (dhModel.kiemTraMaDonHangTrongBangGiaoHang(maDonHang)) {
             dhModel.capNhatThongTinGiaoHangVaoDonHang(maDonHang, tenNguoiNhan, soDienThoaiNhan, diaChiNhan);
         } else {
-           dhModel.themThongTinGiaoHangVaoDonHang(maDonHang, tenNguoiNhan, soDienThoaiNhan, diaChiNhan); 
+            dhModel.themThongTinGiaoHangVaoDonHang(maDonHang, tenNguoiNhan, soDienThoaiNhan, diaChiNhan);
         }
-        
+
     }
 
+    // Xử lý sự kiện thêm hoa vào giỏ hàng:
+    // - Lấy mã đơn hàng hiện tại
+    // - Lấy danh sách tất cả hoa từ model
+    // - Hiển thị giao diện thêm giỏ hàng với danh sách hoa
+    // - Gán hành động thêm sản phẩm và thoát giao diện thêm giỏ hàng
     public void themHoaVaoGioHangAction() {
         ctdhView.btnThemGioHangActionListener(new ActionListener() {
             @Override
@@ -265,6 +344,13 @@ public class Don_Hang_Controller {
         });
     }
 
+    // Xử lý sự kiện thêm sản phẩm vào giỏ hàng:
+    // - Lấy số lượng nhập từ giao diện
+    // - Lấy sản phẩm được chọn và thông tin liên quan
+    // - Lưu sản phẩm vào giỏ hàng qua model
+    // - Reset trường số lượng nhập
+    // - Cập nhật lại số lượng hoa còn lại trong kho
+    // - Cập nhật lại bảng danh sách hoa trên giao diện
     public void themSanPhamAction(String maDonHang) {
         tghView.btnThemVaoGioHangActionListener(new ActionListener() {
             @Override
@@ -282,6 +368,11 @@ public class Don_Hang_Controller {
         });
     }
 
+    // Tạo đơn hàng tạm thời với các thông tin từ giao diện:
+    // - Mã đơn hàng, trạng thái, mã nhân viên, tên khách hàng
+    // - Lấy mã khách hàng từ model Khach_Hang
+    // - Lấy thời gian hiện tại làm ngày lập đơn hàng
+    // - Gọi model để tạo đơn hàng tạm với trạng thái và phí VIP mặc định
     public void themDonHangTam() {
         String maDonHang = ctdhView.getTxtMaDonHang();
         String trangThai = ctdhView.getCbxTrangThai();
@@ -296,10 +387,16 @@ public class Don_Hang_Controller {
         dhModel.taoDonHangTam(maDonHang, ngayLap, trangThai, 1.0, maNhanVien, maKhachHang);
     }
 
+    // Tính tổng tiền hoa trong giỏ hàng của đơn hàng dựa trên mã đơn hàng
+    // Trả về tổng tiền dưới dạng kiểu double
     public double tongTienHoa(String maDonHang) {
         return dhModel.tinhTongTienHoaTuGioHang(maDonHang);
     }
 
+    // Đăng ký sự kiện nút "Xem Thanh Toán"
+    // Tính và hiển thị các khoản phí (tiền hoa, vận chuyển, cắm hoa, VIP, VAT)
+    // Cập nhật hoặc thêm mới thông tin thanh toán vào cơ sở dữ liệu
+    // Cập nhật tổng tiền thanh toán lên giao diện
     public void btnXemThanhToanActionListener() {
         ctdhView.btnXemThanhToanActionListener(new ActionListener() {
             @Override
@@ -330,7 +427,7 @@ public class Don_Hang_Controller {
                 ctdhView.setTxtTienCamHoa(String.valueOf(camHoa));
                 ctdhView.setTxtVIP(String.valueOf(VIP));
                 ctdhView.setTxtVAT(String.valueOf(VAT));
-                if(dhModel.kiemTraMaDonHangTrongBangThanhToan(maDonHang)) {
+                if (dhModel.kiemTraMaDonHangTrongBangThanhToan(maDonHang)) {
                     dhModel.capNhatThongTinThanhToan(maDonHang, tienHoa, vanChuyen, camHoa, VAT, VIP);
                 } else {
                     dhModel.themThongTinThanhToan(maDonHang, tienHoa, vanChuyen, camHoa, VAT, VIP);
@@ -340,6 +437,10 @@ public class Don_Hang_Controller {
         });
     }
 
+    // Đăng ký sự kiện nút "Lưu Thanh Toán"
+    // Cập nhật đơn hàng với tổng tiền thanh toán
+    // Lưu thông tin người nhận
+    // Ẩn chi tiết đơn hàng, cập nhật và hiển thị lại danh sách đơn hàng
     public boolean btnLuuThanhToanActionListener() {
         ctdhView.btnLuuThanhToanActionListener(new ActionListener() {
             @Override
@@ -356,6 +457,8 @@ public class Don_Hang_Controller {
         return 1 > 0;
     }
 
+    // Đăng ký sự kiện nút "Thoát" ở giao diện thêm giỏ hàng
+    // Đóng cửa sổ thêm giỏ hàng khi nút được nhấn
     public void thoatThemGioHang() {
         tghView.btnThoatActionListener(new ActionListener() {
             @Override
@@ -365,6 +468,10 @@ public class Don_Hang_Controller {
         });
     }
 
+    // Đăng ký sự kiện nút cập nhật đơn hàng
+    // Lấy đơn hàng được chọn, tải thông tin chi tiết, khách hàng, giao hàng và thanh toán
+    // Thiết lập dữ liệu lên giao diện chi tiết đơn hàng và chuyển sang giao diện đó
+    // Kích hoạt các hành động liên quan đến giỏ hàng và thanh toán trong chi tiết đơn hàng
     public void capNhatDonHangAction() {
         dhView.btnCapNhatActionListener(new ActionListener() {
             @Override

@@ -12,62 +12,66 @@ import javax.swing.JLabel;
 import javax.swing.table.DefaultTableModel;
 
 /**
+ * Giao diện danh sách hoa Hiển thị danh sách sản phẩm (hoa) và cung cấp các nút
+ * chức năng thao tác
  *
- * @author TOSHIBA
+ * @author Trịnh Nguyễn Huỳnh Như - 23540024; Phạm Nguyễn Hoàng Long - 23540017
  */
 public class Danh_Sach_Hoa_View extends javax.swing.JFrame {
 
     /**
-     * Creates new form Danh_Sach_Hoa_View
+     * Khởi tạo form Danh_Sach_Hoa_View
      */
     public Danh_Sach_Hoa_View() {
         initComponents();
     }
-    
-    public void setTableSanPham(ArrayList<San_Pham> dssp)
-    {
+
+    /**
+     * Cập nhật bảng hiển thị danh sách sản phẩm hoa
+     *
+     * @param dssp danh sách sản phẩm cần hiển thị
+     */
+    public void setTableSanPham(ArrayList<San_Pham> dssp) {
         String[] colunmName = {"Mã hoa", "Tên hoa", "Số lượng", "Đơn giá"};
         DefaultTableModel dtmDSSP = new DefaultTableModel(colunmName, 0);
-        
-        for(San_Pham kh : dssp)
-        {
+
+        for (San_Pham kh : dssp) {
             dtmDSSP.addRow(kh.getArrSP());
         }
-        
+
         tblSanPham.setModel(dtmDSSP);
     }
-    
-    public void btnThoatActionListener(ActionListener all)
-    {
+
+    // Các phương thức thêm ActionListener cho các nút chức năng, để Controller đăng ký xử lý sự kiện
+    public void btnThoatActionListener(ActionListener all) {
         btnThoat.addActionListener(all);
     }
-    
-    public void btnXemActionListener(ActionListener all)
-    {
+
+    public void btnXemActionListener(ActionListener all) {
         btnXem.addActionListener(all);
     }
-    
-    public void btnThemActionListener(ActionListener all)
-    {
+
+    public void btnThemActionListener(ActionListener all) {
         btnThem.addActionListener(all);
     }
-    
-      public void btnCapNhatActionListener(ActionListener all) {
+
+    public void btnCapNhatActionListener(ActionListener all) {
         btnCapNhat.addActionListener(all);
     }
-      
+
     public void btnXoaActionListener(ActionListener all) {
         btnXoa.addActionListener(all);
     }
-    
+
     public void btnDonHangActionListener(ActionListener all) {
         btnDonHang.addActionListener(all);
     }
-    
+
     public void btnKhachhangActionListener(ActionListener all) {
         btnKhachHang.addActionListener(all);
     }
 
+    // Các setter để hiển thị chi tiết thông tin sản phẩm được chọn
     public void setLblGhiChu(String lblGhiChu) {
         this.lblGhiChu.setText(lblGhiChu);
     }
@@ -99,25 +103,26 @@ public class Danh_Sach_Hoa_View extends javax.swing.JFrame {
     public void setLblTenHoa(String lblTenHoa) {
         this.lblTenHoa.setText(lblTenHoa);
     }
-    
-    
-    
-    public San_Pham getHoaSelectedRow()
-    {
+
+    /**
+     * Lấy sản phẩm (hoa) ở dòng được chọn trên bảng
+     *
+     * @return đối tượng San_Pham tương ứng, hoặc null nếu chưa chọn dòng nào
+     */
+    public San_Pham getHoaSelectedRow() {
         int selectedRow = tblSanPham.getSelectedRow();
         String tenHoa = "";
         String maHoa = "";
-        int soLuong  = 0;
+        int soLuong = 0;
         double gia = 0.0;
 
-        
-        if(selectedRow != -1) {
-             maHoa = tblSanPham.getValueAt(selectedRow, 0).toString();
-             tenHoa = tblSanPham.getValueAt(selectedRow, 1).toString();
-             soLuong = Integer.parseInt(tblSanPham.getValueAt(selectedRow, 2).toString());
-             gia = Double.parseDouble(tblSanPham.getValueAt(selectedRow, 3).toString());
-             San_Pham sp = new San_Pham(maHoa, tenHoa, "", "", "", soLuong, gia, "");
-             return sp;
+        if (selectedRow != -1) {
+            maHoa = tblSanPham.getValueAt(selectedRow, 0).toString();
+            tenHoa = tblSanPham.getValueAt(selectedRow, 1).toString();
+            soLuong = Integer.parseInt(tblSanPham.getValueAt(selectedRow, 2).toString());
+            gia = Double.parseDouble(tblSanPham.getValueAt(selectedRow, 3).toString());
+            San_Pham sp = new San_Pham(maHoa, tenHoa, "", "", "", soLuong, gia, "");
+            return sp;
         }
         return null;
     }
@@ -425,9 +430,9 @@ public class Danh_Sach_Hoa_View extends javax.swing.JFrame {
                 .addComponent(btnXem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(104, 104, 104)
                 .addComponent(btnThem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(107, 107, 107)
                 .addComponent(btnCapNhat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(94, 94, 94)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnXoa)
                 .addGap(30, 30, 30))
         );
@@ -552,5 +557,4 @@ public class Danh_Sach_Hoa_View extends javax.swing.JFrame {
     private javax.swing.JTable tblSanPham;
     // End of variables declaration//GEN-END:variables
 
-  
 }

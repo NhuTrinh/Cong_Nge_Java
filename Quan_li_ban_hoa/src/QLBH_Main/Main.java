@@ -19,12 +19,12 @@ import QLBH_View.Dang_Nhap_View;
 import QLBH_View.Danh_Sach_Hoa_View;
 import QLBH_View.Don_Hang_View;
 import QLBH_View.Gio_Hang_View;
-import QLBH_View.Hoa_Don;
 import QLBH_View.Hoa_Tao_Cap_Nhat;
 import QLBH_View.Khach_Hang_Tao_Cap_Nhat;
 import QLBH_View.Khach_Hang_View;
 import QLBH_View.MainFrame;
 import QLBH_View.Them_Gio_Hang;
+import QLBH_View.Thong_Bao_Loi;
 import java.awt.Frame;
 import javax.swing.JFrame;
 
@@ -47,7 +47,8 @@ public class Main {
         Don_Hang_View dhView = new Don_Hang_View();
         Danh_Sach_Hoa_View dshView = new Danh_Sach_Hoa_View();
         Khach_Hang_Tao_Cap_Nhat khTaoCapNhatModel = new Khach_Hang_Tao_Cap_Nhat();
-        Khach_Hang_Controller khController = new Khach_Hang_Controller(mainFrame, khView, khModel, khTaoCapNhatModel, dhView, dshView);
+        Thong_Bao_Loi tbView = new Thong_Bao_Loi();
+        Khach_Hang_Controller khController = new Khach_Hang_Controller(mainFrame, khView, khModel, khTaoCapNhatModel, dhView, dshView, tbView);
         Dang_Nhap_Controller cl = new Dang_Nhap_Controller(m, v, mainFrame);
         Danh_Sach_Hoa_Model dshModel = new Danh_Sach_Hoa_Model();
         Hoa_Tao_Cap_Nhat chiTietHoaView = new Hoa_Tao_Cap_Nhat();
@@ -56,7 +57,7 @@ public class Main {
         Gio_Hang_View ghView = new Gio_Hang_View();
         Them_Gio_Hang tghView = new Them_Gio_Hang();
         Don_Hang_Controller dhController = new Don_Hang_Controller(mainFrame, dhView, dhModel, ctdhView, ghView, dshView, tghView);
-        Danh_Sach_Hoa_Controller dshController = new Danh_Sach_Hoa_Controller(mainFrame, dshView, dshModel, chiTietHoaView, dhView, khView);
+        Danh_Sach_Hoa_Controller dshController = new Danh_Sach_Hoa_Controller(mainFrame, dshView, dshModel, chiTietHoaView, dhView, khView, tbView);
         Main_Controller mainController = new Main_Controller(mainModel, mainFrame, v, khView, khModel, dshView, dshModel, dhView, dhModel);       
         cl.loginAction();
         v.setVisible(true);
@@ -83,13 +84,14 @@ public class Main {
         dhController.xoaAction();
         dhController.xemAction();
         dhController.capNhatDonHangAction();
-        //dhController.themGioHangAction();
-        //dhController.giamGioHangAction();
-        //dhController.xoaGioHangAction();
-        //dhController.thoatGioHang();
-        //dhController.themDonHangAction();
-        //dhController.thoatChiTietDonHangAction();
-        //dhController.thoatThemGioHang();
+        dhController.thoatDonHang();
+        dhController.themGioHangAction();
+        dhController.giamGioHangAction();
+        dhController.xoaGioHangAction();
+        dhController.thoatGioHang();
+        dhController.themDonHangAction();
+        dhController.thoatChiTietDonHangAction();
+        dhController.thoatThemGioHang();
     }
     
 }

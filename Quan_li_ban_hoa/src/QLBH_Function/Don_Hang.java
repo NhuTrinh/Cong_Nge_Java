@@ -7,8 +7,10 @@ package QLBH_Function;
 import jdk.jshell.Diag;
 
 /**
+ * Lớp Don_Hang đại diện cho một đơn hàng trong cửa hàng. Chứa các thông tin như
+ * mã đơn hàng, ngày lập, trạng thái, mã nhân viên, mã khách hàng và tổng tiền.
  *
- * @author TOSHIBA
+ * @author Trịnh Nguyễn Huỳnh Như - 23540024; Phạm Nguyễn Hoàng Long - 23540017
  */
 public class Don_Hang {
 
@@ -19,6 +21,9 @@ public class Don_Hang {
     private String maKhachHang;
     private Double tongTien;
 
+    /**
+     * Constructor khởi tạo đơn hàng với đầy đủ thông tin.
+     */
     public Don_Hang(String maDonHang, String ngayLap, String trangThai, String maNhanVien, String maKhachHang, Double tongTien) {
         this.maDonHang = maDonHang;
         this.ngayLap = ngayLap;
@@ -28,6 +33,7 @@ public class Don_Hang {
         this.tongTien = tongTien;
     }
 
+    // Các getter
     public String getMaDonHang() {
         return maDonHang;
     }
@@ -52,6 +58,7 @@ public class Don_Hang {
         return tongTien;
     }
 
+    // Các setter
     public void setMaDonHang(String maDonHang) {
         this.maDonHang = maDonHang;
     }
@@ -75,10 +82,12 @@ public class Don_Hang {
     public void setTongTien(Double tongTien) {
         this.tongTien = tongTien;
     }
-    
+
+    /**
+     * Trả về mảng Object chứa thông tin đơn hàng, tiện cho hiển thị bảng.
+     */
     public Object[] getArrDH() {
         return new Object[]{maDonHang, ngayLap, trangThai, maNhanVien, maKhachHang, tongTien};
     }
-    
 
 }
