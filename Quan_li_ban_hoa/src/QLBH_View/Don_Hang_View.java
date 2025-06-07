@@ -114,6 +114,7 @@ public class Don_Hang_View extends javax.swing.JFrame {
         btnXoa = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("ĐƠN HÀNG");
 
         jPanel2.setBackground(new java.awt.Color(0, 102, 0));
 

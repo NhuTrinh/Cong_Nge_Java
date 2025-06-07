@@ -170,7 +170,7 @@ public class Danh_Sach_Hoa_View extends javax.swing.JFrame {
         btnXoa = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Danh mục hoa");
+        setTitle("DANH MỤC HOA");
 
         jPanel2.setBackground(new java.awt.Color(0, 102, 0));
         jPanel2.setForeground(new java.awt.Color(255, 255, 255));
